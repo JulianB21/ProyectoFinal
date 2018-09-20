@@ -132,7 +132,7 @@ MODAL AGREGAR FICHA
               
                 <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
-                <input type="number" class="form-control input-lg" name="nuevaFicha" placeholder="Ingresar Numero De Ficha" required>
+                <input type="text" class="form-control input-lg" name="nuevaFicha" placeholder="Ingresar Numero De Ficha" required>
 
               </div>
 
@@ -150,7 +150,19 @@ MODAL AGREGAR FICHA
                   
                   <option value="">Selecionar programa</option>
 
-                  <option value="ADSI">ADSI</option>
+                  <?php
+
+$item  = null;
+$valor = null;
+
+$programa = ControladorProgramas::ctrMostrarProgramas($item, $valor);
+
+foreach ($programa as $key => $value) {
+
+    echo '<option value="' . $value["IdPrograma"] . '">' . $value["NombrePrograma"] . '</option>';
+}
+
+?>
 
                 </select>
 
@@ -170,13 +182,45 @@ MODAL AGREGAR FICHA
                   
                   <option value="">Selecionar ambiente</option>
 
-                  <option value="TDT">TDT</option>
+                 <?php
+
+$item  = null;
+$valor = null;
+
+$ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
+
+foreach ($ambiente as $key => $value) {
+
+    echo '<option value="' . $value["IdAmbiente"] . '">' . $value["NombreAmbiente"] . '</option>';
+}
+
+?>
 
                 </select>
 
               </div>
 
             </div>
+
+            <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+
+                    <select class="form-control input-lg" name="nuevaJornada">
+                  
+                  <option value="">Selecionar Jornada</option>
+                  <option value="Mañana">Mañana</option>
+                  <option value="Tarde">Tarde</option>
+                  <option value="Noche">Noche</option>
+
+                    </select>
+
+              </div>
+
+            </div>
+
 
 
             <!-- ENTRADA PARA LA FECHA DE INICIO -->
@@ -187,7 +231,7 @@ MODAL AGREGAR FICHA
               
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="nuevaFechaInicio" placeholder="Ingresar fecha inicio" data-inputmask="'alias': 'yyyy/mm/dd'" data-mask required>
+                <input type="text" class="form-control input-lg" name="nuevaFechaInicio" placeholder="Ingresar fecha inicio" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required>
 
               </div>
 
@@ -201,7 +245,7 @@ MODAL AGREGAR FICHA
               
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="nuevaFechaFin" placeholder="Ingresar fecha fin" data-inputmask="'alias': 'yyyy/mm/dd'" data-mask required>
+                <input type="text" class="form-control input-lg" name="nuevaFechaFin" placeholder="Ingresar fecha fin" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required>
 
               </div>
 
@@ -222,6 +266,12 @@ MODAL AGREGAR FICHA
           <button type="submit" class="btn btn-primary">Guardar Ficha</button>
 
         </div>
+        <?php 
+              $crearFicha= new ControladorFichas();
+              $crearFicha->ctrAgregarFichas();
+
+
+         ?>
 
       </form>
 
@@ -310,7 +360,7 @@ MODAL EDITAR FICHA
                   
                   <option value="">Selecionar ambiente</option>
 
-                  <option value="TDT">TDT</option>
+                  <option value="TBT">TBT</option>
 
                 </select>
 
@@ -327,7 +377,7 @@ MODAL EDITAR FICHA
               
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="editarFechaInicio" placeholder="Ingresar fecha inicio" data-inputmask="'alias': 'yyyy/mm/dd'" data-mask required>
+                <input type="text" class="form-control input-lg" name="editarFechaInicio" placeholder="Ingresar fecha inicio" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required>
 
               </div>
 
@@ -341,7 +391,7 @@ MODAL EDITAR FICHA
               
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="editarFechaFin" placeholder="Ingresar fecha fin" data-inputmask="'alias': 'yyyy/mm/dd'" data-mask required>
+                <input type="text" class="form-control input-lg" name="editarFechaFin" placeholder="Ingresar fecha fin" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required>
 
               </div>
 
