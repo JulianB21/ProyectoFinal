@@ -185,7 +185,7 @@ foreach ($usuario as $key => $value) {
 
                 <span class="input-group-addon"><i class="fa fa-users"></i></span>
 
-                <select class="form-control input-lg" name="nuevoPerfil">
+                <select class="form-control input-lg" name="nuevoPerfil" onchange="rolUsuario(this.value)">
 
                   <option value="">Selecionar perfil</option>
                   <option value="Administrador">Administrador</option>
@@ -336,7 +336,7 @@ $crearUsuario->ctrCrearUsuario();
 
                 <span class="input-group-addon"><i class="fa fa-users"></i></span>
 
-                <select class="form-control input-lg" name="editarPerfil">
+                <select class="form-control input-lg" name="editarPerfil" onchange="rolUsuario2(this.value)">
 
                   <option value="" id="editarPerfil"></option>
                   <option value="ADMINISTRADOR">Administrador</option>
@@ -358,7 +358,9 @@ $crearUsuario->ctrCrearUsuario();
 
                 <select class="form-control input-lg"  name="editarPrograma">
 
-                   <option id="editarPrograma"></option>
+
+                   <option id="editarPrograma" value=""></option>
+                   <option value="">Seleccione Programa</option>
 
                     <?php
                     $item  = null;

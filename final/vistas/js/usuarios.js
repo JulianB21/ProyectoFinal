@@ -34,35 +34,26 @@ $(".nuevaFoto").change(function() {
 /*=============================================
 EDITAR USUARIO
 =============================================*/
-$(".btnEditarUsuario").click(function(){
-
+$(".btnEditarUsuario").click(function() {
     var idUsuario = $(this).attr("NumDocumentoUsuario");
-    
-
     var datos = new FormData();
     datos.append("idUsuario", idUsuario);
-
     $.ajax({
-
-        url:"ajax/usuarios.ajax.php",
+        url: "ajax/usuarios.ajax.php",
         method: "POST",
         data: datos,
         cache: false,
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(respuesta){
-
-            console.log("respuesta", respuesta);
-
+        success: function(respuesta) {
             $("#editarNombre").html(respuesta["NombreUsuario"]);
             $("#editarNombre").val(respuesta["NombreUsuario"]);
             $("#editarDocumento").val(respuesta["NumDocumentoUsuario"]);
             $("#editarPerfil").html(respuesta["RolUsuario"]);
             $("#editarPerfil").val(respuesta["RolUsuario"]);
             $("#fotoActual").val(respuesta["FotoUsuario"]);
-
-             var datosPrograma = new FormData();
+            var datosPrograma = new FormData();
             datosPrograma.append("idPrograma", respuesta["IdPrograma"]);
             $.ajax({
                 url: "ajax/programas.ajax.php",
@@ -77,63 +68,44 @@ $(".btnEditarUsuario").click(function(){
                     $("#editarPrograma").html(respuesta["NombrePrograma"]);
                 }
             })
-
             $("#passwordActual").val(respuesta["ContraseniaUsuario"]);
-            
-            if(respuesta["FotoUsuario"] != ""){
-
+            if (respuesta["FotoUsuario"] != "") {
                 $(".previsualizar").attr("src", respuesta["FotoUsuario"]);
-
-
             }
-
         }
-
     });
-  
 })
 /*=============================================
 REVISAR SI EL USUARIO YA ESTÁ REGISTRADO
 =============================================*/
-$("#nuevoDocumento").change(function(){
-
+$("#nuevoDocumento").change(function() {
     $(".alert").remove();
-
     var usuario = $(this).val();
     var datos = new FormData();
     datos.append("ValidarUsuario", usuario);
-
     $.ajax({
-
-        url:"ajax/usuarios.ajax.php",
+        url: "ajax/usuarios.ajax.php",
         method: "POST",
         data: datos,
         cache: false,
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(respuesta){
-
-            if(respuesta){
-
+        success: function(respuesta) {
+            if (respuesta) {
                 $("#nuevoDocumento").parent().after('<div class="alert alert-warning">Este usuario ya existe en la base de datos</div>');
                 $("#nuevoDocumento").val("");
-
             }
-
         }
-
     })
 })
 /*=============================================
 ELIMINAR USUARIO
 =============================================*/
-$(".tablas").on("click", ".btnEliminarUsuario", function(){
-
+$(".tablas").on("click", ".btnEliminarUsuario", function() {
     var NumDocumentoUsuario = $(this).attr("NumDocumentoUsuario");
-    var FotoUsuario= $(this).attr("FotoUsuario");
+    var FotoUsuario = $(this).attr("FotoUsuario");
     var usuario = $(this).attr("usuario");
-
     swal({
         title: '¿Està seguro de borrar usuario?',
         text: "¡Si no lo está puede cancelar la accíón!",
@@ -143,13 +115,17 @@ $(".tablas").on("click", ".btnEliminarUsuario", function(){
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancelar',
         confirmButtonText: 'Si, borrar usuario!'
-  }).then(function(result){
-
-    if(result.value){
-
-      window.location = "index.php?ruta=usuarios&NumDocumentoUsuario="+NumDocumentoUsuario+"&usuario="+usuario+"&FotoUsuario="+FotoUsuario;
-
-    }
+    }).then(function(result) {
+        if (result.value) {
+            window.location = "index.php?ruta=usuarios&NumDocumentoUsuario=" + NumDocumentoUsuario + "&usuario=" + usuario + "&FotoUsuario=" + FotoUsuario;
+        }
     })
-
 })
+
+function rolUsuario(sel) {
+    if (sel == "Administrador") {
+        $("#nuevoPrograma").prop('disabled', true);
+    } else {
+        $("#nuevoPrograma").prop('disabled', false);
+    }
+}

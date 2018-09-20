@@ -131,6 +131,7 @@ class ControladorUsuarios
                     "RolUsuario"                         => $rolUsuario,
                     "FotoUsuario"                        => $ruta,
                     "IdPrograma"=>$_POST["nuevoPrograma"]);
+                var_dump($datos);
 
                 $respuesta = ModeloUsuarios::mdlIngresarUsuario($tabla, $datos);
 
@@ -314,19 +315,29 @@ class ControladorUsuarios
 
                 }else{
 
-                    $encriptar = $passwordActual;
+
+
+                    $encriptar = $_POST["passwordActual"];
 
                 }
 
                     $editarNombre=strtoupper($_POST["editarNombre"]);
                     $editarPerfil=strtoupper($_POST["editarPerfil"]);
+                    if($_POST["editarPrograma"]==""){
+                        $programa = null;
+                    }
+                    else{
+                        $programa=$_POST["editarPrograma"];
+                    }
 
                 $datos = array("NumDocumentoUsuario" => $_POST["editarDocumento"],
                     "NombreUsuario"                      => $editarNombre,
                     "ContraseniaUsuario"                 => $encriptar,
                     "RolUsuario"                         => $editarPerfil,
                     "FotoUsuario"                        => $ruta,
-                    "IdPrograma"=>$_POST["editarPrograma"]);
+                    "IdPrograma"=>$programa);
+
+                var_dump($datos);
 
                 $respuesta = ModeloUsuarios::mdlEditarUsuario($tabla, $datos);
 
