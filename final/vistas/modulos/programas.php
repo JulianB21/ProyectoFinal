@@ -121,7 +121,7 @@ foreach ($respuesta as $key => $value) {
                                     <i class="fa fa-users">
                                     </i>
                                 </span>
-                                <select class="form-control input-lg" name="TipoPrograma" id="TipoPrograma" onchange="duracion(this.value)">
+                                <select class="form-control input-lg" name="TipoPrograma" id="TipoPrograma">
                                     <option value="">
                                         Seleccione el Programa
                                     </option>
@@ -143,7 +143,7 @@ foreach ($respuesta as $key => $value) {
                                     <i class="fa fa-user">
                                     </i>
                                 </span>
-                                <input class="form-control input-lg" name="nuevaDuracion"  id="nuevaDuracion" placeholder="Duracion del Programa" required="" type="text">
+                                <input class="form-control input-lg" name="nuevaDuracion"  id="nuevaDuracion" placeholder="Duracion del Programa" type="text">
                                 </input>
                             </div>
                         </div>

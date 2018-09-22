@@ -12,7 +12,7 @@ class ControladorAmbientes
 
     	if(isset($_POST["nuevoAmbiente"])){
 
-    		if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoAmbiente"]) && preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaUbicacion"])) {
+    		if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoAmbiente"])) {
 
     			$tabla="ambiente";
     			$NombreAmbiente = strtoupper($_POST["nuevoAmbiente"]);
@@ -22,6 +22,8 @@ class ControladorAmbientes
     				"NombreAmbiente"=>$NombreAmbiente,
     				"UbicacionAmbiente"=>$nuevaUbicacion
     			);
+
+                // var_dump($datos);
 
     			$respuesta=ModeloAmbientes::mdlCrearAmbientes($tabla, $datos);
 

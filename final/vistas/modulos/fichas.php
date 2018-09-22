@@ -132,7 +132,7 @@ MODAL AGREGAR FICHA
               
                 <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="nuevaFicha" placeholder="Ingresar Numero De Ficha" required>
+                <input type="number" class="form-control input-lg" name="nuevaFicha" placeholder="Ingresar Numero De Ficha" required>
 
               </div>
 
@@ -178,7 +178,7 @@ foreach ($programa as $key => $value) {
               
                 <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                <select class="form-control input-lg" name="nuevoAmbiente">
+                <select class="form-control input-lg" name="nuevoAmbiente" required>
                   
                   <option value="">Selecionar ambiente</option>
 

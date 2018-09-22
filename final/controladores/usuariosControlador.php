@@ -12,6 +12,8 @@ class ControladorUsuarios
 
         if (isset($_POST["ingUsuario"])) {
 
+            echo "sdfsfs";
+
             if (preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingUsuario"]) &&
                 preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingPassword"])) {
 

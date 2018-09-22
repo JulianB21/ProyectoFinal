@@ -62,7 +62,7 @@
             foreach ($mostrarAmbientes as $key => $value) {
 
                       echo '<tr>
-                      <td>'.$key.'</td>
+                      <td>'.($key+1).'</td>
                     <td>'.$value["IdAmbiente"].'</td>
                     <td>'.$value["NombreAmbiente"].'</td>
                     <td>'.$value["UbicacionAmbiente"].'</td>';
@@ -310,7 +310,7 @@
 
 </div>
 
-   </div>
+   <!-- </div> -->
         <?php 
               $eliminarAmbiente= new ControladorAmbientes();
               $eliminarAmbiente->ctrEliminarAmbientes();

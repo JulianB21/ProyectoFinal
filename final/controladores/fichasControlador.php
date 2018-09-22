@@ -14,7 +14,8 @@ class ControladorFichas
 		if(isset($_POST["nuevaFicha"]))
 		{
 
-			if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaFicha"])){
+			if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaFicha"]) &&
+				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaJornada"])){
 
 				$tabla = "ficha";
 
@@ -28,11 +29,11 @@ class ControladorFichas
 							 "FechaFin"=> $_POST["nuevaFechaFin"],
 							 "JornadaFicha"=>$jornada);
 				
-				var_dump($datos);
-				$respuesta=ModeloFichas::mdlAgregarFichas($tabla, $datos);
-				
+				// var_dump($datos);
 
-				if($respuesta=="ok"){
+				$respuesta = ModeloFichas::mdlAgregarFichas($tabla, $datos);
+				
+				if($respuesta == "ok"){
 					echo '<script>
 
 					swal({
@@ -52,12 +53,9 @@ class ControladorFichas
 					</script>';
     				}
 
-    				
+    		}else{
 
-    			}
-    			else{
-
-    					echo '<script>
+    			echo '<script>
 
 					swal({
 						  type: "error",
