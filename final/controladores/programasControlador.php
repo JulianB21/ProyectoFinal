@@ -144,8 +144,10 @@ class ControladorProgramas
         if (isset($_GET["idPrograma"])) {
             $tabla     = "programa";
             $datos     = $_GET["idPrograma"];
-            $respuesta = ModelosProgramas::mdlBorrarPrograma($tabla, $datos);
 
+     
+            $respuesta = ModelosProgramas::mdlBorrarPrograma($tabla, $datos);
+			
             if ($respuesta == "ok") {
                 echo '<script>
 

@@ -121,17 +121,17 @@ foreach ($respuesta as $key => $value) {
                                     <i class="fa fa-users">
                                     </i>
                                 </span>
-                                <select class="form-control input-lg" name="TipoPrograma" id="TipoPrograma" required>
+                                <select class="form-control input-lg" name="TipoPrograma" id="TipoPrograma" required onchange="duracion(this.value)">
                                     <option value="">
                                         Seleccione el Programa
                                     </option>
-                                    <option value="Tecnico">
+                                    <option value="TECNICO">
                                         Técnico
                                     </option>
-                                    <option value="Tecnologo">
+                                    <option value="TECNOLOGO">
                                         Tecnólogo
                                     </option>
-                                    <option value="Complementario">
+                                    <option value="COMPLEMENTARIO">
                                         Complementario
                                     </option>
                                 </select>
@@ -203,11 +203,11 @@ $crearPrograma->ctrCrearProgramas();
                                     <i class="fa fa-users">
                                     </i>
                                 </span>
-                                <select class="form-control input-lg" name="EditarTipoPrograma" id="EditarTipoPrograma" onchange="duracion(this.value) " required>
+                                <select class="form-control input-lg" name="EditarTipoPrograma" id="EditarTipoPrograma" required onchange="duracion(this.value)" >
                                     <option value="">
                                         Selecionar Tipo de Programa
                                     </option>
-                                    <option value="TENICO">
+                                    <option value="TECNICO">
                                         Técnico
                                     </option>
                                     <option value="TECNOLOGO">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-09-2018 a las 22:58:52
+-- Tiempo de generación: 24-09-2018 a las 00:36:34
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.7
 
@@ -43,7 +43,7 @@ CREATE TABLE `acta_responsabilidad` (
 
 CREATE TABLE `ambiente` (
   `IdAmbiente` int(50) NOT NULL,
-  `IdPrograma` int(50) NOT NULL,
+  `IdPrograma` int(50) DEFAULT NULL,
   `NombreAmbiente` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `UbicacionAmbiente` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -53,9 +53,7 @@ CREATE TABLE `ambiente` (
 --
 
 INSERT INTO `ambiente` (`IdAmbiente`, `IdPrograma`, `NombreAmbiente`, `UbicacionAmbiente`) VALUES
-(3, 26, 'ADSI 3', 'L'),
 (6, 25, 'ADSI', 'AMBIENTE L'),
-(16, 26, 'TBT', 'FRENTE AL AMBIENTE L'),
 (17, 25, 'FSDDSFGSDF', 'SDFGDFGDFG');
 
 -- --------------------------------------------------------
@@ -156,7 +154,6 @@ CREATE TABLE `ficha` (
 --
 
 INSERT INTO `ficha` (`NumeroFicha`, `IdPrograma`, `IdAmbiente`, `FechaInicio`, `FechaFin`, `JornadaFicha`) VALUES
-(789654, 26, 6, '21/03/2013', '12/03/2054', 'NOCHE'),
 (1493990, 31, 6, '22/02/2022', '22/02/2022', 'TARDE');
 
 -- --------------------------------------------------------
@@ -191,8 +188,8 @@ CREATE TABLE `programa` (
 
 INSERT INTO `programa` (`IdPrograma`, `NombrePrograma`, `DuracionPrograma`, `TipoPrograma`) VALUES
 (25, 'ADMINISTRACIóN', '24 HORAS', 'COMPLEMENTARIO'),
-(26, 'ANIMACIóN 3D', '12 MESES', 'TENICO'),
-(31, 'DESARROLLO DE SOFTWARE', '2 AñOS', 'TECNOLOGO');
+(31, 'DESARROLLO DE SOFTWARE', '2 AñOS', 'TECNOLOGO'),
+(32, 'SISTEMAS', '24 MESES', 'TECNOLOGO');
 
 -- --------------------------------------------------------
 
@@ -214,8 +211,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`NumDocumentoUsuario`, `IdPrograma`, `NombreUsuario`, `ContraseniaUsuario`, `RolUsuario`, `FotoUsuario`) VALUES
-(123, NULL, 'ADMINISTRADOR', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'ADMINISTRADOR', ''),
-(234, 26, 'NARE BOLAñOS', '$2a$07$asxx54ahjppf45sd87a5auqvyoHPuE03PBl66rOh7whlYyg2jaCg6', 'INSTRUCTOR', '');
+(123, NULL, 'ADMINISTRADOR', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'ADMINISTRADOR', '');
 
 --
 -- Índices para tablas volcadas
@@ -344,7 +340,7 @@ ALTER TABLE `novedad`
 -- AUTO_INCREMENT de la tabla `programa`
 --
 ALTER TABLE `programa`
-  MODIFY `IdPrograma` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `IdPrograma` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- Restricciones para tablas volcadas

@@ -68,11 +68,12 @@ class ModelosProgramas
 
 
 
-    public function mdlBorrarPrograma($tabla, $datos)
+    static public function mdlBorrarPrograma($tabla, $datos)
     {
         $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE IdPrograma=:idPrograma");
-
+        
         $stmt->bindParam(":idPrograma", $datos, PDO::PARAM_STR);
+        var_dump($stmt);
         if ($stmt->execute()) {
             return "ok";
         } else {
