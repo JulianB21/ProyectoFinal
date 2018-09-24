@@ -22,14 +22,12 @@ class ControladorFichas
 				$jornada = strtoupper($_POST["nuevaJornada"]);
 				// $fechaInicio=($_POST["nuevaFechaInicio"],$formato);
 
-				$datos=array("NumeroFicha" => $_POST["nuevaFicha"],
-							 "IdAmbiente "=> $_POST["nuevoAmbiente"],
-							 "IdPrograma"=> $_POST["nuevoPrograma"],
-							 "FechaInicio"=> $_POST["nuevaFechaInicio"],
-							 "FechaFin"=> $_POST["nuevaFechaFin"],
+				$datos = array("NumeroFicha" => $_POST["nuevaFicha"],
+							 "IdAmbiente" => $_POST["nuevoAmbiente"],
+							 "IdPrograma" => $_POST["nuevoPrograma"],
+							 "FechaInicio" => $_POST["nuevaFechaInicio"],
+							 "FechaFin" => $_POST["nuevaFechaFin"],
 							 "JornadaFicha"=>$jornada);
-				
-				// var_dump($datos);
 
 				$respuesta = ModeloFichas::mdlAgregarFichas($tabla, $datos);
 				

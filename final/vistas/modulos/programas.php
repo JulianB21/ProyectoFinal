@@ -54,7 +54,7 @@ $respuesta = ControladorProgramas::ctrMostrarProgramas($item, $valor);
 foreach ($respuesta as $key => $value) {
     echo '<tr>
                             <td>
-                                ' . $key . '
+                                ' . ($key+1). '
                             </td>
                             <td>' . $value["NombrePrograma"] . '.
                             </td>
@@ -110,7 +110,7 @@ foreach ($respuesta as $key => $value) {
                                     <i class="fa fa-user">
                                     </i>
                                 </span>
-                                <input class="form-control input-lg" name="NuevoPrograma" placeholder="Nombre del Programa" required="" type="text">
+                                <input class="form-control input-lg" name="NuevoPrograma" placeholder="Nombre del Programa" required type="text">
                                 </input>
                             </div>
                         </div>
@@ -121,7 +121,7 @@ foreach ($respuesta as $key => $value) {
                                     <i class="fa fa-users">
                                     </i>
                                 </span>
-                                <select class="form-control input-lg" name="TipoPrograma" id="TipoPrograma">
+                                <select class="form-control input-lg" name="TipoPrograma" id="TipoPrograma" required>
                                     <option value="">
                                         Seleccione el Programa
                                     </option>
@@ -143,7 +143,7 @@ foreach ($respuesta as $key => $value) {
                                     <i class="fa fa-user">
                                     </i>
                                 </span>
-                                <input class="form-control input-lg" name="nuevaDuracion"  id="nuevaDuracion" placeholder="Duracion del Programa" type="text">
+                                <input class="form-control input-lg" name="nuevaDuracion"  id="nuevaDuracion" placeholder="Duracion del Programa" type="text" required>
                                 </input>
                             </div>
                         </div>
@@ -203,7 +203,7 @@ $crearPrograma->ctrCrearProgramas();
                                     <i class="fa fa-users">
                                     </i>
                                 </span>
-                                <select class="form-control input-lg" name="EditarTipoPrograma" id="EditarTipoPrograma" onchange="duracion(this.value)">
+                                <select class="form-control input-lg" name="EditarTipoPrograma" id="EditarTipoPrograma" onchange="duracion(this.value) " required>
                                     <option value="">
                                         Selecionar Tipo de Programa
                                     </option>

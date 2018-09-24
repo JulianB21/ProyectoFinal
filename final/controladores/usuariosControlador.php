@@ -12,8 +12,6 @@ class ControladorUsuarios
 
         if (isset($_POST["ingUsuario"])) {
 
-            echo "sdfsfs";
-
             if (preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingUsuario"]) &&
                 preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingPassword"])) {
 
@@ -55,7 +53,7 @@ class ControladorUsuarios
     =============================================*/
 
     public static function ctrCrearUsuario()
-    {
+    { 
 
         if (isset($_POST["nuevoNombre"])) {
 
@@ -133,7 +131,6 @@ class ControladorUsuarios
                     "RolUsuario"                         => $rolUsuario,
                     "FotoUsuario"                        => $ruta,
                     "IdPrograma"=>$_POST["nuevoPrograma"]);
-                var_dump($datos);
 
                 $respuesta = ModeloUsuarios::mdlIngresarUsuario($tabla, $datos);
 

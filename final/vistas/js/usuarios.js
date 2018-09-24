@@ -107,7 +107,7 @@ $(".tablas").on("click", ".btnEliminarUsuario", function() {
     var FotoUsuario = $(this).attr("FotoUsuario");
     var usuario = $(this).attr("usuario");
     swal({
-        title: '¿Està seguro de borrar usuario?',
+        title: '¿Está seguro de borrar usuario?',
         text: "¡Si no lo está puede cancelar la accíón!",
         type: 'warning',
         showCancelButton: true,

@@ -40,14 +40,14 @@ $(".btnEditarAmbiente").click(function() {
 $(".btnEliminarAmbiente").click(function() {
     var idAmbiente = $(this).attr("idAmbiente");
     swal({
-        title: '¿Desea eliminar el programa?',
+        title: '¿Desea eliminar el ambiente?',
         text: "Si no está seguro puede cancerlar la acción",
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Eliminar Programa'
+        confirmButtonText: 'Eliminar Ambiente'
     }).then((result) => {
         if (result.value) {
             window.location = "index.php?ruta=ambientes&idAmbiente=" + idAmbiente;

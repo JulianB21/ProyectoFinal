@@ -146,7 +146,7 @@ MODAL AGREGAR FICHA
               
                 <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                <select class="form-control input-lg" name="nuevoPrograma">
+                <select class="form-control input-lg" name="nuevoPrograma" required>
                   
                   <option value="">Selecionar programa</option>
 
@@ -178,11 +178,11 @@ foreach ($programa as $key => $value) {
               
                 <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                <select class="form-control input-lg" name="nuevoAmbiente" required>
+                 <select class="form-control input-lg" name="nuevoAmbiente" required>
                   
                   <option value="">Selecionar ambiente</option>
 
-                 <?php
+                  <?php
 
 $item  = null;
 $valor = null;
@@ -208,7 +208,7 @@ foreach ($ambiente as $key => $value) {
               
                 <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                    <select class="form-control input-lg" name="nuevaJornada">
+                    <select class="form-control input-lg" name="nuevaJornada" required>
                   
                   <option value="">Selecionar Jornada</option>
                   <option value="Mañana">Mañana</option>
