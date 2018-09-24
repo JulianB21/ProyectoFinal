@@ -8,10 +8,7 @@ si hay documento de usuario repetido no deja agregar y no aparecen las validacio
 -------------------------------------------------------------------------------------
 
 AMBIENTES 
+FICHAS
 CATEGORIAS
 funcionan bien 
--------------------------------------------------------------------------------------
-
-FICHAS 
-por ahora solo agrega bien 
 -------------------------------------------------------------------------------------

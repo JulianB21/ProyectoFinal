@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-09-2018 a las 10:44:49
+-- Tiempo de generación: 24-09-2018 a las 22:58:52
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.7
 
@@ -45,7 +45,7 @@ CREATE TABLE `ambiente` (
   `IdAmbiente` int(50) NOT NULL,
   `IdPrograma` int(50) NOT NULL,
   `NombreAmbiente` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `UbicacionAmbiente` varchar(100) COLLATE utf8_spanish_ci NOT NULL
+  `UbicacionAmbiente` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -53,7 +53,10 @@ CREATE TABLE `ambiente` (
 --
 
 INSERT INTO `ambiente` (`IdAmbiente`, `IdPrograma`, `NombreAmbiente`, `UbicacionAmbiente`) VALUES
-(3, 26, 'ADSI 3', 'L');
+(3, 26, 'ADSI 3', 'L'),
+(6, 25, 'ADSI', 'AMBIENTE L'),
+(16, 26, 'TBT', 'FRENTE AL AMBIENTE L'),
+(17, 25, 'FSDDSFGSDF', 'SDFGDFGDFG');
 
 -- --------------------------------------------------------
 
@@ -117,7 +120,8 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`IdCategoria`, `NombreCategoria`) VALUES
-(2, 'IMPLEMENTOS DE DASDASDA');
+(2, 'IMPLEMENTOS DEPORTIVOS'),
+(4, 'EQUIPOS PARA CONSTRUCCIóN');
 
 -- --------------------------------------------------------
 
@@ -141,11 +145,19 @@ CREATE TABLE `equipo` (
 CREATE TABLE `ficha` (
   `NumeroFicha` int(50) NOT NULL,
   `IdPrograma` int(50) NOT NULL,
-  `IdAmbiente` int(50) NOT NULL,
-  `FechaInicio` date NOT NULL,
-  `FechaFin` date NOT NULL,
+  `IdAmbiente` int(50) DEFAULT NULL,
+  `FechaInicio` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `FechaFin` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `JornadaFicha` varchar(50) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `ficha`
+--
+
+INSERT INTO `ficha` (`NumeroFicha`, `IdPrograma`, `IdAmbiente`, `FechaInicio`, `FechaFin`, `JornadaFicha`) VALUES
+(789654, 26, 6, '21/03/2013', '12/03/2054', 'NOCHE'),
+(1493990, 31, 6, '22/02/2022', '22/02/2022', 'TARDE');
 
 -- --------------------------------------------------------
 
@@ -178,8 +190,9 @@ CREATE TABLE `programa` (
 --
 
 INSERT INTO `programa` (`IdPrograma`, `NombrePrograma`, `DuracionPrograma`, `TipoPrograma`) VALUES
-(25, 'DADASDA', '24 MESES', 'TECNOLOGO'),
-(26, 'ANIMACIóN 3D', '24 MESES', 'TECNOLOGO');
+(25, 'ADMINISTRACIóN', '24 HORAS', 'COMPLEMENTARIO'),
+(26, 'ANIMACIóN 3D', '12 MESES', 'TENICO'),
+(31, 'DESARROLLO DE SOFTWARE', '2 AñOS', 'TECNOLOGO');
 
 -- --------------------------------------------------------
 
@@ -301,7 +314,7 @@ ALTER TABLE `acta_responsabilidad`
 -- AUTO_INCREMENT de la tabla `ambiente`
 --
 ALTER TABLE `ambiente`
-  MODIFY `IdAmbiente` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `IdAmbiente` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `articulo`
@@ -313,7 +326,7 @@ ALTER TABLE `articulo`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `IdCategoria` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `IdCategoria` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `equipo`
@@ -331,7 +344,7 @@ ALTER TABLE `novedad`
 -- AUTO_INCREMENT de la tabla `programa`
 --
 ALTER TABLE `programa`
-  MODIFY `IdPrograma` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `IdPrograma` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- Restricciones para tablas volcadas

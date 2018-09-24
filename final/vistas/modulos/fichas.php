@@ -54,31 +54,53 @@
         </thead>
 
         <tbody>
-          
-          <tr>
 
-           <td>1</td>
-           <td>1493990</td>
-           <td>ADSI</td>
-           <td>AMBIENTE L</td>
-           <td>2017-06-15</td>
-           <td>2018-06-15</td>
-           <td>TARDE</td> 
+          <?php 
 
-            <td>
+            $item=null;
+            $valor= null;
 
-              <div class="btn-group">
-                  
-                <button class="btn btn-warning" data-toggle="modal" data-target="#modalEditarFicha"><i class="fa fa-pencil"></i></button>
+            $mostrarFichas = ControladorFichas::ctrMostrarFichas($item, $valor);
 
-                <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+            foreach ($mostrarFichas as $key => $value) {
+              
+              echo '<tr>
 
-              </div>  
+                     <td>'.($key+1).'</td>
+                     <td>'.$value["NumeroFicha"].'</td>';
 
-            </td>
+                      $item="IdPrograma";
+                      $valor= $value["IdPrograma"];
 
-          </tr>
+                      $mostrarProgramas = ControladorProgramas::ctrMostrarProgramas($item, $valor);
+                   
+              echo ' <td>'.$mostrarProgramas["NombrePrograma"].'</td>';
 
+                      $item="IdAmbiente";
+                      $valor= $value["IdAmbiente"];
+
+                      $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
+
+              echo '<td>'.$ambiente["NombreAmbiente"].'</td>
+                     <td>'.$value["FechaInicio"].'</td>
+                     <td>'.$value["FechaFin"].'</td>
+                     <td>'.$value["JornadaFicha"].'</td> 
+
+                      <td>
+
+                        <div class="btn-group">
+                            
+                          <button class="btn btn-warning btnEditarFicha" idFicha="'.$value["NumeroFicha"].'" data-toggle="modal" data-target="#modalEditarFicha"><i class="fa fa-pencil"></i></button>
+
+                          <button class="btn btn-danger btnEliminarFicha" idFicha="'.$value["NumeroFicha"].'"><i class="fa fa-times"></i></button>
+
+                        </div>  
+
+                      </td>
+
+                    </tr>';
+            }
+          ?>
           
         </tbody>
 
@@ -202,6 +224,7 @@ foreach ($ambiente as $key => $value) {
 
             </div>
 
+            <!-- ENTRADA PARA JORNADA -->
             <div class="form-group">
               
               <div class="input-group">
@@ -221,10 +244,7 @@ foreach ($ambiente as $key => $value) {
 
             </div>
 
-
-
             <!-- ENTRADA PARA LA FECHA DE INICIO -->
-            
             <div class="form-group">
               
               <div class="input-group">
@@ -267,11 +287,9 @@ foreach ($ambiente as $key => $value) {
 
         </div>
         <?php 
-              $crearFicha= new ControladorFichas();
-              $crearFicha->ctrAgregarFichas();
-
-
-         ?>
+          $crearFicha= new ControladorFichas();
+          $crearFicha->ctrAgregarFichas();
+        ?>
 
       </form>
 
@@ -322,7 +340,9 @@ MODAL EDITAR FICHA
               
                 <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
-                <input type="number" class="form-control input-lg" name="editarFicha" placeholder="Ingresar Numero De Ficha" required>
+                <input type="number" class="form-control input-lg" name="editarFicha" id="editarFicha" placeholder="Ingresar Numero De Ficha" readonly>
+
+                <input type="hidden" id="idFicha">
 
               </div>
 
@@ -336,11 +356,21 @@ MODAL EDITAR FICHA
               
                 <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                <select class="form-control input-lg" name="editarPrograma">
+                <select class="form-control input-lg" name="idPrograma" >
                   
-                  <option value="">Selecionar programa</option>
+                  <option id="editarPrograma"></option>
 
-                  <option value="ADSI">ADSI</option>
+                  <?php
+                    $item  = null;
+                    $valor = null;
+
+                    $programas = ControladorProgramas::ctrMostrarProgramas($item, $valor);
+
+                    foreach ($programas as $key => $value) {
+                        echo '<option value="' . $value["IdPrograma"] . '">' . $value["NombrePrograma"] . '</option>';
+                    }
+
+                  ?>
 
                 </select>
 
@@ -356,11 +386,22 @@ MODAL EDITAR FICHA
               
                 <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                <select class="form-control input-lg" name="editarAmbiente">
+                <select class="form-control input-lg" name="idAmbiente" >
                   
-                  <option value="">Selecionar ambiente</option>
+                  <option id="editarAmbiente"></option>
 
-                  <option value="TBT">TBT</option>
+                  <?php
+
+                    $item=null;
+                    $valor= null;
+
+                    $mostrarAmbientes= ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
+
+                    foreach ($mostrarAmbientes as $key => $value) {
+                        echo '<option value="' . $value["IdAmbiente"] . '">' . $value["NombreAmbiente"] . '</option>';
+                    }
+
+                  ?>
 
                 </select>
 
@@ -368,6 +409,25 @@ MODAL EDITAR FICHA
 
             </div>
 
+            <!-- ENTRADA PARA JORNADA -->
+            <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+
+                    <select class="form-control input-lg" name="editarJornada" required>
+                  
+                  <option value="" id="editarJornada" >Selecionar Jornada</option>
+                  <option value="Mañana">Mañana</option>
+                  <option value="Tarde">Tarde</option>
+                  <option value="Noche">Noche</option>
+
+                    </select>
+
+              </div>
+
+            </div>
 
             <!-- ENTRADA PARA LA FECHA DE INICIO -->
             
@@ -377,7 +437,7 @@ MODAL EDITAR FICHA
               
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="editarFechaInicio" placeholder="Ingresar fecha inicio" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required>
+                <input type="text" class="form-control input-lg" name="editarFechaInicio" id="editarFechaInicio" placeholder="Ingresar fecha inicio" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required>
 
               </div>
 
@@ -391,7 +451,7 @@ MODAL EDITAR FICHA
               
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="editarFechaFin" placeholder="Ingresar fecha fin" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required>
+                <input type="text" class="form-control input-lg" name="editarFechaFin" id="editarFechaFin" placeholder="Ingresar fecha fin" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required>
 
               </div>
 
@@ -413,6 +473,11 @@ MODAL EDITAR FICHA
 
         </div>
 
+        <?php 
+          $editarFicha= new ControladorFichas();
+          $editarFicha->ctrEditarFichas();
+        ?>
+
       </form>
 
     </div>
@@ -420,5 +485,9 @@ MODAL EDITAR FICHA
   </div>
 
 </div>
+<?php 
+  $eliminarFicha= new ControladorFichas();
+  $eliminarFicha->ctrEliminarFicha();
+?>
 
 

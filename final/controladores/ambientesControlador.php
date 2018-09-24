@@ -152,14 +152,12 @@ class ControladorAmbientes
     	$tabla="ambiente";
 
     	$respuesta=ModeloAmbientes::mdlMostrarAmbientes($tabla, $item, $valor);
-        
-
 
     	return $respuesta;
     }
 
 
-public function ctrEliminarAmbientes()
+    public function ctrEliminarAmbientes()
     {
         if (isset($_GET["idAmbiente"])) {
             $tabla     = "ambiente";

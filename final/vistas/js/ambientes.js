@@ -1,3 +1,6 @@
+/*=============================================
+=            EDITAR AMBIENTE                  =
+=============================================*/
 $(".btnEditarAmbiente").click(function() {
     var idAmbiente = $(this).attr("idAmbiente");
     var datos = new FormData();

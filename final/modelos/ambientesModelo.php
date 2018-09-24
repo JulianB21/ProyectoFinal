@@ -47,7 +47,8 @@
         $stmt->null();
     }
 
-   		static public function mdlEditarAmbientes($tabla, $datos)
+   	// EDITAR AMBIENTE
+    static public function mdlEditarAmbientes($tabla, $datos)
     {
         $stmt = Conexion::conectar()->prepare(" UPDATE $tabla SET IdPrograma=:IdPrograma, NombreAmbiente =:NombreAmbiente, UbicacionAmbiente =:UbicacionAmbiente WHERE IdAmbiente=:IdAmbiente ");
 
@@ -67,16 +68,22 @@
         $stmt = null;
     }
 
-        public function mdlEliminarAmbiente($tabla, $datos)
+    // ELIMINAR AMBIENTE
+    public function mdlEliminarAmbiente($tabla, $datos)
     {
         $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE IdAmbiente=:idAmbiente");
 
         $stmt->bindParam(":idAmbiente", $datos, PDO::PARAM_STR);
+
         if ($stmt->execute()) {
+
             return "ok";
+
         } else {
+
             return "error";
         }
+        
         $stmt->close();
         $stmt = null;
     }
