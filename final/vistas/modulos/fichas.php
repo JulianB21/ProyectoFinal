@@ -154,7 +154,7 @@ MODAL AGREGAR FICHA
               
                 <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
-                <input type="number" class="form-control input-lg" name="nuevaFicha" placeholder="Ingresar Numero De Ficha" required>
+                <input type="number" class="form-control input-lg" name="nuevaFicha" id="nuevaFicha" placeholder="Ingresar Numero De Ficha" required>
 
               </div>
 

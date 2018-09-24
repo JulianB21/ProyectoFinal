@@ -27,6 +27,7 @@ class ControladorFichas
 							 "FechaInicio" => $_POST["nuevaFechaInicio"],
 							 "FechaFin" => $_POST["nuevaFechaFin"],
 							 "JornadaFicha"=>$jornada);
+				
 
 				$respuesta = ModeloFichas::mdlAgregarFichas($tabla, $datos);
 				

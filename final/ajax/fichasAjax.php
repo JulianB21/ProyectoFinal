@@ -17,12 +17,33 @@ class AjaxFichas{
         echo json_encode($respuesta);
 
     }
+
+    // VALIDAR NO REPETIR USUARIO
+    public $validarFicha;
+    public function ajaxValidarFicha(){
+
+        $item = "NumeroFicha";
+        $valor = $this->validarFicha;
+
+        $respuesta = ControladorFichas::ctrMostrarFichas($item, $valor);
+
+        echo json_encode($respuesta);
+
+    }
 }
 
-// // EDITAR CATEGORÍA
+// EDITAR CATEGORÍA
 if(isset($_POST["idFicha"])){
 
     $ambiente = new AjaxFichas();
     $ambiente -> idFicha = $_POST["idFicha"];
     $ambiente -> ajaxEditarFicha();
+}
+
+// VALIDAR FICHA
+if(isset($_POST["validarFicha"])){
+
+    $valFicha = new AjaxFichas();
+    $valFicha -> validarFicha = $_POST["validarFicha"];
+    $valFicha -> ajaxValidarFicha();
 }

@@ -54,7 +54,7 @@ $respuesta = ControladorProgramas::ctrMostrarProgramas($item, $valor);
 foreach ($respuesta as $key => $value) {
     echo '<tr>
                             <td>
-                                ' . ($key+1). '
+                                ' . ($key + 1) . '
                             </td>
                             <td>' . $value["NombrePrograma"] . '.
                             </td>
@@ -110,7 +110,8 @@ foreach ($respuesta as $key => $value) {
                                     <i class="fa fa-user">
                                     </i>
                                 </span>
-                                <input class="form-control input-lg" name="NuevoPrograma" placeholder="Nombre del Programa" required type="text">
+                                <input class="form-control input-lg" name="NuevoPrograma" id="NuevoPrograma"
+                                placeholder="Nombre del Programa" required type="text">
                                 </input>
                             </div>
                         </div>

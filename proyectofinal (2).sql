@@ -1,9 +1,9 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-09-2018 a las 00:36:34
+-- Tiempo de generación: 25-09-2018 a las 01:32:41
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.7
 
@@ -45,7 +45,7 @@ CREATE TABLE `ambiente` (
   `IdAmbiente` int(50) NOT NULL,
   `IdPrograma` int(50) DEFAULT NULL,
   `NombreAmbiente` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `UbicacionAmbiente` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL
+  `UbicacionAmbiente` varchar(100) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -53,8 +53,9 @@ CREATE TABLE `ambiente` (
 --
 
 INSERT INTO `ambiente` (`IdAmbiente`, `IdPrograma`, `NombreAmbiente`, `UbicacionAmbiente`) VALUES
-(6, 25, 'ADSI', 'AMBIENTE L'),
-(17, 25, 'FSDDSFGSDF', 'SDFGDFGDFG');
+(3, NULL, 'ADSI 3', 'L'),
+(4, NULL, 'CASA SOLAR', 'ASDASD'),
+(5, NULL, 'ADSASDASDA', 'DASDAS');
 
 -- --------------------------------------------------------
 
@@ -79,16 +80,24 @@ CREATE TABLE `aprendiz` (
 CREATE TABLE `articulo` (
   `IdArticulo` int(50) NOT NULL,
   `IdAmbiente` int(50) NOT NULL,
-  `IdEquipo` int(50) NOT NULL,
+  `IdEquipo` int(50) DEFAULT NULL,
   `IdCategoria` int(50) NOT NULL,
   `TipoArticulo` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `ModeloArticulo` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `MarcaArticulo` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `CaracteristicaArticulo` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `EstadoArticulo` tinyint(1) DEFAULT NULL,
+  `CaracteristicaArticulo` text COLLATE utf8_spanish_ci,
+  `EstadoArticulo` varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL,
   `NumInventarioSena` int(50) DEFAULT NULL,
   `SerialArticulo` int(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `articulo`
+--
+
+INSERT INTO `articulo` (`IdArticulo`, `IdAmbiente`, `IdEquipo`, `IdCategoria`, `TipoArticulo`, `ModeloArticulo`, `MarcaArticulo`, `CaracteristicaArticulo`, `EstadoArticulo`, `NumInventarioSena`, `SerialArticulo`) VALUES
+(8, 3, NULL, 2, 'MOUSE', 'FGDFG', 'SDFSF', '234324SDFSDF', 'ACTIVO', 343, 232),
+(9, 3, NULL, 2, 'MOUSE', 'FGDFG', 'SDFSF', '234324SDFSDF', 'ACTIVO', 343, 232);
 
 -- --------------------------------------------------------
 
@@ -118,8 +127,7 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`IdCategoria`, `NombreCategoria`) VALUES
-(2, 'IMPLEMENTOS DEPORTIVOS'),
-(4, 'EQUIPOS PARA CONSTRUCCIóN');
+(2, 'IMPLEMENTOS DE DASDASDA');
 
 -- --------------------------------------------------------
 
@@ -143,7 +151,7 @@ CREATE TABLE `equipo` (
 CREATE TABLE `ficha` (
   `NumeroFicha` int(50) NOT NULL,
   `IdPrograma` int(50) NOT NULL,
-  `IdAmbiente` int(50) DEFAULT NULL,
+  `IdAmbiente` int(50) NOT NULL,
   `FechaInicio` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `FechaFin` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `JornadaFicha` varchar(50) COLLATE utf8_spanish_ci NOT NULL
@@ -154,7 +162,7 @@ CREATE TABLE `ficha` (
 --
 
 INSERT INTO `ficha` (`NumeroFicha`, `IdPrograma`, `IdAmbiente`, `FechaInicio`, `FechaFin`, `JornadaFicha`) VALUES
-(1493990, 31, 6, '22/02/2022', '22/02/2022', 'TARDE');
+(123123123, 38, 3, '11/11/2011', '22/02/2022', 'MAñANA');
 
 -- --------------------------------------------------------
 
@@ -187,9 +195,8 @@ CREATE TABLE `programa` (
 --
 
 INSERT INTO `programa` (`IdPrograma`, `NombrePrograma`, `DuracionPrograma`, `TipoPrograma`) VALUES
-(25, 'ADMINISTRACIóN', '24 HORAS', 'COMPLEMENTARIO'),
-(31, 'DESARROLLO DE SOFTWARE', '2 AñOS', 'TECNOLOGO'),
-(32, 'SISTEMAS', '24 MESES', 'TECNOLOGO');
+(38, 'ADSI', '24 MESES', 'TECNOLOGO'),
+(39, 'ANIMACIóN 3D', '24 MESES', 'TECNOLOGO');
 
 -- --------------------------------------------------------
 
@@ -310,19 +317,19 @@ ALTER TABLE `acta_responsabilidad`
 -- AUTO_INCREMENT de la tabla `ambiente`
 --
 ALTER TABLE `ambiente`
-  MODIFY `IdAmbiente` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `IdAmbiente` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `articulo`
 --
 ALTER TABLE `articulo`
-  MODIFY `IdArticulo` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdArticulo` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `IdCategoria` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `IdCategoria` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `equipo`
@@ -340,7 +347,7 @@ ALTER TABLE `novedad`
 -- AUTO_INCREMENT de la tabla `programa`
 --
 ALTER TABLE `programa`
-  MODIFY `IdPrograma` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `IdPrograma` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Restricciones para tablas volcadas

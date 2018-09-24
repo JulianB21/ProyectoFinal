@@ -1,31 +1,32 @@
-<?php 
-	require_once "conexion.php";
+<?php
+require_once "conexion.php";
 
+class ModeloAmbientes
+{
 
-	class ModeloAmbientes{
+    public static function mdlCrearAmbientes($tabla, $datos)
+    {
 
-		static public function mdlCrearAmbientes($tabla, $datos){
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(NombreAmbiente, UbicacionAmbiente, IdPrograma) VALUES(:NombreAmbiente, :UbicacionAmbiente, :IdPrograma)");
 
-			$stmt= Conexion::conectar()->prepare("INSERT INTO $tabla(NombreAmbiente, UbicacionAmbiente, IdPrograma) VALUES(:NombreAmbiente, :UbicacionAmbiente, :IdPrograma)");
+        $stmt->bindParam(":NombreAmbiente", $datos["NombreAmbiente"], PDO::PARAM_STR);
+        $stmt->bindParam(":UbicacionAmbiente", $datos["UbicacionAmbiente"], PDO::PARAM_STR);
+        $stmt->bindParam(":IdPrograma", $datos["IdPrograma"], PDO::PARAM_STR);
 
-			$stmt->bindParam(":NombreAmbiente", $datos["NombreAmbiente"], PDO::PARAM_STR);
-			$stmt->bindParam(":UbicacionAmbiente", $datos["UbicacionAmbiente"], PDO::PARAM_STR);
-			$stmt->bindParam(":IdPrograma", $datos["IdPrograma"], PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return "ok";
+        } else {
+            return "error";
+        }
 
-			if($stmt->execute()){
-				return "ok";
-			}
-			else{
-				return "error";
-			}
+        $stmt->close();
+        $stmt = null;
+    }
 
-			$stmt->close();
-			$stmt=null;
-		}
+    public static function mdlMostrarAmbientes($tabla, $item, $valor)
+    {
 
-		static public function mdlMostrarAmbientes($tabla, $item, $valor){
-			
-			if ($item != null) {
+        if ($item != null) {
             $stmt = Conexion::conectar()->prepare("SELECT * FROM ambiente WHERE $item=:$item");
 
             $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
@@ -47,17 +48,16 @@
         $stmt->null();
     }
 
-   	// EDITAR AMBIENTE
-    static public function mdlEditarAmbientes($tabla, $datos)
+    // EDITAR AMBIENTE
+    public static function mdlEditarAmbientes($tabla, $datos)
     {
-        $stmt = Conexion::conectar()->prepare(" UPDATE $tabla SET IdPrograma=:IdPrograma, NombreAmbiente =:NombreAmbiente, UbicacionAmbiente =:UbicacionAmbiente WHERE IdAmbiente=:IdAmbiente ");
+        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET IdPrograma=:IdPrograma, NombreAmbiente =:NombreAmbiente, UbicacionAmbiente =:UbicacionAmbiente WHERE IdAmbiente=:IdAmbiente");
 
-        	$stmt->bindParam(":NombreAmbiente", $datos["NombreAmbiente"], PDO::PARAM_STR);
-			$stmt->bindParam(":UbicacionAmbiente", $datos["UbicacionAmbiente"], PDO::PARAM_STR);
-			$stmt->bindParam(":IdPrograma", $datos["IdPrograma"], PDO::PARAM_STR);
-            $stmt->bindParam(":IdAmbiente", $datos["IdAmbiente"], PDO::PARAM_STR);
-            
-        
+        $stmt->bindParam(":NombreAmbiente", $datos["NombreAmbiente"], PDO::PARAM_STR);
+        $stmt->bindParam(":UbicacionAmbiente", $datos["UbicacionAmbiente"], PDO::PARAM_STR);
+        $stmt->bindParam(":IdPrograma", $datos["IdPrograma"], PDO::PARAM_STR);
+        $stmt->bindParam(":IdAmbiente", $datos["IdAmbiente"], PDO::PARAM_STR);
+
         if ($stmt->execute()) {
             return "ok";
 
@@ -83,7 +83,21 @@
 
             return "error";
         }
-        
+
+        $stmt->close();
+        $stmt = null;
+    }
+
+    public function mdlBuscarAmbientePrograma($tabla, $datos)
+    {
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE IdPrograma = :idPrograma");
+
+        $stmt->bindParam(":idPrograma", $datos, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+
         $stmt->close();
         $stmt = null;
     }

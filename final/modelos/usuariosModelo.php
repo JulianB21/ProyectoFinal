@@ -118,4 +118,18 @@ class ModeloUsuarios
     $stmt = null;
   }
 
+      public function mdlBuscarUsuarioPrograma($tabla,$datos)
+    {
+        $stmt= Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE IdPrograma = :idPrograma");
+
+        $stmt->bindParam(":idPrograma", $datos, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+            return $stmt->fetchAll();
+        
+        $stmt->close();
+        $stmt = null;
+    }
 }
+

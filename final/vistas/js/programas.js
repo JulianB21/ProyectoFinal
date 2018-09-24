@@ -35,3 +35,28 @@ $(".btnEliminarPrograma").click(function() {
         }
     })
 })
+/*=========================
+=    VALIDAR PROGRAMA     =
+=========================*/
+$("#NuevoPrograma").change(function() {
+    $(".alert").remove();
+    var programa = $(this).val();
+    var datos = new FormData();
+    datos.append("validarPrograma", programa);
+    $.ajax({
+        url: "ajax/programas.ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(respuesta) {
+            if (respuesta) {
+                $("#NuevoPrograma").parent().after('<div class="alert alert-warning">Este programa ya se encuentra registrado</div>');
+                $("#NuevoPrograma").val("");
+            }
+            // console.log(respuesta);
+        }
+    })
+})
