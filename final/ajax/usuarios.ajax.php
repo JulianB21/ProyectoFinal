@@ -26,12 +26,12 @@ class AjaxUsuarios{
     REVISAR SI EL USUARIO YA ESTÁ REGISTRADO
     =============================================*/
 
-    public $ValidarUsuario;
+    public $ValidarDocumento;
 
-    public function ajaxValidarUsuario(){
+    public function ajaxValidarDococumento(){
 
         $item = "NumDocumentoUsuario";
-        $valor = $this->ValidarUsuario;
+        $valor = $this->ValidarDocumento;
 
         $respuesta = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
 
@@ -56,13 +56,13 @@ if(isset($_POST["idUsuario"])){
 REVISAR SI EL USUARIO YA ESTÁ REGISTRADO
 
 =============================================*/
-if(isset($_POST["ValidarUsuario"])){
+if(isset($_POST["ValidarDocumento"])){
 
-    $valUsuario = new AjaxUsuarios();
+    $valDocumento = new AjaxUsuarios();
 
-    $valUsuario -> ValidarUsuario = $_POST["ValidarUsuario"];
+    $valDocumento -> ValidarDocumento = $_POST["ValidarDocumento"];
 
-    $valUsuario -> ajaxValidarUsuario();
+    $valDocumento -> ajaxValidarDococumento();
 }
 
 

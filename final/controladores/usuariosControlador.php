@@ -7,7 +7,7 @@ class ControladorUsuarios
     INGRESO DE USUARIO
     =============================================*/
 
-    public static function ctrIngresoUsuario()
+    static public  function ctrIngresoUsuario()
     {
 
         if (isset($_POST["ingUsuario"])) {
@@ -52,7 +52,7 @@ class ControladorUsuarios
     REGISTRO DE USUARIO
     =============================================*/
 
-    public static function ctrCrearUsuario()
+    static public  function ctrCrearUsuario()
     { 
 
         if (isset($_POST["nuevoNombre"])) {
@@ -76,7 +76,7 @@ class ControladorUsuarios
                     = CREAR DIRECTORIO PARA GUARDAR IMAGEN =
                     ======================================*/
 
-                    $directorio = "vistas/img/usuarios/" . $_POST["nuevoNombre"];
+                    $directorio = "vistas/img/usuarios/" . $_POST["nuevoDocumento"];
                     mkdir($directorio, 0755);
 
                     /*======================================
@@ -89,7 +89,7 @@ class ControladorUsuarios
                         = GUARDAR IMAGEN EN EL DIRECTORIO (JPEG) =
                         ======================================*/
                         $aleatorio = mt_rand(100, 999);
-                        $ruta      = "vistas/img/usuarios/" . $_POST["nuevoNombre"] . "/" . $aleatorio . ".jpg";
+                        $ruta      = "vistas/img/usuarios/" . $_POST["nuevoDocumento"] . "/" . $aleatorio . ".jpg";
 
                         $origen = imagecreatefromjpeg($_FILES["nuevaFoto"]["tmp_name"]);
 
@@ -106,7 +106,7 @@ class ControladorUsuarios
                         = GUARDAR IMAGEN EN EL DIRECTORIO (PNG) =
                         ======================================*/
                         $aleatorio = mt_rand(100, 999);
-                        $ruta      = "vistas/img/usuarios/" . $_POST["nuevoNombre"] . "/" . $aleatorio . ".png";
+                        $ruta      = "vistas/img/usuarios/" . $_POST["nuevoDocumento"] . "/" . $aleatorio . ".png";
 
                         $origen = imagecreatefrompng($_FILES["nuevaFoto"]["tmp_name"]);
 
@@ -206,7 +206,7 @@ class ControladorUsuarios
     EDITAR USUARIO
     =============================================*/
 
-    public function ctrEditarUsuario(){
+    static public function ctrEditarUsuario(){
 
         if(isset($_POST["editarNombre"])){
 
@@ -227,7 +227,7 @@ class ControladorUsuarios
                     = CREAR DIRECTORIO PARA GUARDAR IMAGEN =
                     ======================================*/
 
-                    $directorio = "vistas/img/usuarios/" . $_POST["editarNombre"];
+                    $directorio = "vistas/img/usuarios/" . $_POST["editarDocumento"];
 
                     //PREGUNTAMOS SI EXISTE UNA IMAGEN EN LA BD//
 
@@ -251,7 +251,7 @@ class ControladorUsuarios
                         = GUARDAR IMAGEN EN EL DIRECTORIO (JPEG) =
                         ======================================*/
                         $aleatorio = mt_rand(100, 999);
-                        $ruta      = "vistas/img/usuarios/" . $_POST["editarNombre"] . "/" . $aleatorio . ".jpg";
+                        $ruta      = "vistas/img/usuarios/" . $_POST["editarDocumento"] . "/" . $aleatorio . ".jpg";
 
                         $origen = imagecreatefromjpeg($_FILES["editarFoto"]["tmp_name"]);
 
@@ -268,7 +268,7 @@ class ControladorUsuarios
                         = GUARDAR IMAGEN EN EL DIRECTORIO (PNG) =
                         ======================================*/
                         $aleatorio = mt_rand(100, 999);
-                        $ruta      = "vistas/img/usuarios/" . $_POST["editarNombre"] . "/" . $aleatorio . ".png";
+                        $ruta      = "vistas/img/usuarios/" . $_POST["editarDocumento"] . "/" . $aleatorio . ".png";
 
                         $origen = imagecreatefrompng($_FILES["editarFoto"]["tmp_name"]);
 
@@ -393,7 +393,7 @@ class ControladorUsuarios
     ELIMINAR USUARIO
     =============================================*/
 
-    static function ctrBorrarUsuario(){
+    static public function ctrBorrarUsuario(){
 
         if(isset($_GET["NumDocumentoUsuario"])){
 
@@ -403,7 +403,7 @@ class ControladorUsuarios
             if($_GET["FotoUsuario"] !=""){
 
                 unlink($_GET["FotoUsuario"]);
-                rmdir('vistas/img/usuarios/'.$_GET["usuario"]);
+                rmdir('vistas/img/usuarios/'.$_GET["NumDocumentoUsuario"]);
 
             }
             $respuesta = ModeloUsuarios::mdlBorrarUsuario($tabla,$datos);

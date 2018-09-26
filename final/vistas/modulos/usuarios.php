@@ -159,7 +159,7 @@ foreach ($usuario as $key => $value) {
 
                 <span class="input-group-addon"><i class="fa fa-key"></i></span>
 
-                <input type="number" class="form-control input-lg" name="nuevoDocumento" min="0" placeholder="Numero de documento" required>
+                <input type="number" class="form-control input-lg" name="nuevoDocumento" id="nuevoDocumento" min="0" placeholder="Numero de documento" required>
 
               </div>
 

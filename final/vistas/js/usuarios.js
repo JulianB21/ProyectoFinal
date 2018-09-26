@@ -80,9 +80,9 @@ REVISAR SI EL USUARIO YA ESTÁ REGISTRADO
 =============================================*/
 $("#nuevoDocumento").change(function() {
     $(".alert").remove();
-    var usuario = $(this).val();
+    var NumDocumentoUsuario = $(this).val();
     var datos = new FormData();
-    datos.append("ValidarUsuario", usuario);
+    datos.append("ValidarDocumento", NumDocumentoUsuario);
     $.ajax({
         url: "ajax/usuarios.ajax.php",
         method: "POST",
@@ -93,7 +93,7 @@ $("#nuevoDocumento").change(function() {
         dataType: "json",
         success: function(respuesta) {
             if (respuesta) {
-                $("#nuevoDocumento").parent().after('<div class="alert alert-warning">Este usuario ya existe en la base de datos</div>');
+                $("#nuevoDocumento").parent().after('<div class="alert alert-warning">Este numero de documento ya existe en la base de datos</div>');
                 $("#nuevoDocumento").val("");
             }
         }
@@ -105,7 +105,7 @@ ELIMINAR USUARIO
 $(".tablas").on("click", ".btnEliminarUsuario", function() {
     var NumDocumentoUsuario = $(this).attr("NumDocumentoUsuario");
     var FotoUsuario = $(this).attr("FotoUsuario");
-    var usuario = $(this).attr("usuario");
+    var NombreUsuario = $(this).attr("NombreUsuario");
     swal({
         title: '¿Está seguro de borrar usuario?',
         text: "¡Si no lo está puede cancelar la accíón!",
@@ -117,7 +117,7 @@ $(".tablas").on("click", ".btnEliminarUsuario", function() {
         confirmButtonText: 'Si, borrar usuario!'
     }).then(function(result) {
         if (result.value) {
-            window.location = "index.php?ruta=usuarios&NumDocumentoUsuario=" + NumDocumentoUsuario + "&usuario=" + usuario + "&FotoUsuario=" + FotoUsuario;
+            window.location = "index.php?ruta=usuarios&NumDocumentoUsuario="+NumDocumentoUsuario+"&nombreUsuario="+NombreUsuario+"&FotoUsuario=" +FotoUsuario;
         }
     })
 })

@@ -9,7 +9,7 @@ class ModeloUsuarios
     MOSTRAR USUARIOS
     =============================================*/
 
-    public static function mdlMostrarUsuarios($tabla, $item, $valor)
+    static public  function mdlMostrarUsuarios($tabla, $item, $valor)
     {
 
         if ($item != null) {
@@ -41,7 +41,7 @@ class ModeloUsuarios
     REGISTRO DE USUARIO
     =============================================*/
 
-    public static function mdlIngresarUsuario($tabla, $datos)
+    static public  function mdlIngresarUsuario($tabla, $datos)
     {
 
         $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(NumDocumentoUsuario, NombreUsuario, ContraseniaUsuario, RolUsuario, FotoUsuario, IdPrograma) VALUES (:NumDocumentoUsuario, :NombreUsuario, :ContraseniaUsuario, :RolUsuario, :FotoUsuario, :IdPrograma)");
