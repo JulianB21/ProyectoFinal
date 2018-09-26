@@ -1,9 +1,9 @@
-﻿-- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dump
 -- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-09-2018 a las 01:32:41
+-- Tiempo de generación: 26-09-2018 a las 05:31:19
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.7
 
@@ -53,9 +53,9 @@ CREATE TABLE `ambiente` (
 --
 
 INSERT INTO `ambiente` (`IdAmbiente`, `IdPrograma`, `NombreAmbiente`, `UbicacionAmbiente`) VALUES
-(3, NULL, 'ADSI 3', 'L'),
-(4, NULL, 'CASA SOLAR', 'ASDASD'),
-(5, NULL, 'ADSASDASDA', 'DASDAS');
+(3, 38, 'ADSI 3', 'L'),
+(4, 39, 'CASA SOLAR', 'ASDASD'),
+(6, 38, 'L', 'FRENTE A TBT');
 
 -- --------------------------------------------------------
 
@@ -87,8 +87,8 @@ CREATE TABLE `articulo` (
   `MarcaArticulo` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
   `CaracteristicaArticulo` text COLLATE utf8_spanish_ci,
   `EstadoArticulo` varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `NumInventarioSena` int(50) DEFAULT NULL,
-  `SerialArticulo` int(50) DEFAULT NULL
+  `NumInventarioSena` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `SerialArticulo` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -96,8 +96,9 @@ CREATE TABLE `articulo` (
 --
 
 INSERT INTO `articulo` (`IdArticulo`, `IdAmbiente`, `IdEquipo`, `IdCategoria`, `TipoArticulo`, `ModeloArticulo`, `MarcaArticulo`, `CaracteristicaArticulo`, `EstadoArticulo`, `NumInventarioSena`, `SerialArticulo`) VALUES
-(8, 3, NULL, 2, 'MOUSE', 'FGDFG', 'SDFSF', '234324SDFSDF', 'ACTIVO', 343, 232),
-(9, 3, NULL, 2, 'MOUSE', 'FGDFG', 'SDFSF', '234324SDFSDF', 'ACTIVO', 343, 232);
+(9, 3, NULL, 2, 'MOUSE', 'FGDFG', 'SDFSF', '234324SDFSDF', 'ACTIVO', '343', '232'),
+(11, 4, NULL, 2, 'Q', 'Q', 'Q', 'Q', 'DAÑADO', '1', 'q'),
+(12, 4, NULL, 3, 'TECLADO', 'SDFS', 'HP', 'LAKSDJAKSDM ASDASD ASDK534 XCV', 'DAÑADO', 'djj58', 'hm6f');
 
 -- --------------------------------------------------------
 
@@ -127,7 +128,8 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`IdCategoria`, `NombreCategoria`) VALUES
-(2, 'IMPLEMENTOS DE DASDASDA');
+(2, 'IMPLEMENTOS DE DASDASDA'),
+(3, 'TECNOLOGíAS');
 
 -- --------------------------------------------------------
 
@@ -317,19 +319,19 @@ ALTER TABLE `acta_responsabilidad`
 -- AUTO_INCREMENT de la tabla `ambiente`
 --
 ALTER TABLE `ambiente`
-  MODIFY `IdAmbiente` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `IdAmbiente` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `articulo`
 --
 ALTER TABLE `articulo`
-  MODIFY `IdArticulo` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `IdArticulo` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `IdCategoria` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `IdCategoria` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `equipo`

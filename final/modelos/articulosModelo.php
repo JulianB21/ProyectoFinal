@@ -78,4 +78,31 @@ static public function mdlBorrarArticulos($tabla, $datos){
 
 	}
 
+	// EDITAR ARTICULO
+    static public function mdlEditarArticulo($tabla, $datos)
+    {
+        $stmt = Conexion::conectar()->prepare(" UPDATE $tabla SET TipoArticulo = :TipoArticulo, MarcaArticulo = :MarcaArticulo, ModeloArticulo = :ModeloArticulo, NumInventarioSena = :NumInventarioSena, SerialArticulo =:SerialArticulo, EstadoArticulo = :EstadoArticulo, IdAmbiente = :IdAmbiente, IdCategoria = :IdCategoria, CaracteristicaArticulo = :CaracteristicaArticulo, IdEquipo = :IdEquipo WHERE IdArticulo=:IdArticulo ");
+
+            $stmt->bindParam(":IdArticulo", $datos["IdArticulo"], PDO::PARAM_STR);
+            $stmt->bindParam(":TipoArticulo", $datos["TipoArticulo"], PDO::PARAM_STR);
+            $stmt->bindParam(":MarcaArticulo", $datos["MarcaArticulo"], PDO::PARAM_STR);
+            $stmt->bindParam(":ModeloArticulo", $datos["ModeloArticulo"], PDO::PARAM_STR);
+            $stmt->bindParam(":NumInventarioSena", $datos["NumInventarioSena"], PDO::PARAM_STR);
+            $stmt->bindParam(":SerialArticulo", $datos["SerialArticulo"], PDO::PARAM_STR);
+            $stmt->bindParam(":EstadoArticulo", $datos["EstadoArticulo"], PDO::PARAM_STR);
+            $stmt->bindParam(":IdAmbiente", $datos["IdAmbiente"], PDO::PARAM_STR);
+            $stmt->bindParam(":IdCategoria", $datos["IdCategoria"], PDO::PARAM_STR);
+            $stmt->bindParam(":CaracteristicaArticulo", $datos["CaracteristicaArticulo"], PDO::PARAM_STR);
+            $stmt->bindParam(":IdEquipo", $datos["IdEquipo"], PDO::PARAM_STR);
+            
+        if ($stmt->execute()) {
+            return "ok";
+
+        } else {
+            return "error";
+        }
+        $stmt->close();
+        $stmt = null;
+    }
+
 }

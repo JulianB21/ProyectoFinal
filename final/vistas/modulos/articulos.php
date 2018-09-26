@@ -50,6 +50,7 @@
            <th>Equipo</th>
            <th>Numero Inventario Sena</th>
            <th>Serial Articulo</th>
+           <th>Caracteristicas</th>
            <th>Acciones</th>
 
          </tr> 
@@ -116,6 +117,7 @@ foreach ($respuesta as $key => $value) {
                                 ' . $value["SerialArticulo"] . '
                             </td>
 
+                            <td>'.$value["CaracteristicaArticulo"].'</td>
 
                             <td>
                                 <div class="btn-group">
@@ -187,7 +189,7 @@ foreach ($respuesta as $key => $value) {
               
                 <span class="input-group-addon"><i class="fa fa-key"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="nuevoModelo" min="0" placeholder="Modelo Articulo" required>
+                <input type="text" class="form-control input-lg" name="nuevoModelo"placeholder="Modelo Articulo" required>
 
               </div>
 
@@ -213,7 +215,7 @@ foreach ($respuesta as $key => $value) {
               
                 <span class="input-group-addon"><i class="fa fa-users"></i></span> 
 
-                <select class="form-control input-lg" name="nuevoAmbiente">
+                <select class="form-control input-lg" name="nuevoAmbiente" required>
                   
                   <option value="">Selecionar Ambiente</option>
                   <?php
@@ -262,7 +264,7 @@ foreach ($ambiente as $key => $value) {
               
                 <span class="input-group-addon"><i class="fa fa-users"></i></span> 
 
-                <select class="form-control input-lg" name="nuevaCategoria">
+                <select class="form-control input-lg" name="nuevaCategoria" required>
                   
                   <option value="">Selecionar Categoria</option>
                   <?php
@@ -292,7 +294,7 @@ foreach ($ambiente as $key => $value) {
               
                 <span class="input-group-addon"><i class="fa fa-key"></i></span> 
 
-                <input type="number" class="form-control input-lg" name="nuevoInventario" min="0" placeholder="Ingrese el numero del inventario sena">
+                <input type="text" class="form-control input-lg" name="nuevoInventario" min="0" placeholder="Ingrese el numero del inventario sena">
 
               </div>
 
@@ -306,7 +308,7 @@ foreach ($ambiente as $key => $value) {
               
                 <span class="input-group-addon"><i class="fa fa-key"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="nuevoSerial" min="0" placeholder="Ingrese el serial del articulo">
+                <input type="text" class="form-control input-lg" name="nuevoSerial" placeholder="Ingrese el serial del articulo">
 
               </div>
 
@@ -317,7 +319,7 @@ foreach ($ambiente as $key => $value) {
               
                 <span class="input-group-addon"><i class="fa fa-users"></i></span> 
 
-                <select class="form-control input-lg" name="nuevoEstado">
+                <select class="form-control input-lg" name="nuevoEstado" required>
                   
                   <option value="">Selecionar Estado</option>
                   <option value="ACTIVO">Activo</option>
@@ -350,7 +352,7 @@ foreach ($ambiente as $key => $value) {
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar usuario</button>
+          <button type="submit" class="btn btn-primary">Guardar Articulo</button>
 
         </div>
         <?php 
@@ -398,6 +400,8 @@ foreach ($ambiente as $key => $value) {
                 <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
                 <input type="text" class="form-control input-lg" name="editarTipo" id="editarTipo" placeholder="Tipo articulo" required>
+
+                <input type="hidden" name="idArticulo" id="idArticulo">
 
               </div>
 
@@ -573,12 +577,12 @@ foreach ($ambiente as $key => $value) {
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar usuario</button>
+          <button type="submit" class="btn btn-primary">Actualizar Articulo</button>
 
         </div>
         <?php 
               $editarArticulo = new ControladorArticulos();
-              $editarArticulo-> ctrEditarArticulos();
+              $editarArticulo -> ctrEditarArticulos();
          ?>
 
       </form>
@@ -589,9 +593,8 @@ foreach ($ambiente as $key => $value) {
 
 </div>
 
-<!-- <?php 
-    $eliminarArticulo = new ControladorArticulos();
-    $eliminarArticulo -> ctrBorrarArticulo();
-    
- ?> -->
+<?php 
+  $eliminarArticulo = new ControladorArticulos();
+  $eliminarArticulo -> ctrBorrarArticulo();   
+?> 
 

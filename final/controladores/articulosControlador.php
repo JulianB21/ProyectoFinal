@@ -3,6 +3,7 @@
 
 class ControladorArticulos
 {
+	// CREAR ARTICULO
 	static public function ctrCrearArticulos()
 	{
 		if(isset($_POST["nuevoTipo"]))
@@ -112,7 +113,7 @@ return $respuesta;
 
 					swal({
 						  type: "success",
-						  title: "El articulo ha sido borrada correctamente",
+						  title: "El articulo ha sido borrado correctamente",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
@@ -128,10 +129,87 @@ return $respuesta;
 		}
 	}
 
-	static public function ctrEditarArticulos(){
+	// EDITAR ARTICULO
+	static public function ctrEditarArticulos()
+	{
+		if(isset($_POST["editarTipo"]))
+		{
+			if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarTipo"])&& preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarMarca"])) 
+			{
+				$editarTipo=strtoupper( $_POST["editarTipo"]);
+				$editarMarca=strtoupper( $_POST["editarMarca"]);
+				$editarModelo=strtoupper( $_POST["editarModelo"]);
+				$editarSerial=strtoupper( $_POST["editarSerial"]);
+				$editarCaracteristica=strtoupper( $_POST["editarCaracteristica"]);
+				$idEquipo =$_POST["nuevoEquipo"];
+				if($idEquipo=="")
+				{
+					$idEquipo=null;
+				}
 
+				$tabla="articulo";
+				$datos=array("IdArticulo" => $_POST["idArticulo"],
+							"TipoArticulo" => $editarTipo,
+							"MarcaArticulo"=>$editarMarca,
+							"ModeloArticulo"=>$editarModelo,
+							"NumInventarioSena"=>$_POST["editarInventario"],
+							"SerialArticulo"=>$_POST["editarSerial"],
+							"EstadoArticulo"=>$_POST["editarEstado"],
+							"IdAmbiente"=>$_POST["idAmbiente"],
+							"IdCategoria"=>$_POST["idCategoria"],
+							"CaracteristicaArticulo"=>$editarCaracteristica,
+							"IdEquipo"=>$idEquipo);
 
+				$respuesta = ModeloArticulos::mdlEditarArticulo($tabla, $datos);
+				
+				if($respuesta=="ok")
+				{
+					echo '<script>
+
+                    swal({
+
+                        type: "success",
+                        title: "¡El articulo ha sido editado correctamente!",
+                        showConfirmButton: true,
+                        confirmButtonText: "Cerrar"
+
+                    }).then(function(result){
+
+                        if(result.value){
+
+                            window.location = "articulos";
+
+                        }
+
+                    });
+
+                    </script>';
+				}
+			}
+			else
+			{
+				echo '<script>
+
+                    swal({
+
+                        type: "error",
+                        title: "¡El articulo no puede ir vacío o llevar caracteres especiales!",
+                        showConfirmButton: true,
+                        confirmButtonText: "Cerrar"
+
+                    }).then(function(result){
+
+                        if(result.value){
+
+                            window.location = "articulos";
+
+                        }
+
+                    });
+
+                </script>';
+			}
+		}
 	}
-
 
 }

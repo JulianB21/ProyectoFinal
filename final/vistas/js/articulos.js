@@ -33,6 +33,7 @@ $(".btnEditarArticulo").click(function() {
         dataType: "json",
         success: function(respuesta) {
             console.log(respuesta);
+            $("#idArticulo").val(respuesta["IdArticulo"]);
             $("#editarTipo").val(respuesta["TipoArticulo"]);
             $("#editarModelo").val(respuesta["ModeloArticulo"]);
             $("#editarMarca").val(respuesta["MarcaArticulo"]);
