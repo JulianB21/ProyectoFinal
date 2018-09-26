@@ -83,6 +83,17 @@
 
 			<li>
 
+				<a href="equipos">
+					
+					<i class="fa fa-circle-o"></i>
+					<span>Equipos</span>
+
+				</a>
+
+			</li>
+
+			<li>
+
 				<a href="novedades">
 					
 					<i class="fa fa-circle-o"></i>

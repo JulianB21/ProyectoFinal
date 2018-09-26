@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-09-2018 a las 05:31:19
+-- Tiempo de generación: 26-09-2018 a las 06:22:56
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.7
 
@@ -139,8 +139,9 @@ INSERT INTO `categoria` (`IdCategoria`, `NombreCategoria`) VALUES
 
 CREATE TABLE `equipo` (
   `IdEquipo` int(50) NOT NULL,
-  `TipoEquipo` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `NombreEquipo` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `EstadoEquipo` tinyint(1) NOT NULL,
+  `NumArticulosEquipo` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `ObservacionEquipo` varchar(200) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 

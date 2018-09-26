@@ -138,6 +138,7 @@ if (isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok") {
             $_GET["ruta"] == "novedades" ||
             $_GET["ruta"] == "reportes" ||
             $_GET["ruta"] == "salir" ||
+            $_GET["ruta"] == "equipos" ||
             $_GET["ruta"] == "actas") {
 
             include "modulos/" . $_GET["ruta"] . ".php";
