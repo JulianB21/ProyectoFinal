@@ -5,7 +5,7 @@ class ModeloFichas{
 
 	static public function mdlAgregarFichas($tabla, $datos){
 
-        var_dump($datos);
+        
 		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (NumeroFicha, IdPrograma, IdAmbiente, FechaInicio, FechaFin, JornadaFicha) VALUES (:NumeroFicha, :IdPrograma, :IdAmbiente, :FechaInicio, :FechaFin, :JornadaFicha)");
 
         $stmt->bindParam(":NumeroFicha", $datos["NumeroFicha"], PDO::PARAM_STR);
@@ -99,5 +99,19 @@ class ModeloFichas{
 
         $stmt = null;
 
+    }
+
+    public function mdlBuscarFichaPrograma($tabla, $datos)
+    {
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE IdPrograma = :idPrograma");
+
+        $stmt->bindParam(":idPrograma", $datos, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+
+        $stmt->close();
+        $stmt = null;
     }
 }

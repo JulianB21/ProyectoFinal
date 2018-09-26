@@ -1,19 +1,19 @@
 <div class="content-wrapper">
 
   <section class="content-header">
-    
+
     <h1>
-      
+
       Administrar Equipos
-    
+
     </h1>
 
     <ol class="breadcrumb">
-      
+
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
+
       <li class="active">Administrar Equipos</li>
-    
+
     </ol>
 
   </section>
@@ -23,9 +23,9 @@
     <div class="box">
 
       <div class="box-header with-border">
-  
+
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarEquipo">
-          
+
           Agregar Equipo
 
         </button>
@@ -33,77 +33,74 @@
       </div>
 
       <div class="box-body">
-        
+
        <table class="table table-bordered table-striped dt-responsive tablas">
-         
+
         <thead>
-         
+
          <tr>
-           
+
            <th style="width:10px">ID</th>
            <th>Nombre</th>
            <th>Estado</th>
            <th>Numero Articulos</th>
+           <th>Numero Articulos Agregados</th>
            <th>Observaciones</th>
            <th>Acciones</th>
 
-         </tr> 
+         </tr>
 
         </thead>
 
         <tbody>
-          
-          <tr>
+           <?php
 
-            <td>1</td>
+            $item = null;
+            $valor = null;  
 
-            <td>Equipo de Mesa</td>
+            $equipos = ControladorEquipos::ctrMostrarEquipos($item, $valor);
 
-            <td><button class="btn btn-success btn-sm">Activado</button></td>
+            foreach ($equipos as $key => $value) {
 
-            <td>5 ARTICULOS</td>
+              echo '<tr>
 
-            <td>Golpe en la parte trasera del monitor</td>
+                  <td>'.$value["IdEquipo"].'</td>
 
-            <td>
+                  <td>'.$value["NombreEquipo"].'</td>';
 
-              <div class="btn-group">
-                  
-                <button class="btn btn-warning" data-toggle="modal" data-target="#modalEditarEquipo"><i class="fa fa-pencil"></i></button>
+                  if($value["EstadoEquipo"]=="ACTIVADO")
+                    {
+                      echo '<td><button class="btn btn-success btn-sm">Activado</button></td>';
+                    }
+                    else if($value["EstadoEquipo"]=="DESACTIVADO")
+                    {
+                      echo '<td><button class="btn btn-danger btn-sm">Desactivado</button></td>';
+                    }
 
-                <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                  echo '
 
-              </div>  
+                  <td>'.$value["NumArticulosEquipo"].'</td>
+                  <td>'.$value["NumArticulosAgregados"].'</td>
 
-            </td>
+                  <td>'.$value["ObservacionEquipo"].'</td>
 
-          </tr>
-          <tr>
+                  <td>
 
-            <td>1</td>
+                    <div class="btn-group">
 
-            <td>Equipo de Mesa</td>
+                      <button class="btn btn-warning" data-toggle="modal" data-target="#modalEditarEquipo"><i class="fa fa-pencil"></i></button>
 
-            <td><button class="btn btn-danger btn-sm">Desactivado</button></td>
+                      <button class="btn btn-danger btnEliminarEquipo" idEquipo="'.$value["IdEquipo"].'"><i class="fa fa-times"></i></button>
 
-            <td>5 ARTICULOS</td>
+                    </div>
 
-            <td>Golpe en la parte trasera del monitor</td>
+                  </td>
 
-            <td>
+                </tr>';
+            }
 
-              <div class="btn-group">
-                  
-                <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
+          ?>
 
-                <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-
-              </div>  
-
-            </td>
-
-          </tr>
-         
         </tbody>
 
        </table>
@@ -121,7 +118,7 @@ MODAL AGREGAR EQUIPO
 ======================================-->
 
 <div id="modalAgregarEquipo" class="modal fade" role="dialog">
-  
+
   <div class="modal-dialog">
 
     <div class="modal-content">
@@ -150,10 +147,10 @@ MODAL AGREGAR EQUIPO
 
             <!-- ENTRADA PARA EL NOMBRE -->
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-user"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
                 <input type="text" class="form-control input-lg" name="nuevoEquipo" placeholder="Ingresar nombre del equipo" required>
 
@@ -163,10 +160,10 @@ MODAL AGREGAR EQUIPO
 
             <!-- ENTRADA PARA CANTIDAD ARTICULOS -->
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-user"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
                 <input type="text" class="form-control input-lg" name="nuevaCantidad" placeholder="Ingresar cantidad articulos" required>
 
@@ -176,13 +173,13 @@ MODAL AGREGAR EQUIPO
 
             <!-- ENTRADA PARA EL ESTADO -->
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
                   <select class="form-control input-lg" name="nuevoEstado" required>
-                  
+
                     <option value="">Selecionar Estado</option>
                     <option value="ACTIVADO">Activado</option>
                     <option value="DESACTIVADO">Desactivado</option>
@@ -192,20 +189,20 @@ MODAL AGREGAR EQUIPO
               </div>
 
             </div>
-            
+
             <!-- OBSERVACION EQUIPO -->
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
 
                  <textarea class="form-control rounded-5" name="nuevaObservacion" rows="3" placeholder="INGRESAR OBSERVACIONES DEL EQUIPO"></textarea>
 
               </div>
 
             </div>
-  
+
           </div>
 
         </div>
@@ -218,9 +215,16 @@ MODAL AGREGAR EQUIPO
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar cliente</button>
+          <button type="submit" class="btn btn-primary">Guardar Equipo</button>
 
         </div>
+
+        <?php
+
+          $crearCategoria = new ControladorEquipos();
+          $crearCategoria -> ctrCrearEquipos();
+
+        ?>
 
       </form>
 
@@ -234,7 +238,7 @@ MODAL AGREGAR EQUIPO
 MODAL EDITAR EQUIPO
 ======================================-->
 <div id="modalEditarEquipo" class="modal fade" role="dialog">
-  
+
   <div class="modal-dialog">
 
     <div class="modal-content">
@@ -263,10 +267,10 @@ MODAL EDITAR EQUIPO
 
             <!-- ENTRADA PARA EL NOMBRE -->
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-user"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
                 <input type="text" class="form-control input-lg" name="editarEquipo" id="editarEquipo" placeholder="Ingresar nombre del equipo" required>
 
@@ -278,10 +282,10 @@ MODAL EDITAR EQUIPO
 
             <!-- ENTRADA PARA CANTIDAD ARTICULOS -->
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-user"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
                 <input type="text" class="form-control input-lg" name="editarCantidad" id="editarCantidad" placeholder="Ingresar cantidad articulos" required>
 
@@ -291,13 +295,13 @@ MODAL EDITAR EQUIPO
 
             <!-- ENTRADA PARA EL ESTADO -->
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
                   <select class="form-control input-lg" name="idEstado" required>
-                  
+
                     <option id="editarEstado">Selecionar Estado</option>
                     <option value="ACTIVADO">Activado</option>
                     <option value="DESACTIVADO">Desactivado</option>
@@ -307,20 +311,20 @@ MODAL EDITAR EQUIPO
               </div>
 
             </div>
-            
+
             <!-- OBSERVACION EQUIPO -->
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
 
                  <textarea class="form-control rounded-5" name="editarObservacion" id="editarObservacion" rows="3" placeholder="INGRESAR OBSERVACIONES DEL EQUIPO"></textarea>
 
               </div>
 
             </div>
-  
+
           </div>
 
         </div>
@@ -345,6 +349,11 @@ MODAL EDITAR EQUIPO
 
 </div>
 
+ <?php
 
+  $eliminarEquipo = new ControladorEquipos();
+  $eliminarEquipo -> ctrBorrarEquipo();
+
+?>
 
 
