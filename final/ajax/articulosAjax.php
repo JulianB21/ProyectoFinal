@@ -7,6 +7,7 @@ class AjaxArticulos{
     // EDITAR ARTICULOS
     public $idArticulo;
 
+
     public function ajaxEditarArticulos(){
 
         $item = "IdArticulo";
@@ -27,3 +28,4 @@ if(isset($_POST["idArticulo"])){
     $articulo -> idArticulo = $_POST["idArticulo"];
     $articulo -> ajaxEditarArticulos();
 }
+

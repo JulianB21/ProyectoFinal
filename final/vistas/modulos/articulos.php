@@ -66,6 +66,10 @@ $respuesta = ControladorArticulos::ctrMostrarArticulos($item, $valor);
 
 
 foreach ($respuesta as $key => $value) {
+
+  $item      = "IdEquipo";
+$valor     = $value["IdEquipo"] ;
+$equipos = ControladorEquipos::ctrMostrarEquipos($item, $valor);
     echo '<tr>
                             <td>
                                 ' . $value["IdArticulo"] . '
@@ -106,7 +110,7 @@ foreach ($respuesta as $key => $value) {
                        echo '<td>'.$categoria["NombreCategoria"].'</td>
 
                             <td>
-                                ' . $value["IdEquipo"] . '
+                                ' .$equipos["NombreEquipo"]. " ".$equipos["IdEquipo"] . '
                             </td>
 
                             <td>
@@ -243,13 +247,25 @@ foreach ($ambiente as $key => $value) {
               <div class="input-group">
               
                 <span class="input-group-addon"><i class="fa fa-users"></i></span> 
+                <input type="hidden" name="equipo" id="equipo">
 
-                <select class="form-control input-lg" name="nuevoEquipo">
+                <select class="form-control input-lg" name="nuevoEquipo" id="nuevoEquipo"onchange="equipoFuncion(this.value)">
+                  
                   
                   <option value="">Selecionar Equipo</option>
-                  <option value="Administrador">C1</option>
-                  <option value="Instructor">C2</option>
-                  <option value="Especial">C3</option>
+                  <?php
+
+$item  = null;
+$valor = null;
+
+$equipos = ControladorEquipos::ctrMostrarEquipos($item, $valor);
+
+foreach ($equipos as $key => $value) {
+
+    echo '<option value="' . $value["IdEquipo"] . '">' . $value["NombreEquipo"] . '</option>';
+}
+
+?>
 
                 </select>
 
@@ -284,6 +300,7 @@ foreach ($ambiente as $key => $value) {
                 </select>
 
               </div>
+
 
             </div>
 
@@ -355,6 +372,7 @@ foreach ($ambiente as $key => $value) {
           <button type="submit" class="btn btn-primary">Guardar Articulo</button>
 
         </div>
+
         <?php 
               $crearArticulo = new ControladorArticulos();
               $crearArticulo-> ctrCrearArticulos();
@@ -367,6 +385,7 @@ foreach ($ambiente as $key => $value) {
   </div>
 
 </div>
+
 
 <!-- MODAL EDITAR ARTICULO -->
 <div id="modalEditarArticulo" class="modal fade" role="dialog">
@@ -472,10 +491,19 @@ foreach ($ambiente as $key => $value) {
                 <select class="form-control input-lg" name="nuevoEquipo">
                   
                   <option value="">Selecionar Equipo</option>
-                  <option value="Administrador">C1</option>
-                  <option value="Instructor">C2</option>
-                  <option value="Especial">C3</option>
+                  <?php
 
+$item  = null;
+$valor = null;
+
+$equipos = ControladorEquipos::ctrMostrarEquipos($item, $valor);
+
+foreach ($equipos as $key => $value) {
+
+    echo '<option value="' . $value["IdEquipo"] . '">' . $value["NombreEquipo"] . '</option>';
+}
+
+?>
                 </select>
 
               </div>

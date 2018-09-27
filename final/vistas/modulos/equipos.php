@@ -62,6 +62,7 @@
 
             foreach ($equipos as $key => $value) {
 
+
               echo '<tr>
 
                   <td>'.$value["IdEquipo"].'</td>
@@ -82,13 +83,14 @@
                   <td>'.$value["NumArticulosEquipo"].'</td>
                   <td>'.$value["NumArticulosAgregados"].'</td>
 
+
                   <td>'.$value["ObservacionEquipo"].'</td>
 
                   <td>
 
                     <div class="btn-group">
 
-                      <button class="btn btn-warning" data-toggle="modal" data-target="#modalEditarEquipo"><i class="fa fa-pencil"></i></button>
+                      <button class="btn btn-warning btnEditarEquipo" idEquipo="'.$value["IdEquipo"].'" data-toggle="modal" data-target="#modalEditarEquipo"><i class="fa fa-pencil"></i></button>
 
                       <button class="btn btn-danger btnEliminarEquipo" idEquipo="'.$value["IdEquipo"].'"><i class="fa fa-times"></i></button>
 
@@ -300,9 +302,9 @@ MODAL EDITAR EQUIPO
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                  <select class="form-control input-lg" name="idEstado" required>
+                  <select class="form-control input-lg" name="editarEstado"id="editarEstado" required>
 
-                    <option id="editarEstado">Selecionar Estado</option>
+                    <option value="" >Selecionar Estado</option>
                     <option value="ACTIVADO">Activado</option>
                     <option value="DESACTIVADO">Desactivado</option>
 
@@ -340,6 +342,12 @@ MODAL EDITAR EQUIPO
           <button type="submit" class="btn btn-primary">Actualizar Equipo</button>
 
         </div>
+        <?php
+
+          $editarEquipos = new ControladorEquipos();
+          $editarEquipos -> ctrEditarEquipos();
+
+        ?>
 
       </form>
 

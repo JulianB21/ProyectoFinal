@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-09-2018 a las 01:45:06
+-- Tiempo de generación: 28-09-2018 a las 01:06:11
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.7
 
@@ -96,9 +96,11 @@ CREATE TABLE `articulo` (
 --
 
 INSERT INTO `articulo` (`IdArticulo`, `IdAmbiente`, `IdEquipo`, `IdCategoria`, `TipoArticulo`, `ModeloArticulo`, `MarcaArticulo`, `CaracteristicaArticulo`, `EstadoArticulo`, `NumInventarioSena`, `SerialArticulo`) VALUES
-(9, 3, NULL, 2, 'MOUSE', 'FGDFG', 'SDFSF', '234324SDFSDF', 'ACTIVO', '343', '232'),
-(11, 4, NULL, 2, 'Q', 'Q', 'Q', 'Q', 'DAÑADO', '1', 'q'),
-(12, 4, NULL, 3, 'TECLADO', 'SDFS', 'HP', 'LAKSDJAKSDM ASDASD ASDK534 XCV', 'DAÑADO', 'djj58', 'hm6f');
+(9, 3, 1, 2, 'MOUSE', 'FGDFG', 'SDFSF', '234324SDFSDF', 'ACTIVO', '343', '232'),
+(12, 4, 1, 3, 'TECLADO', 'SDFS', 'HP', 'LAKSDJAKSDM ASDASD ASDK534 XCV', 'DAÑADO', '', 'hm6f'),
+(17, 3, 3, 3, 'ADASD', 'ASDASD', 'ASDASD', 'ASDASD', 'ACTIVO', 'asdasd', 'asda'),
+(18, 4, 3, 2, 'JJJJ', 'JJJJ', 'JJJJ', 'HKHJK', 'ACTIVO', '123123', 'hkjhjk'),
+(20, 3, NULL, 2, 'ASDASD', 'ADASD', 'ASDASD', 'SGDFG', 'ACTIVO', 'asdasd', '232');
 
 -- --------------------------------------------------------
 
@@ -151,7 +153,8 @@ CREATE TABLE `equipo` (
 --
 
 INSERT INTO `equipo` (`IdEquipo`, `NombreEquipo`, `EstadoEquipo`, `NumArticulosEquipo`, `ObservacionEquipo`, `NumArticulosAgregados`) VALUES
-(1, 'PC DE MESA', 'ACTIVADO', '4', 'ME LA PELA EL HIJUEPUTA PHP', NULL);
+(1, 'PC DE MESA', 'DESACTIVADO', '4', 'ME LA PELA EL HIJUEPUTA PHP', '0'),
+(3, 'ASDASD', 'ACTIVADO', '3', 'WEGEGWEGWE', '2');
 
 -- --------------------------------------------------------
 
@@ -327,25 +330,25 @@ ALTER TABLE `acta_responsabilidad`
 -- AUTO_INCREMENT de la tabla `ambiente`
 --
 ALTER TABLE `ambiente`
-  MODIFY `IdAmbiente` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `IdAmbiente` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `articulo`
 --
 ALTER TABLE `articulo`
-  MODIFY `IdArticulo` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `IdArticulo` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `IdCategoria` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `IdCategoria` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `equipo`
 --
 ALTER TABLE `equipo`
-  MODIFY `IdEquipo` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `IdEquipo` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `novedad`

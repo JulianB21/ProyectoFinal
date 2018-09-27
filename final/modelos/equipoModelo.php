@@ -81,4 +81,31 @@ class ModeloEquipos
         $stmt = null;
 
     }
+
+    static public function mdlEditarEquipo($tabla, $datos){
+        var_dump($datos);
+
+        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET NombreEquipo=:NombreEquipo,EstadoEquipo=:EstadoEquipo,NumArticulosEquipo=:NumArticulosEquipo,ObservacionEquipo=:ObservacionEquipo,NumArticulosAgregados=:NumArticulosAgregados WHERE IdEquipo=:IdEquipo");
+
+        $stmt->bindParam(":NombreEquipo", $datos["NuevoEquipo"], PDO::PARAM_STR);
+        $stmt->bindParam(":EstadoEquipo", $datos["NuevoEstado"], PDO::PARAM_STR);
+        $stmt->bindParam(":NumArticulosEquipo", $datos["NumArticulosEquipo"], PDO::PARAM_STR);
+        $stmt->bindParam(":ObservacionEquipo", $datos["NuevaObservacion"], PDO::PARAM_STR);
+        $stmt->bindParam(":NumArticulosAgregados", $datos["NumArticulosAgregados"], PDO::PARAM_STR);
+        $stmt->bindParam(":IdEquipo", $datos["IdEquipo"], PDO::PARAM_STR);
+
+        if($stmt->execute()){
+
+            return "ok";
+
+        }else{
+
+            return "error";
+        
+        }
+
+        $stmt->close();
+        $stmt = null;
+
+    }
 }

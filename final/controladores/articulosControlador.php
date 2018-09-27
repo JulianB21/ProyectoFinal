@@ -33,9 +33,31 @@ class ControladorArticulos
 				"CaracteristicaArticulo"=>$nuevaCaracteristica,
 				"IdEquipo"=>$idEquipo
 				);
+
+				 $tablaEquipo = "equipo";
+				$valorEquipo  = $_POST["equipo"];
+				$itemEquipo="IdEquipo";
+				
+
+            $equipo = ModeloEquipos::mdlMostrarEquipos($tablaEquipo, $itemEquipo, $valorEquipo);
+            $agregados=$equipo["NumArticulosAgregados"]+1;
+            
+
+                        $datosEquipo = array
+                    (
+                    "IdEquipo"				=> $equipo["IdEquipo"],
+                    "NuevoEquipo"           => $equipo["NombreEquipo"],
+                    "NuevoEstado"           => $equipo["EstadoEquipo"],
+                    "NuevaObservacion"      => $equipo["ObservacionEquipo"],
+                    "NumArticulosEquipo"    => $equipo["NumArticulosEquipo"],
+                    "NumArticulosAgregados" => $agregados
+                );
+                   
+                 $respuestaAmbiente2 =  ModeloEquipos::mdlEditarEquipo($tablaEquipo, $datosEquipo);
+
 					
 				$respuesta= ModeloArticulos::mdlCrearArticulo($tabla, $datos);
-				var_dump($respuesta);
+				
 				if($respuesta=="ok")
 				{
 					echo '<script>
@@ -104,6 +126,32 @@ return $respuesta;
 
 			$tabla ="articulo";
 			$datos = $_GET["idArticulo"];
+			$item="IdArticulo";
+
+
+
+			$articulo=ModeloArticulos::mdlMostrarArticulos($tabla, $item, $datos);
+
+			 	$tablaEquipo = "equipo";
+				$valorEquipo  = $articulo["IdEquipo"];
+				$itemEquipo="IdEquipo";
+				
+
+            $equipo = ModeloEquipos::mdlMostrarEquipos($tablaEquipo, $itemEquipo, $valorEquipo);
+            $agregados=$equipo["NumArticulosAgregados"]-1;
+            
+
+                        $datosEquipo = array
+                    (
+                    "IdEquipo"				=> $equipo["IdEquipo"],
+                    "NuevoEquipo"           => $equipo["NombreEquipo"],
+                    "NuevoEstado"           => $equipo["EstadoEquipo"],
+                    "NuevaObservacion"      => $equipo["ObservacionEquipo"],
+                    "NumArticulosEquipo"    => $equipo["NumArticulosEquipo"],
+                    "NumArticulosAgregados" => $agregados
+                );
+                   
+                 $respuestaAmbiente2 =  ModeloEquipos::mdlEditarEquipo($tablaEquipo, $datosEquipo);
 
 			$respuesta = ModeloArticulos::mdlBorrarArticulos($tabla, $datos);
 
