@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-09-2018 a las 07:26:37
+-- Tiempo de generación: 29-09-2018 a las 00:19:06
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.7
 
@@ -240,7 +240,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`NumDocumentoUsuario`, `IdPrograma`, `NombreUsuario`, `ContraseniaUsuario`, `RolUsuario`, `FotoUsuario`) VALUES
-(123, NULL, 'ADMINISTRADOR', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'ADMINISTRADOR', '');
+(123, NULL, 'ADMINISTRADOR', '$6$rounds=5000$usesomesillystri$r0QZZTlgrgAb/zLF/i1xCPpqT9cWEwAtQUYgjGXbbTmGKKwGQmXwGR8KulnyR3JtiLlucbDMDSbXwKTMRcrDG.', 'ADMINISTRADOR', '');
 
 --
 -- Índices para tablas volcadas
@@ -345,13 +345,13 @@ ALTER TABLE `ambiente`
 -- AUTO_INCREMENT de la tabla `articulo`
 --
 ALTER TABLE `articulo`
-  MODIFY `IdArticulo` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `IdArticulo` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `IdCategoria` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `IdCategoria` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `equipo`
