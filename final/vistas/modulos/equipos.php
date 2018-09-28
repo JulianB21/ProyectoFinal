@@ -167,7 +167,7 @@ MODAL AGREGAR EQUIPO
 
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
-                <input type="text" class="form-control input-lg" name="nuevaCantidad" placeholder="Ingresar cantidad articulos" required>
+                <input type="number" class="form-control input-lg" name="nuevaCantidad" placeholder="Ingresar cantidad articulos" required>
 
               </div>
 

@@ -488,9 +488,9 @@ foreach ($ambiente as $key => $value) {
               
                 <span class="input-group-addon"><i class="fa fa-users"></i></span> 
 
-                <select class="form-control input-lg" name="nuevoEquipo">
+                <select class="form-control input-lg" name="idEquipo">
                   
-                  <option value="">Selecionar Equipo</option>
+                  <option id="editarEquipo"></option>
                   <?php
 
 $item  = null;

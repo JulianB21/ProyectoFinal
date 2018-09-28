@@ -81,11 +81,15 @@ class ControladorAmbientes
 
     	if(isset($_POST["editarAmbiente"])){
 
-    		if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarAmbiente"]) && preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarUbicacion"])) {
+    		if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarAmbiente"])) {
 
     			$tabla="ambiente";
     			$NombreAmbiente = strtoupper($_POST["editarAmbiente"]);
-    			$editarUbicacion= strtoupper($_POST["editarUbicacion"]);
+    			$editarUbicacion = strtoupper($_POST["editarUbicacion"]);
+
+                if ($_POST["editarUbicacion"] == "") {
+                    $editarUbicacion = null;
+                }
 
 
     			$datos=array("IdPrograma"=>$_POST["idPrograma"],
@@ -94,7 +98,7 @@ class ControladorAmbientes
                     "IdAmbiente"=>$_POST["idAmbiente"]
     			);
 
-                var_dump($datos);
+                // var_dump($datos);
                 
     			$respuesta=ModeloAmbientes::mdlEditarAmbientes($tabla, $datos);
 
@@ -118,27 +122,29 @@ class ControladorAmbientes
 					</script>';
     				}
 
-    				else{
-
-    					echo '<script>
-
-					swal({
-						  type: "error",
-						  title: "El ambiente no puede ir vacío o llevar caracteres especiales!",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar",
-						  closeOnConfirm: false
-						  }).then((result) => {
-							if (result.value) {
-
-							window.location = "ambientes";
-							}
-						})
-
-			  	</script>';
-
-    				}
+    				
     			}
+
+                else{
+
+                        echo '<script>
+
+                    swal({
+                          type: "error",
+                          title: "El ambiente no puede ir vacío o llevar caracteres especiales!",
+                          showConfirmButton: true,
+                          confirmButtonText: "Cerrar",
+                          closeOnConfirm: false
+                          }).then((result) => {
+                            if (result.value) {
+
+                            window.location = "ambientes";
+                            }
+                        })
+
+                </script>';
+
+                    }
     	}
 
     }

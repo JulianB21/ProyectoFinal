@@ -53,6 +53,24 @@ $(".btnEditarArticulo").click(function() {
                     $("#editarAmbiente").html(respuesta["NombreAmbiente"]);
                 }
             })
+            var idEquipo = $(this).attr("idEquipo");
+            var datosEquipo = new FormData();
+            datosEquipo.append("idEquipo", respuesta["IdEquipo"]);
+            $.ajax({
+                url: "ajax/equipoAjax.php",
+                method: "POST",
+                data: datosEquipo,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function(respuesta) {
+                    console.log("respuesta", respuesta);
+                    $("#editarEquipo").val(respuesta["IdEquipo"]);
+                    $("#editarEquipo").html(respuesta["NombreEquipo"]);
+                }
+            })
+
             var idCategorias = $(this).attr("idCategoria");
             var datosCategoria = new FormData();
             datosCategoria.append("idCategoria", respuesta["IdCategoria"]);

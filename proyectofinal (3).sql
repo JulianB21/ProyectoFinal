@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-09-2018 a las 01:06:11
+-- Tiempo de generación: 28-09-2018 a las 07:26:37
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.7
 
@@ -45,7 +45,7 @@ CREATE TABLE `ambiente` (
   `IdAmbiente` int(50) NOT NULL,
   `IdPrograma` int(50) DEFAULT NULL,
   `NombreAmbiente` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `UbicacionAmbiente` varchar(100) COLLATE utf8_spanish_ci NOT NULL
+  `UbicacionAmbiente` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -55,7 +55,10 @@ CREATE TABLE `ambiente` (
 INSERT INTO `ambiente` (`IdAmbiente`, `IdPrograma`, `NombreAmbiente`, `UbicacionAmbiente`) VALUES
 (3, NULL, 'ADSI 3', 'L'),
 (4, 39, 'CASA SOLAR', 'ASDASD'),
-(6, NULL, 'L', 'FRENTE A TBT');
+(6, NULL, 'L', 'FRENTE A TBT'),
+(7, 39, 'AMBIENTE 302', 'PASILLO PRICIPAL'),
+(8, 39, 'AMBIENTE 05A', NULL),
+(11, 43, 'ZXCZX', 'ZXCZC');
 
 -- --------------------------------------------------------
 
@@ -100,7 +103,8 @@ INSERT INTO `articulo` (`IdArticulo`, `IdAmbiente`, `IdEquipo`, `IdCategoria`, `
 (12, 4, 1, 3, 'TECLADO', 'SDFS', 'HP', 'LAKSDJAKSDM ASDASD ASDK534 XCV', 'DAÑADO', '', 'hm6f'),
 (17, 3, 3, 3, 'ADASD', 'ASDASD', 'ASDASD', 'ASDASD', 'ACTIVO', 'asdasd', 'asda'),
 (18, 4, 3, 2, 'JJJJ', 'JJJJ', 'JJJJ', 'HKHJK', 'ACTIVO', '123123', 'hkjhjk'),
-(20, 3, NULL, 2, 'ASDASD', 'ADASD', 'ASDASD', 'SGDFG', 'ACTIVO', 'asdasd', '232');
+(20, 3, 3, 2, 'ASDASD', 'ADASD', 'ASDASD', 'SGDFG', 'ACTIVO', '', '232'),
+(21, 7, 5, 4, 'MONITOR', '9Q8W', 'ACER', 'ERWEDSFSDFDFD', 'PERDIDO', '654', '3214');
 
 -- --------------------------------------------------------
 
@@ -131,7 +135,8 @@ CREATE TABLE `categoria` (
 
 INSERT INTO `categoria` (`IdCategoria`, `NombreCategoria`) VALUES
 (2, 'IMPLEMENTOS DE DASDASDA'),
-(3, 'TECNOLOGíAS');
+(3, 'TECNOLOGíAS'),
+(4, 'EQUIPOS DE CONSTRUCCION');
 
 -- --------------------------------------------------------
 
@@ -154,7 +159,8 @@ CREATE TABLE `equipo` (
 
 INSERT INTO `equipo` (`IdEquipo`, `NombreEquipo`, `EstadoEquipo`, `NumArticulosEquipo`, `ObservacionEquipo`, `NumArticulosAgregados`) VALUES
 (1, 'PC DE MESA', 'DESACTIVADO', '4', 'ME LA PELA EL HIJUEPUTA PHP', '0'),
-(3, 'ASDASD', 'ACTIVADO', '3', 'WEGEGWEGWE', '2');
+(3, 'ASDASD', 'ACTIVADO', '3', 'WEGEGWEGWE', '3'),
+(5, 'ASDA', 'ACTIVADO', '4', 'FSDFSDF', '0');
 
 -- --------------------------------------------------------
 
@@ -209,7 +215,10 @@ CREATE TABLE `programa` (
 --
 
 INSERT INTO `programa` (`IdPrograma`, `NombrePrograma`, `DuracionPrograma`, `TipoPrograma`) VALUES
-(39, 'ANIMACIóN 3D', '24 MESES', 'TECNOLOGO');
+(39, 'ANIMACIóN 3D', '24 MESES', 'TECNOLOGO'),
+(43, 'ADSI', '24 MESES', 'TECNOLOGO'),
+(44, 'ADMINISTRACION', '12 MESES', 'TECNICO'),
+(45, 'INGLES', '80 HORAS', 'COMPLEMENTARIO');
 
 -- --------------------------------------------------------
 
@@ -330,25 +339,25 @@ ALTER TABLE `acta_responsabilidad`
 -- AUTO_INCREMENT de la tabla `ambiente`
 --
 ALTER TABLE `ambiente`
-  MODIFY `IdAmbiente` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `IdAmbiente` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `articulo`
 --
 ALTER TABLE `articulo`
-  MODIFY `IdArticulo` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `IdArticulo` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `IdCategoria` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `IdCategoria` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `equipo`
 --
 ALTER TABLE `equipo`
-  MODIFY `IdEquipo` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `IdEquipo` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `novedad`
@@ -360,7 +369,7 @@ ALTER TABLE `novedad`
 -- AUTO_INCREMENT de la tabla `programa`
 --
 ALTER TABLE `programa`
-  MODIFY `IdPrograma` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `IdPrograma` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- Restricciones para tablas volcadas

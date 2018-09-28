@@ -189,7 +189,7 @@ return $respuesta;
 				$editarModelo=strtoupper( $_POST["editarModelo"]);
 				$editarSerial=strtoupper( $_POST["editarSerial"]);
 				$editarCaracteristica=strtoupper( $_POST["editarCaracteristica"]);
-				$idEquipo =$_POST["nuevoEquipo"];
+				$idEquipo =$_POST["idEquipo"];
 				if($idEquipo=="")
 				{
 					$idEquipo=null;
