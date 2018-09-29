@@ -71,3 +71,34 @@ function equipoFuncion(sel) {
         }
     })
 }
+
+function equipoFuncion1(sel) {
+    $(".alert").remove();
+    var idEquipo = sel;
+    var datos = new FormData();
+    datos.append("sel", idEquipo);
+    $.ajax({
+        url: "ajax/equipoAjax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(respuesta) {
+            // debugger;
+            $("#equipo").val(respuesta["IdEquipo"]);
+            if (respuesta["NumArticulosAgregados"] == respuesta["NumArticulosEquipo"]) {
+                $("#editarEquipo").parent().parent().after('<div class="alert alert-warning">Este equipo ya tiene el total de artículos asignados</div>');
+                $("#editarEquipo").val("");
+            }
+            // $("#editarEquipo").val(respuesta["NombreEquipo"]);
+            // $("#idEquipo").val(respuesta["IdEquipo"]);
+            // $("#editarEstado").val(respuesta["EstadoEquipo"]);
+            // // $("#editarEstado").html(respuesta["EstadoEquipo"]);
+            // $("#editarCantidad").val(respuesta["NumArticulosEquipo"]);
+            // $("#editarObservacion").val(respuesta["ObservacionEquipo"]);
+            // console.log(respuesta);
+        }
+    })
+}

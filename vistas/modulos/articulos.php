@@ -488,7 +488,9 @@ foreach ($ambiente as $key => $value) {
               
                 <span class="input-group-addon"><i class="fa fa-users"></i></span> 
 
-                <select class="form-control input-lg" name="idEquipo">
+                <input type="hidden" name="equipo" id="equipo">
+
+                <select class="form-control input-lg" name="idEquipo" onchange="equipoFuncion1(this.value)">
                   
                   <option id="editarEquipo"></option>
                   <?php
@@ -505,6 +507,8 @@ foreach ($equipos as $key => $value) {
 
 ?>
                 </select>
+
+
 
               </div>
 
