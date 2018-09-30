@@ -32,7 +32,7 @@ $(".btnEditarArticulo").click(function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            console.log(respuesta);
+            // console.log(respuesta);
             $("#idArticulo").val(respuesta["IdArticulo"]);
             $("#editarTipo").val(respuesta["TipoArticulo"]);
             $("#editarModelo").val(respuesta["ModeloArticulo"]);
@@ -65,7 +65,7 @@ $(".btnEditarArticulo").click(function() {
                 processData: false,
                 dataType: "json",
                 success: function(respuesta) {
-                    console.log("respuesta", respuesta);
+                    // console.log("respuesta", respuesta);
                     $("#editarEquipo").val(respuesta["IdEquipo"]);
                     $("#editarEquipo").html(respuesta["NombreEquipo"]);
                 }

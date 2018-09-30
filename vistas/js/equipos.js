@@ -1,6 +1,7 @@
 /*=============================================
 ELIMINAR EQUIPO
 =============================================*/
+var nombre="";
 $(".btnEliminarEquipo").click(function() {
     var idEquipo = $(this).attr("idEquipo");
     swal({
@@ -31,6 +32,7 @@ $(".btnEditarEquipo").click(function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
+            nombre=respuesta["NombreEquipo"];
             $("#editarEquipo").val(respuesta["NombreEquipo"]);
             $("#idEquipo").val(respuesta["IdEquipo"]);
             $("#editarEstado").val(respuesta["EstadoEquipo"]);
@@ -73,6 +75,7 @@ function equipoFuncion(sel) {
 }
 
 function equipoFuncion1(sel) {
+    $("#actualizarArticulo").prop('disabled', false);
     $(".alert").remove();
     var idEquipo = sel;
     var datos = new FormData();
@@ -85,12 +88,14 @@ function equipoFuncion1(sel) {
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(respuesta) {
+        success: function(respuesta2) {
             // debugger;
-            $("#equipo").val(respuesta["IdEquipo"]);
-            if (respuesta["NumArticulosAgregados"] == respuesta["NumArticulosEquipo"]) {
+            console.log(respuesta2);
+            console.log(nombre);
+            $("#equipo").val(respuesta2["IdEquipo"]);
+            if (respuesta2["NumArticulosAgregados"] == respuesta2["NumArticulosEquipo"]) {
                 $("#editarEquipo").parent().parent().after('<div class="alert alert-warning">Este equipo ya tiene el total de artículos asignados</div>');
-                $("#editarEquipo").val("");
+                $("#actualizarArticulo").prop('disabled', true);
             }
             // $("#editarEquipo").val(respuesta["NombreEquipo"]);
             // $("#idEquipo").val(respuesta["IdEquipo"]);
