@@ -1,19 +1,19 @@
 <div class="content-wrapper">
 
   <section class="content-header">
-    
+
     <h1>
-      
+
       Administrar articulos
-    
+
     </h1>
 
     <ol class="breadcrumb">
-      
+
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
+
       <li class="active">Administrar articulos</li>
-    
+
     </ol>
 
   </section>
@@ -23,9 +23,9 @@
     <div class="box">
 
       <div class="box-header with-border">
-  
+
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarArticulo">
-          
+
           Agregar articulo
 
         </button>
@@ -33,13 +33,13 @@
       </div>
 
       <div class="box-body">
-        
+
        <table class="table table-bordered table-striped dt-responsive tablas">
-         
+
         <thead>
-         
+
          <tr>
-           
+
            <th style="width:10px">ID</th>
            <th>Tipo Articulo</th>
            <th>Modelo Articulo</th>
@@ -53,7 +53,7 @@
            <th>Caracteristicas</th>
            <th>Acciones</th>
 
-         </tr> 
+         </tr>
 
         </thead>
 
@@ -64,12 +64,11 @@ $item      = null;
 $valor     = null;
 $respuesta = ControladorArticulos::ctrMostrarArticulos($item, $valor);
 
-
 foreach ($respuesta as $key => $value) {
 
-  $item      = "IdEquipo";
-$valor     = $value["IdEquipo"] ;
-$equipos = ControladorEquipos::ctrMostrarEquipos($item, $valor);
+    $item    = "IdEquipo";
+    $valor   = $value["IdEquipo"];
+    $equipos = ControladorEquipos::ctrMostrarEquipos($item, $valor);
     echo '<tr>
                             <td>
                                 ' . $value["IdArticulo"] . '
@@ -82,35 +81,29 @@ $equipos = ControladorEquipos::ctrMostrarEquipos($item, $valor);
                             <td>
                                 ' . $value["MarcaArticulo"] . '
                             </td>';
-                            
-                            if($value["EstadoArticulo"]=="ACTIVO")
-                            {
-                              echo '<td><button class="btn btn-success btn-sm">ACTIVO</button></td>';
-                            }
-                            else if($value["EstadoArticulo"]=="DAÑADO")
-                            {
-                              echo '<td><button class="btn btn-warning btn-sm">DAÑADO</button></td>';
-                            }
-                            else
-                            {
-                                echo '<td><button class="btn btn-danger btn-sm">PERDIDO</button></td>';
-                            }
-                            
-                            
-                      $item="IdAmbiente";
-                      $valor= $value["IdAmbiente"];
 
-                      $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
-                       echo '<td>'.$ambiente["NombreAmbiente"].'</td>';
+    if ($value["EstadoArticulo"] == "ACTIVO") {
+        echo '<td><button class="btn btn-success btn-sm">ACTIVO</button></td>';
+    } else if ($value["EstadoArticulo"] == "DAÑADO") {
+        echo '<td><button class="btn btn-warning btn-sm">DAÑADO</button></td>';
+    } else {
+        echo '<td><button class="btn btn-danger btn-sm">PERDIDO</button></td>';
+    }
 
-                       $item="IdCategoria";
-                      $valor= $value["IdCategoria"];
+    $item  = "IdAmbiente";
+    $valor = $value["IdAmbiente"];
 
-                      $categoria = ControladorCategorias::ctrMostrarCategorias($item, $valor);
-                       echo '<td>'.$categoria["NombreCategoria"].'</td>
+    $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
+    echo '<td>' . $ambiente["NombreAmbiente"] . '</td>';
+
+    $item  = "IdCategoria";
+    $valor = $value["IdCategoria"];
+
+    $categoria = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+    echo '<td>' . $categoria["NombreCategoria"] . '</td>
 
                             <td>
-                                ' .$equipos["NombreEquipo"]. " ".$equipos["IdEquipo"] . '
+                                ' . $equipos["NombreEquipo"] . " " . $equipos["IdEquipo"] . '
                             </td>
 
                             <td>
@@ -121,7 +114,7 @@ $equipos = ControladorEquipos::ctrMostrarEquipos($item, $valor);
                                 ' . $value["SerialArticulo"] . '
                             </td>
 
-                            <td>'.$value["CaracteristicaArticulo"].'</td>
+                            <td>' . $value["CaracteristicaArticulo"] . '</td>
 
                             <td>
                                 <div class="btn-group">
@@ -129,14 +122,14 @@ $equipos = ControladorEquipos::ctrMostrarEquipos($item, $valor);
                                         <i class="fa fa-pencil">
                                         </i>
                                     </button>
-                                    <button class="btn btn-danger btnEliminarArticulo" idArticulo="'.$value["IdArticulo"].'"><i class="fa fa-times"></i></button>
+                                    <button class="btn btn-danger btnEliminarArticulo" idArticulo="' . $value["IdArticulo"] . '"><i class="fa fa-times"></i></button>
                                 </div>
                             </td>
                         </tr>';
-                        // var_dump($value["IdArticulo"]);
+    // var_dump($value["IdArticulo"]);
 }
 ?>
-         
+
         </tbody>
 
        </table>
@@ -151,7 +144,7 @@ $equipos = ControladorEquipos::ctrMostrarEquipos($item, $valor);
 
 <!-- MODAL AGREGAR ARTICULO -->
 <div id="modalAgregarArticulo" class="modal fade" role="dialog">
-  
+
   <div class="modal-dialog">
 
     <div class="modal-content">
@@ -167,18 +160,18 @@ $equipos = ControladorEquipos::ctrMostrarEquipos($item, $valor);
 
         </div>
 
-       
+
         <div class="modal-body">
-          
+
           <!-- CUERPO DEL MODAL -->
           <div class="box-body">
 
             <!-- ENTRADA PARA EL TIPO ARTICULO -->
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-user"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
                 <input type="text" class="form-control input-lg" name="nuevoTipo" placeholder="Tipo articulo" required>
 
@@ -188,10 +181,10 @@ $equipos = ControladorEquipos::ctrMostrarEquipos($item, $valor);
 
             <!-- ENTRADA PARA EL MODELO ARTICULO -->
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-key"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-key"></i></span>
 
                 <input type="text" class="form-control input-lg" name="nuevoModelo"placeholder="Modelo Articulo" required>
 
@@ -201,10 +194,10 @@ $equipos = ControladorEquipos::ctrMostrarEquipos($item, $valor);
 
             <!-- ENTRADA PARA LA MARCA -->
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
 
                 <input type="text" class="form-control input-lg" name="nuevaMarca" placeholder="Ingresar marca" required>
 
@@ -214,13 +207,13 @@ $equipos = ControladorEquipos::ctrMostrarEquipos($item, $valor);
 
             <!-- ENTRADA PARA SELECCIONAR AMBIENTE -->
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-users"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-users"></i></span>
 
                 <select class="form-control input-lg" name="nuevoAmbiente" required>
-                  
+
                   <option value="">Selecionar Ambiente</option>
                   <?php
 
@@ -243,15 +236,15 @@ foreach ($ambiente as $key => $value) {
 
              <!-- ENTRADA PARA SELECCIONAR EQUIPO -->
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-users"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-users"></i></span>
                 <input type="hidden" name="equipo" id="equipo">
 
                 <select class="form-control input-lg" name="nuevoEquipo" id="nuevoEquipo"onchange="equipoFuncion(this.value)">
-                  
-                  
+
+
                   <option value="">Selecionar Equipo</option>
                   <?php
 
@@ -275,13 +268,13 @@ foreach ($equipos as $key => $value) {
 
              <!-- ENTRADA PARA SELECCIONAR CATEGORIAS -->
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-users"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-users"></i></span>
 
                 <select class="form-control input-lg" name="nuevaCategoria" required>
-                  
+
                   <option value="">Selecionar Categoria</option>
                   <?php
 
@@ -306,24 +299,24 @@ foreach ($ambiente as $key => $value) {
 
             <!-- ENTRADA PARA EL INVENTARIO SENA -->
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-key"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-key"></i></span>
 
                 <input type="text" class="form-control input-lg" name="nuevoInventario" min="0" placeholder="Ingrese el numero del inventario sena">
 
               </div>
 
             </div>
-            
+
 
             <!-- ENTRADA PARA EL SERIAL ARTICULO -->
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-key"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-key"></i></span>
 
                 <input type="text" class="form-control input-lg" name="nuevoSerial" placeholder="Ingrese el serial del articulo">
 
@@ -331,13 +324,13 @@ foreach ($ambiente as $key => $value) {
 
             </div>
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-users"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-users"></i></span>
 
                 <select class="form-control input-lg" name="nuevoEstado" required>
-                  
+
                   <option value="">Selecionar Estado</option>
                   <option value="ACTIVO">Activo</option>
                   <option value="DAÑADO">Dañado</option>
@@ -349,10 +342,10 @@ foreach ($ambiente as $key => $value) {
 
             </div>
              <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
 
                  <textarea class="form-control rounded-5" name="nuevaCaracteristica" rows="3" placeholder="INGRESAR CARACTERÍSTICAS DEL ARTICULO"></textarea>
                  <!-- <input type="text" class="form-control input-lg" name="nuevaCaracteristica" min="0" placeholder="Ingrese la característica del artículo"> -->
@@ -361,7 +354,7 @@ foreach ($ambiente as $key => $value) {
 
             </div>
           </div>
-        </div>  
+        </div>
 
 
         <!-- PIE DEL MODAL -->
@@ -373,10 +366,10 @@ foreach ($ambiente as $key => $value) {
 
         </div>
 
-        <?php 
-              $crearArticulo = new ControladorArticulos();
-              $crearArticulo-> ctrCrearArticulos();
-         ?>
+        <?php
+$crearArticulo = new ControladorArticulos();
+$crearArticulo->ctrCrearArticulos();
+?>
 
       </form>
 
@@ -389,7 +382,7 @@ foreach ($ambiente as $key => $value) {
 
 <!-- MODAL EDITAR ARTICULO -->
 <div id="modalEditarArticulo" class="modal fade" role="dialog">
-  
+
   <div class="modal-dialog">
 
     <div class="modal-content">
@@ -405,18 +398,18 @@ foreach ($ambiente as $key => $value) {
 
         </div>
 
-       
+
         <div class="modal-body">
-          
+
           <!-- CUERPO DEL MODAL -->
           <div class="box-body">
 
             <!-- ENTRADA PARA EL TIPO ARTICULO -->
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-user"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
                 <input type="text" class="form-control input-lg" name="editarTipo" id="editarTipo" placeholder="Tipo articulo" required>
 
@@ -428,10 +421,10 @@ foreach ($ambiente as $key => $value) {
 
             <!-- ENTRADA PARA EL MODELO ARTICULO -->
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-key"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-key"></i></span>
 
                 <input type="text" class="form-control input-lg" name="editarModelo" id="editarModelo" min="0" placeholder="Modelo Articulo" required>
 
@@ -441,10 +434,10 @@ foreach ($ambiente as $key => $value) {
 
             <!-- ENTRADA PARA LA MARCA -->
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
 
                 <input type="text" class="form-control input-lg" name="editarMarca" id="editarMarca" placeholder="Ingresar marca" required>
 
@@ -454,13 +447,13 @@ foreach ($ambiente as $key => $value) {
 
             <!-- ENTRADA PARA SELECCIONAR AMBIENTE -->
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-users"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-users"></i></span>
 
                 <select class="form-control input-lg" name="idAmbiente" >
-                  
+
                   <option id="editarAmbiente"></option>
                   <?php
 
@@ -483,13 +476,15 @@ foreach ($ambiente as $key => $value) {
 
              <!-- ENTRADA PARA SELECCIONAR EQUIPO -->
             <div class="form-group">
-              
-              <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-users"></i></span> 
 
-                <select class="form-control input-lg" name="idEquipo">
-                  
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+
+                <input type="hidden" name="equipo" id="equipo">
+
+                <select class="form-control input-lg" name="idEquipo" id="editarEquipoValidar" onchange="equipoFuncion1(this.value)">
+
                   <option id="editarEquipo"></option>
                   <?php
 
@@ -506,19 +501,21 @@ foreach ($equipos as $key => $value) {
 ?>
                 </select>
 
+
+
               </div>
 
             </div>
 
              <!-- ENTRADA PARA SELECCIONAR CATEGORIAS -->
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-users"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-users"></i></span>
 
                 <select class="form-control input-lg" name="idCategoria">
-                  
+
                   <option id="editarCategoria"></option>
                   <?php
 
@@ -542,24 +539,24 @@ foreach ($ambiente as $key => $value) {
 
             <!-- ENTRADA PARA EL INVENTARIO SENA -->
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-key"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-key"></i></span>
 
                 <input type="number" class="form-control input-lg" name="editarInventario" id="editarInventario" min="0" placeholder="Ingrese el numero del inventario sena">
 
               </div>
 
             </div>
-            
+
 
             <!-- ENTRADA PARA EL SERIAL ARTICULO -->
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-key"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-key"></i></span>
 
                 <input type="text" class="form-control input-lg" name="editarSerial" id="editarSerial" min="0" placeholder="Ingrese el serial del articulo">
 
@@ -567,13 +564,13 @@ foreach ($ambiente as $key => $value) {
 
             </div>
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-users"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-users"></i></span>
 
                 <select class="form-control input-lg" name="editarEstado">
-                  
+
                   <option id="editarEstado">Selecionar Estado</option>
                   <option value="ACTIVO">Activo</option>
                   <option value="DAÑADO">Dañado</option>
@@ -585,10 +582,10 @@ foreach ($ambiente as $key => $value) {
 
             </div>
              <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
 
                  <textarea class="form-control rounded-5" name="editarCaracteristica" id="editarCaracteristica" rows="3" placeholder="INGRESAR CARACTERÍSTICAS DEL ARTICULO"></textarea>
                  <!-- <input type="text" class="form-control input-lg" name="nuevaCaracteristica" min="0" placeholder="Ingrese la característica del artículo"> -->
@@ -597,7 +594,7 @@ foreach ($ambiente as $key => $value) {
 
             </div>
           </div>
-        </div>  
+        </div>
 
 
         <!-- PIE DEL MODAL -->
@@ -605,13 +602,13 @@ foreach ($ambiente as $key => $value) {
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Actualizar Articulo</button>
+          <button type="submit" class="btn btn-primary" id="actualizarArticulo">Actualizar Articulo</button>
 
         </div>
-        <?php 
-              $editarArticulo = new ControladorArticulos();
-              $editarArticulo -> ctrEditarArticulos();
-         ?>
+        <?php
+$editarArticulo = new ControladorArticulos();
+$editarArticulo->ctrEditarArticulos();
+?>
 
       </form>
 
@@ -621,8 +618,8 @@ foreach ($ambiente as $key => $value) {
 
 </div>
 
-<?php 
-  $eliminarArticulo = new ControladorArticulos();
-  $eliminarArticulo -> ctrBorrarArticulo();   
-?> 
+<?php
+$eliminarArticulo = new ControladorArticulos();
+$eliminarArticulo->ctrBorrarArticulo();
+?>
 
