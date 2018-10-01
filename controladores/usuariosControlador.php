@@ -15,7 +15,7 @@ class ControladorUsuarios
             if (preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingUsuario"]) &&
                 preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingPassword"])) {
 
-                $encriptar = crypt($_POST["ingPassword"], '$6$rounds=5000$usesomesillystringforsalt$');
+                $encriptar = hash('sha512', ($_POST["ingPassword"]));
 
                 $tabla     = "usuario";
                 $item      = "NumDocumentoUsuario";
@@ -120,7 +120,7 @@ class ControladorUsuarios
                 }
 
                 $tabla     = "usuario";
-                $encriptar = crypt($_POST["nuevaContrasenia"], '$6$rounds=5000$usesomesillystringforsalt$');
+                $encriptar =hash('sha512', ($_POST["ingPassword"]));
 
                 $nombreUsuario = strtoupper($_POST["nuevoNombre"]);
                 $rolUsuario    = strtoupper($_POST["nuevoPerfil"]);

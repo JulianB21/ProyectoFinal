@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-09-2018 a las 00:19:06
+-- Tiempo de generación: 02-10-2018 a las 01:17:55
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.7
 
@@ -240,7 +240,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`NumDocumentoUsuario`, `IdPrograma`, `NombreUsuario`, `ContraseniaUsuario`, `RolUsuario`, `FotoUsuario`) VALUES
-(123, NULL, 'ADMINISTRADOR', '$6$rounds=5000$usesomesillystri$r0QZZTlgrgAb/zLF/i1xCPpqT9cWEwAtQUYgjGXbbTmGKKwGQmXwGR8KulnyR3JtiLlucbDMDSbXwKTMRcrDG.', 'ADMINISTRADOR', '');
+(123, NULL, 'ADMINISTRADOR', 'cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e', 'ADMINISTRADOR', '');
 
 --
 -- Índices para tablas volcadas
