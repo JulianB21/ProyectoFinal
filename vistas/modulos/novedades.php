@@ -49,6 +49,7 @@
            <th>Ficha</th>
            <th>Fecha</th>
            <th>Detalles</th>
+           <th>Ambiente</th>
 
          </tr> 
 

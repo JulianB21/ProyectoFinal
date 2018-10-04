@@ -36,13 +36,19 @@ class TablaArticulos{
 
                 $equipo = ControladorEquipos::ctrMostrarEquipos($item, $valor);
 
+                $item1 = "IdAmbiente";        
+                $valor1 = $respuesta[$i]["IdAmbiente"];
+
+                $ambientes = ControladorAmbientes::ctrMostrarAmbientes($item1, $valor1);
+                // var_dump($ambientes);
                  echo '[
                   "'.$respuesta[$i]["IdArticulo"].'",
                   "'.$respuesta[$i]["TipoArticulo"].'",
                   "'.$respuesta[$i]["NumInventarioSena"].'",
                   "'.$respuesta[$i]["ModeloArticulo"].'",
                   "'.$respuesta[$i]["SerialArticulo"].'",
-                  "'.$equipo["NombreEquipo"].' '.$equipo["IdEquipo"].'"
+                  "'.$equipo["NombreEquipo"].' '.$equipo["IdEquipo"].'",
+                  "'.$ambientes[$i]["NombreAmbiente"].'"
                 ],';
 
             }
@@ -52,13 +58,19 @@ class TablaArticulos{
 
             $equipo = ControladorEquipos::ctrMostrarEquipos($item, $valor);
 
+            $item1 = "IdAmbiente";
+            $valor1 = $respuesta[count($respuesta)-1]["IdAmbiente"];
+
+            $ambientes = ControladorAmbientes::ctrMostrarAmbientes($item1, $valor1);
+
            echo'[
                   "'.$respuesta[$i]["IdArticulo"].'",
                   "'.$respuesta[count($respuesta)-1]["TipoArticulo"].'",
                   "'.$respuesta[count($respuesta)-1]["NumInventarioSena"].'",
                   "'.$respuesta[count($respuesta)-1]["ModeloArticulo"].'",
                   "'.$respuesta[count($respuesta)-1]["SerialArticulo"].'",
-                  "'.$equipo["NombreEquipo"].' '.$equipo["IdEquipo"].'"
+                  "'.$equipo["NombreEquipo"].' '.$equipo["IdEquipo"].'",
+                  "'.$ambientes[count($ambientes)-1]["NombreAmbiente"].'"
                 ]
             ]
         }';
