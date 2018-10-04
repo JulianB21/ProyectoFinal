@@ -7,7 +7,7 @@ class ControladorUsuarios
     INGRESO DE USUARIO
     =============================================*/
 
-    static public  function ctrIngresoUsuario()
+    public static function ctrIngresoUsuario()
     {
 
         if (isset($_POST["ingUsuario"])) {
@@ -15,7 +15,7 @@ class ControladorUsuarios
             if (preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingUsuario"]) &&
                 preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingPassword"])) {
 
-                $encriptar = crypt($_POST["ingPassword"], '$6$rounds=5000$usesomesillystringforsalt$');
+                $encriptar = hash('sha512', ($_POST["ingPassword"]));
 
                 $tabla     = "usuario";
                 $item      = "NumDocumentoUsuario";
@@ -52,8 +52,8 @@ class ControladorUsuarios
     REGISTRO DE USUARIO
     =============================================*/
 
-    static public  function ctrCrearUsuario()
-    { 
+    public static function ctrCrearUsuario()
+    {
 
         if (isset($_POST["nuevoNombre"])) {
 
@@ -120,7 +120,7 @@ class ControladorUsuarios
                 }
 
                 $tabla     = "usuario";
-                $encriptar = crypt($_POST["nuevaContrasenia"], '$6$rounds=5000$usesomesillystringforsalt$');
+                $encriptar = hash('sha512', ($_POST["nuevaContrasenia"]));
 
                 $nombreUsuario = strtoupper($_POST["nuevoNombre"]);
                 $rolUsuario    = strtoupper($_POST["nuevoPerfil"]);
@@ -130,7 +130,7 @@ class ControladorUsuarios
                     "ContraseniaUsuario"                 => $encriptar,
                     "RolUsuario"                         => $rolUsuario,
                     "FotoUsuario"                        => $ruta,
-                    "IdPrograma"=>$_POST["nuevoPrograma"]);
+                    "IdPrograma"                         => $_POST["nuevoPrograma"]);
 
                 $respuesta = ModeloUsuarios::mdlIngresarUsuario($tabla, $datos);
 
@@ -188,17 +188,16 @@ class ControladorUsuarios
         }
 
     }
-   /*=============================================
+    /*=============================================
     MOSTRAR USUARIO
     =============================================*/
 
-
-    static public function ctrMostrarUsuarios($item, $valor)
+    public static function ctrMostrarUsuarios($item, $valor)
     {
 
         $tabla     = "usuario";
         $respuesta = ModeloUsuarios::mdlMostrarUsuarios($tabla, $item, $valor);
-        
+
         return $respuesta;
     }
 
@@ -206,11 +205,12 @@ class ControladorUsuarios
     EDITAR USUARIO
     =============================================*/
 
-    static public function ctrEditarUsuario(){
+    public static function ctrEditarUsuario()
+    {
 
-        if(isset($_POST["editarNombre"])){
+        if (isset($_POST["editarNombre"])) {
 
-            if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarNombre"])){
+            if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarNombre"])) {
 
                 //VALIDAR IMAGEN//
 
@@ -231,13 +231,13 @@ class ControladorUsuarios
 
                     //PREGUNTAMOS SI EXISTE UNA IMAGEN EN LA BD//
 
-                    if(!empty($_POST["fotoActual"])){
+                    if (!empty($_POST["fotoActual"])) {
 
                         unlink($_POST["fotoActual"]);
 
-                    }else{
+                    } else {
 
-                       mkdir($directorio, 0755); 
+                        mkdir($directorio, 0755);
 
                     }
 
@@ -283,13 +283,13 @@ class ControladorUsuarios
 
                 $tabla = "usuario";
 
-                if($_POST["editarContrasenia"] != ""){
+                if ($_POST["editarContrasenia"] != "") {
 
-                    if(preg_match('/^[a-zA-Z0-9]+$/', $_POST["editarContrasenia"])){
+                    if (preg_match('/^[a-zA-Z0-9]+$/', $_POST["editarContrasenia"])) {
 
                         $encriptar = crypt($_POST["editarContrasenia"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
-                    }else{
+                    } else {
 
                         echo '<script>
 
@@ -299,7 +299,7 @@ class ControladorUsuarios
                                         title: "¡la contraseña no puede ir vacía o llevar caracteres especiales!",
                                         showConfirmButton: true,
                                         confirmButtonText: "Cerrar"
-                                        
+
                                         }).then(function(result){
                                             if(result.value){
 
@@ -312,35 +312,32 @@ class ControladorUsuarios
 
                     }
 
-                }else{
-
-
+                } else {
 
                     $encriptar = $_POST["passwordActual"];
 
                 }
 
-                    $editarNombre=strtoupper($_POST["editarNombre"]);
-                    $editarPerfil=strtoupper($_POST["editarPerfil"]);
-                    if($_POST["editarPrograma"]==""){
-                        $programa = null;
-                    }
-                    else{
-                        $programa=$_POST["editarPrograma"];
-                    }
+                $editarNombre = strtoupper($_POST["editarNombre"]);
+                $editarPerfil = strtoupper($_POST["editarPerfil"]);
+                if ($_POST["editarPrograma"] == "") {
+                    $programa = null;
+                } else {
+                    $programa = $_POST["editarPrograma"];
+                }
 
                 $datos = array("NumDocumentoUsuario" => $_POST["editarDocumento"],
                     "NombreUsuario"                      => $editarNombre,
                     "ContraseniaUsuario"                 => $encriptar,
                     "RolUsuario"                         => $editarPerfil,
                     "FotoUsuario"                        => $ruta,
-                    "IdPrograma"=>$programa);
+                    "IdPrograma"                         => $programa);
 
                 var_dump($datos);
 
                 $respuesta = ModeloUsuarios::mdlEditarUsuario($tabla, $datos);
 
-                if ($respuesta == "ok"){
+                if ($respuesta == "ok") {
 
                     echo '<script>
 
@@ -350,7 +347,7 @@ class ControladorUsuarios
                                     title: "¡El usuario ha sido editado correctamente!",
                                     showConfirmButton: true,
                                     confirmButtonText: "Cerrar"
-                                    
+
                                     }).then(function(result){
                                         if(result.value){
                                         window.location = "usuarios";
@@ -361,7 +358,7 @@ class ControladorUsuarios
 
                 }
 
-            }else{
+            } else {
 
                 echo '<script>
 
@@ -371,7 +368,7 @@ class ControladorUsuarios
                         title: "¡El nombre no puede ir vacío o llevar caracteres especiales!",
                         showConfirmButton: true,
                         confirmButtonText: "Cerrar"
-                        
+
                     }).then(function(result){
 
                         if(result.value){
@@ -385,7 +382,7 @@ class ControladorUsuarios
 
                 </script>';
 
-            }   
+            }
 
         }
     }
@@ -393,24 +390,25 @@ class ControladorUsuarios
     ELIMINAR USUARIO
     =============================================*/
 
-    static public function ctrBorrarUsuario(){
+    public static function ctrBorrarUsuario()
+    {
 
-        if(isset($_GET["NumDocumentoUsuario"])){
+        if (isset($_GET["NumDocumentoUsuario"])) {
 
-            $tabla ="usuario";
-            $datos =$_GET["NumDocumentoUsuario"];
+            $tabla = "usuario";
+            $datos = $_GET["NumDocumentoUsuario"];
 
-            if($_GET["FotoUsuario"] !=""){
+            if ($_GET["FotoUsuario"] != "") {
 
                 unlink($_GET["FotoUsuario"]);
-                rmdir('vistas/img/usuarios/'.$_GET["NumDocumentoUsuario"]);
+                rmdir('vistas/img/usuarios/' . $_GET["NumDocumentoUsuario"]);
 
             }
-            $respuesta = ModeloUsuarios::mdlBorrarUsuario($tabla,$datos);
+            $respuesta = ModeloUsuarios::mdlBorrarUsuario($tabla, $datos);
 
-            if($respuesta == "ok"){
+            if ($respuesta == "ok") {
 
-                echo'<script>
+                echo '<script>
                             swal({
                                     type:"success",
                                     title:"El usuario ha sido borrado correctamente",
@@ -424,7 +422,7 @@ class ControladorUsuarios
 
                             })
                     </script>';
-            }  
+            }
         }
     }
 
