@@ -95,3 +95,4 @@ $(".btnEditarArticulo").click(function() {
         }
     })
 })
+

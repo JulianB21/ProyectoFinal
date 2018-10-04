@@ -1,5 +1,5 @@
 function duracion(sel) {
-    debugger;
+    
     if (sel == "TECNICO") {
         $("#nuevaDuracion").val("12 MESES");
         $("#nuevaDuracion").prop('readonly', true);

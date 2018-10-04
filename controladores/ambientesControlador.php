@@ -191,4 +191,15 @@ class ControladorAmbientes
         }
     }
 
+    static public function ctrMostrarArticulos1($item, $valor){
+
+        // var_dump(isset($_POST["nuevoAmbiente"]));
+$tabla = "articulo";
+
+$respuesta = ModeloAmbientes::mdlMostrarArticulos1($tabla, $item, $valor);
+
+return $respuesta;
+    
+    }
+
 }

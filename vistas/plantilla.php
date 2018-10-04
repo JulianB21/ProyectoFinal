@@ -139,6 +139,7 @@ if (isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok") {
             $_GET["ruta"] == "reportes" ||
             $_GET["ruta"] == "salir" ||
             $_GET["ruta"] == "equipos" ||
+            $_GET["ruta"] == "crear-novedad" ||
             $_GET["ruta"] == "actas") {
 
             include "modulos/" . $_GET["ruta"] . ".php";
@@ -178,6 +179,7 @@ if (isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok") {
 <script src="vistas/js/fichas.js"></script>
 <script src="vistas/js/articulos.js"></script>
 <script src="vistas/js/equipos.js"></script>
+<script src="vistas/js/novedades.js"></script>
 
 </body>
 </html>

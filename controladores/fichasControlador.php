@@ -80,6 +80,7 @@ class ControladorFichas
     	$tabla="ficha";
 
     	$respuesta = ModeloFichas::mdlMostrarFichas($tabla, $item, $valor);
+    	
 
     	return $respuesta;
     }

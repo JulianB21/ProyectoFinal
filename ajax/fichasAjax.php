@@ -30,14 +30,35 @@ class AjaxFichas{
         echo json_encode($respuesta);
 
     }
-}
 
-// EDITAR CATEGORÍA
+    // BUSCRA FICHA
+    public $idFicha1;
+
+    public function ajaxBuscarFicha(){
+
+        $item = "NumeroFicha";
+        $valor = $this->idFicha1;
+
+        $respuesta = ControladorFichas::ctrMostrarFichas($item, $valor);
+
+        echo json_encode($respuesta);
+
+    }
+}
+// EDITAR FICHA
 if(isset($_POST["idFicha"])){
 
     $ambiente = new AjaxFichas();
     $ambiente -> idFicha = $_POST["idFicha"];
     $ambiente -> ajaxEditarFicha();
+}
+
+// BUSCAR FICHA
+if(isset($_POST["sel"])){
+    
+    $ficha1 = new AjaxFichas();
+    $ficha1 -> idFicha1 = $_POST["sel"];
+    $ficha1 -> ajaxBuscarFicha();
 }
 
 // VALIDAR FICHA
@@ -47,3 +68,4 @@ if(isset($_POST["validarFicha"])){
     $valFicha -> validarFicha = $_POST["validarFicha"];
     $valFicha -> ajaxValidarFicha();
 }
+

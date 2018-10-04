@@ -5,7 +5,7 @@
     <h1>
       
       Administrar categorías
-    
+
     </h1>
 
     <ol class="breadcrumb">

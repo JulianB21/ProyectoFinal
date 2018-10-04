@@ -6,6 +6,7 @@ class ControladorArticulos
 	// CREAR ARTICULO
 	static public function ctrCrearArticulos()
 	{
+
 		if(isset($_POST["nuevoTipo"]))
 		{
 			if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoTipo"])&& preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaMarca"])) 
@@ -106,7 +107,7 @@ class ControladorArticulos
 
                 </script>';
 			}
-		}
+		} 
 	}
 
 static public function ctrMostrarArticulos($item, $valor){
@@ -118,7 +119,6 @@ $respuesta = ModeloArticulos::mdlMostrarArticulos($tabla, $item, $valor);
 return $respuesta;
 	
 	}
-
 
 	static public function ctrBorrarArticulo(){
 

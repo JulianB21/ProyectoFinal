@@ -57,7 +57,7 @@
 
         </thead>
 
-        <tbody>
+         <tbody>
            <?php
 
 $item      = null;
@@ -137,7 +137,7 @@ $equipos = ControladorEquipos::ctrMostrarEquipos($item, $valor);
 }
 ?>
          
-        </tbody>
+        </tbody> 
 
        </table>
 
@@ -235,7 +235,7 @@ foreach ($ambiente as $key => $value) {
 }
 
 ?>
-                </select>
+                </select> 
 
               </div>
 
@@ -244,7 +244,7 @@ foreach ($ambiente as $key => $value) {
              <!-- ENTRADA PARA SELECCIONAR EQUIPO -->
             <div class="form-group">
               
-              <div class="input-group">
+              <div class="input-group"> 
               
                 <span class="input-group-addon"><i class="fa fa-users"></i></span> 
                 <input type="hidden" name="equipo" id="equipo">

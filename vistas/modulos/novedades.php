@@ -4,9 +4,7 @@
     
     <h1>
       
-      Novedades
-
-      <small>Administrar Novedades</small>
+      Administrar Novedades
     
     </h1>
 
@@ -14,7 +12,7 @@
       
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Novedades</li>
+      <li class="active">Administrar novedades</li>
     
     </ol>
 
@@ -25,25 +23,66 @@
     <div class="box">
 
       <div class="box-header with-border">
+
+        <a href="crear-novedad">
   
-       <h3 class="box-title">Title</h3>
+          <button class="btn btn-primary">
+            
+            Agregar novedad
 
-       <div class="box-tools pull-right">
+          </button>
 
-        <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-
-        <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="remove"><i class="fa fa-times"></i></button>
-         
-       </div>
+        </a>
 
       </div>
 
       <div class="box-body">
-        Start Creating your amazing application!! 
-      </div>
+        
+       <table class="table table-bordered table-striped dt-responsive tablas">
+         
+        <thead>
+         
+         <tr>
+           
+           <th style="width:10px">ID</th>
+           <th>Nombre Usuario</th>
+           <th>Ficha</th>
+           <th>Fecha</th>
+           <th>Detalles</th>
 
-      <div class="box-footer">
-        Footer
+         </tr> 
+
+        </thead>
+
+        <tbody>
+          
+          <tr>
+
+            <td>1</td>
+
+            <td>Juan Villegas</td>
+
+            <td>8161123</td>
+
+            <td>2017-12-11 12:05:32</td>
+
+            <td>
+
+              <div class="btn-group">
+                  
+                <button class="btn btn-success"><i class="fa fa-pencil"></i></button>
+
+              </div>  
+
+            </td>
+
+          </tr>
+
+          
+        </tbody>
+
+       </table>
+
       </div>
 
     </div>
@@ -51,5 +90,3 @@
   </section>
 
 </div>
-
-
