@@ -127,7 +127,7 @@
 
           <div class="box-body">
             
-            <table class="table table-bordered table-striped dt-responsive  tablaArticulos">
+            <table class="table table-bordered table-striped dt-responsive  tablaArticulos" id="tablaArticulos">
               
                <thead>
 
@@ -138,6 +138,7 @@
                   <th>Modelo</th>
                   <th>Serial</th>
                   <th>Equipo</th>
+                  <th>Ambiente</th>
                   <th>acciones</th>
                 </tr>
 

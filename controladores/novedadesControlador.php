@@ -4,7 +4,7 @@ class ControladorNovedades{
 
 	// CREAR NOVEDAD
 	static public function ctrCrearNovedad(){
-
+		
 		if (isset($_POST["usuarioNovedad"])) {
 			
 			$tabla = "novedad";
@@ -59,4 +59,5 @@ class ControladorNovedades{
         return $respuesta;
 
     }
+
 }
