@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-10-2018 a las 04:07:48
+-- Tiempo de generación: 05-10-2018 a las 06:24:46
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.7
 
@@ -104,7 +104,8 @@ INSERT INTO `articulo` (`IdArticulo`, `IdAmbiente`, `IdEquipo`, `IdCategoria`, `
 (17, 3, 3, 3, 'ADASD', 'ASDASD', 'ASDASD', 'ASDASD', 'ACTIVO', 'asdasd', 'asda'),
 (18, 4, 3, 2, 'JJJJ', 'JJJJ', 'JJJJ', 'HKHJK', 'ACTIVO', '123123', 'hkjhjk'),
 (20, 3, 3, 2, 'ASDASD', 'ADASD', 'ASDASD', 'SGDFG', 'ACTIVO', '', '232'),
-(21, 7, 5, 4, 'MONITOR', '9Q8W', 'ACER', 'ERWEDSFSDFDFD', 'PERDIDO', '654', '3214');
+(21, 7, 5, 4, 'MONITOR', '9Q8W', 'ACER', 'ERWEDSFSDFDFD', 'PERDIDO', '654', '3214'),
+(22, 8, 1, 3, 'CPU', '445Y', 'HP', '', 'PERDIDO', '333', '132213');
 
 -- --------------------------------------------------------
 
@@ -115,8 +116,17 @@ INSERT INTO `articulo` (`IdArticulo`, `IdAmbiente`, `IdEquipo`, `IdCategoria`, `
 CREATE TABLE `articulonovedad` (
   `IdArticulo` int(50) NOT NULL,
   `IdNovedad` int(50) NOT NULL,
-  `TipoNovedad` varchar(50) COLLATE utf8_spanish_ci NOT NULL
+  `TipoNovedad` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `ObservacionNovedad` text COLLATE utf8_spanish_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `articulonovedad`
+--
+
+INSERT INTO `articulonovedad` (`IdArticulo`, `IdNovedad`, `TipoNovedad`, `ObservacionNovedad`) VALUES
+(9, 22, 'DAÑADO', 'Mega Martillo'),
+(20, 23, 'PERDIDO', 'Super martillo[]][$$');
 
 -- --------------------------------------------------------
 
@@ -158,7 +168,7 @@ CREATE TABLE `equipo` (
 --
 
 INSERT INTO `equipo` (`IdEquipo`, `NombreEquipo`, `EstadoEquipo`, `NumArticulosEquipo`, `ObservacionEquipo`, `NumArticulosAgregados`) VALUES
-(1, 'PC DE MESA', 'DESACTIVADO', '4', 'ME LA PELA EL HIJUEPUTA PHP', '0'),
+(1, 'PC DE MESA', 'DESACTIVADO', '4', 'ME LA PELA EL HIJUEPUTA PHP', '1'),
 (3, 'ASDASD', 'ACTIVADO', '3', 'WEGEGWEGWE', '3'),
 (5, 'ASDA', 'ACTIVADO', '4', 'FSDFSDF', '0');
 
@@ -193,9 +203,19 @@ INSERT INTO `ficha` (`NumeroFicha`, `IdPrograma`, `IdAmbiente`, `FechaInicio`, `
 CREATE TABLE `novedad` (
   `IdNovedad` int(50) NOT NULL,
   `NumDocumentoUsuario` int(50) NOT NULL,
+  `UsuarioNovedad` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `NumeroFicha` int(50) NOT NULL,
-  `FechaNovedad` date NOT NULL
+  `FechaNovedad` text COLLATE utf8_spanish_ci NOT NULL,
+  `Articulo` varchar(50) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `novedad`
+--
+
+INSERT INTO `novedad` (`IdNovedad`, `NumDocumentoUsuario`, `UsuarioNovedad`, `NumeroFicha`, `FechaNovedad`, `Articulo`) VALUES
+(22, 123, 'ADMINISTRADOR', 123123123, '2018-10-04 22:13:04', '9'),
+(23, 123, 'ADMINISTRADOR', 123123123, '2018-10-04 22:15:07', '20');
 
 -- --------------------------------------------------------
 
@@ -240,7 +260,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`NumDocumentoUsuario`, `IdPrograma`, `NombreUsuario`, `ContraseniaUsuario`, `RolUsuario`, `FotoUsuario`) VALUES
-(123, NULL, 'ADMINISTRADOR', 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec', 'ADMINISTRADOR', '');
+(123, NULL, 'ADMINISTRADOR', 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec', 'ADMINISTRADOR', ''),
+(321, 45, 'PEPO', '44607f62869d34f038c48474ba6311e9787aaf37b8117b4c45e882352602d0c24f9b16c0691a9af5a587895675310ee859b6242a91056d4acb59b2ed5b8875e1', 'INSTRUCTOR', 'vistas/img/usuarios/321/488.png');
 
 --
 -- Índices para tablas volcadas
@@ -345,7 +366,7 @@ ALTER TABLE `ambiente`
 -- AUTO_INCREMENT de la tabla `articulo`
 --
 ALTER TABLE `articulo`
-  MODIFY `IdArticulo` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `IdArticulo` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria`
@@ -363,7 +384,7 @@ ALTER TABLE `equipo`
 -- AUTO_INCREMENT de la tabla `novedad`
 --
 ALTER TABLE `novedad`
-  MODIFY `IdNovedad` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdNovedad` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `programa`
