@@ -55,28 +55,40 @@
         </thead>
 
         <tbody>
-          
-          <tr>
 
-            <td>1</td>
+          <?php 
 
-            <td>Juan Villegas</td>
+            $item = null;
+            $valor = null;
 
-            <td>8161123</td>
+            $respuesta = ControladorNovedades::ctrMostrarNovedades($item, $valor);
 
-            <td>2017-12-11 12:05:32</td>
 
-            <td>
+            foreach ($respuesta as $key => $value) {
+              echo '<tr>
 
-              <div class="btn-group">
-                  
-                <button class="btn btn-success"><i class="fa fa-pencil"></i></button>
+                      <td>'.$value["IdNovedad"].'</td>
 
-              </div>  
+                      <td>'.$value["UsuarioNovedad"].'</td>
 
-            </td>
+                      <td>'.$value["NumeroFicha"].'</td>
 
-          </tr>
+                      <td>'.$value["FechaNovedad"].'</td>
+
+                      <td>
+
+                        <div class="btn-group">
+                            
+                          <button class="btn btn-success"><i class="fa fa-pencil"></i></button>
+
+                        </div>  
+
+                      </td>
+
+                    </tr>';
+            }
+
+          ?>
 
           
         </tbody>

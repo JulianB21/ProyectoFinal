@@ -110,7 +110,7 @@ class ControladorArticulos
 
         return $respuesta;
 
-
+}
 
     public static function ctrBorrarArticulo()
     {

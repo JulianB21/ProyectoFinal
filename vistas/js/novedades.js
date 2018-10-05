@@ -192,9 +192,10 @@ $('.tablaArticulos tbody').on( 'click', 'button.btnAgregarArticulo', function ()
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            // console.log("respuesta", respuesta);
+            console.log("respuesta", respuesta);
 
             var nombreArticulo = respuesta["TipoArticulo"];
+            var articulo = respuesta["IdArticulo"];
 
             $(".nuevoArticulo").append(
 
@@ -236,6 +237,7 @@ $('.tablaArticulos tbody').on( 'click', 'button.btnAgregarArticulo', function ()
                         '<div class="input-group">'+
 
                             '<input type="text" class="form-control " id="nuevaDescripcion" name="nuevaDescripcion" placeholder="Descripción" required>'+
+                            '<input type="hidden" id="articulo" name="articulo" value="'+articulo+'">'+
 
                         '</div>'+
 

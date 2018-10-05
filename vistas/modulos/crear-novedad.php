@@ -48,7 +48,9 @@
                     
                     <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
-                    <input type="text" class="form-control" value="<?php echo$_SESSION["NombreUsuario"]; ?>" readonly>
+                    <input type="text" class="form-control" name="usuarioNovedad" value="<?php echo$_SESSION["NombreUsuario"]; ?>" readonly>
+
+                    <input type="hidden" name="numUsuario" value="<?php echo $_SESSION["NumDocumentoUsuario"]; ?>">
 
                   </div>
 
@@ -99,6 +101,13 @@
             <button type="submit" class="btn btn-primary pull-right">Crear Novedad</button>
 
           </div>
+
+          <?php 
+
+            $crearNovedad = new ControladorNovedades();
+            $crearNovedad -> ctrCrearNovedad();
+
+          ?>
 
         </form>
 
