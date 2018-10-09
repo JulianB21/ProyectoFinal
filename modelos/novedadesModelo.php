@@ -35,6 +35,9 @@ class ModeloNovedades{
 	// CREAR NOVEDAD ARTICULO
 	static public function mdlCrearNovedadArticulo($tabla, $datos){
 
+		var_dump($datos);
+		var_dump($tabla);
+
 		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (IdArticulo, TipoNovedad, ObservacionNovedad, IdNovedad) VALUES (:IdArticulo, :TipoNovedad, :ObservacionNovedad, :IdNovedad)");
 
 

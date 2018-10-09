@@ -88,6 +88,8 @@
                 <!-- AGREGAR ARTICULO A LA NOVEDADA -->
                 <div class="form-group row nuevoArticulo">
 
+                  <div id="modalAgregar" class="modal fade" role="dialog">
+                  </div>
                   
                   
                 </div>

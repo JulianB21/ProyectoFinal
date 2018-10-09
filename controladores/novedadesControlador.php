@@ -41,10 +41,38 @@ class ControladorNovedades{
 
 			  	$datos = array("IdArticulo"   => $_POST["articulo"],
 				                "TipoNovedad" => $_POST["tipoNovedadArticulo"],
-				                "ObservacionNovedad" => $_POST["nuevaDescripcion"],
+				                "ObservacionNovedad" => $observacion,
 				                "IdNovedad"=> $respuesta1["IdNovedad"]);
 			  	
+			  	
 			  	$respuesta = ModeloNovedades::mdlCrearNovedadArticulo($tabla, $datos);
+			  	if($respuesta=="error")
+			  	{
+			  		 echo '<script>
+
+                    swal({
+
+                        type: "error",
+                        title: "¡El artículo ya se encuentra registrado en esta novedad!",
+                        showConfirmButton: true,
+                        confirmButtonText: "Cerrar"
+
+                    }).then(function(result){
+
+                        if(result.value){
+
+                            window.location = "crear-novedad";
+
+                        }
+
+                    });
+
+
+                </script>';
+			  	}
+
+
+		  	}else{
 
 		  	}
 		}

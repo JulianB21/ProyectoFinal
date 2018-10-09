@@ -1,161 +1,162 @@
-<?php 
+<?php
 
 class ControladorFichas
 {
 
 /*=============================================
-=                    CREAR FICHA 			    =
+=                    CREAR FICHA                 =
 =============================================*/
 
-	static public function ctrAgregarFichas()
-	{
-
-		if(isset($_POST["nuevaFicha"]))
-		{
-
-			if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaFicha"]) &&
-				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaJornada"])){
-
-				$tabla = "ficha";
-
-				$jornada = strtoupper($_POST["nuevaJornada"]);
-				// $fechaInicio=($_POST["nuevaFechaInicio"],$formato);
-
-				$datos = array("NumeroFicha" => $_POST["nuevaFicha"],
-							 "IdAmbiente" => $_POST["nuevoAmbiente"],
-							 "IdPrograma" => $_POST["nuevoPrograma"],
-							 "FechaInicio" => $_POST["nuevaFechaInicio"],
-							 "FechaFin" => $_POST["nuevaFechaFin"],
-							 "JornadaFicha"=>$jornada);
-				
-
-				$respuesta = ModeloFichas::mdlAgregarFichas($tabla, $datos);
-				
-				if($respuesta == "ok"){
-					echo '<script>
-
-					swal({
-						  type: "success",
-						  title: "La ficha ha sido guardada correctamente",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar",
-						  closeOnConfirm: false
-						  }).then((result) => {
-									if (result.value) {
-
-									window.location = "fichas";
-
-									}
-								})
-
-					</script>';
-    				}
-
-    		}else{
-
-    			echo '<script>
-
-					swal({
-						  type: "error",
-						  title: "La ficha no puede ir vacía o llevar caracteres especiales!",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar",
-						  closeOnConfirm: false
-						  }).then((result) => {
-							if (result.value) {
-
-							window.location = "fichas";
-							}
-						})
-
-			  	</script>';
-			}
-		}
-	}
-
-	// MOSTRAR fICHAS
-	static public function ctrMostrarFichas($item,$valor)
+    public static function ctrAgregarFichas()
     {
 
-    	$tabla="ficha";
+        if (isset($_POST["nuevaFicha"])) {
 
-    	$respuesta = ModeloFichas::mdlMostrarFichas($tabla, $item, $valor);
-    	
+            if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaFicha"]) &&
+                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaJornada"])) {
 
-    	return $respuesta;
+                $tabla = "ficha";
+
+                $jornada = strtoupper($_POST["nuevaJornada"]);
+                // $fechaInicio=($_POST["nuevaFechaInicio"],$formato);
+
+                // $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReaderForFile($_POST("nuevoExcel"));
+                // $reader->setReadDataOnly(true);
+                // $reader->load($_POST("nuevoExcel"));
+                // echo $reader;
+
+                $datos = array("NumeroFicha" => $_POST["nuevaFicha"],
+                    "IdAmbiente"                 => $_POST["nuevoAmbiente"],
+                    "IdPrograma"                 => $_POST["nuevoPrograma"],
+                    "FechaInicio"                => $_POST["nuevaFechaInicio"],
+                    "FechaFin"                   => $_POST["nuevaFechaFin"],
+                    "JornadaFicha"               => $jornada);
+
+                $respuesta = ModeloFichas::mdlAgregarFich($tabla, $datos);
+
+                if ($respuesta == "ok") {
+                    echo '<script>
+
+                    swal({
+                          type: "success",
+                          title: "La ficha ha sido guardada correctamente",
+                          showConfirmButton: true,
+                          confirmButtonText: "Cerrar",
+                          closeOnConfirm: false
+                          }).then((result) => {
+                                    if (result.value) {
+
+                                    window.location = "fichas";
+
+                                    }
+                                })
+
+                    </script>';
+                }
+
+            } else {
+
+                echo '<script>
+
+                    swal({
+                          type: "error",
+                          title: "La ficha no puede ir vacía o llevar caracteres especiales!",
+                          showConfirmButton: true,
+                          confirmButtonText: "Cerrar",
+                          closeOnConfirm: false
+                          }).then((result) => {
+                            if (result.value) {
+
+                            window.location = "fichas";
+                            }
+                        })
+
+                </script>';
+            }
+        }
+    }
+
+    // MOSTRAR fICHAS
+    public static function ctrMostrarFichas($item, $valor)
+    {
+
+        $tabla = "ficha";
+
+        $respuesta = ModeloFichas::mdlMostrarFichas($tabla, $item, $valor);
+
+        return $respuesta;
     }
 
     /*=============================================
-	=                    CREAR FICHA 			    =
-	=============================================*/
+    =                    CREAR FICHA                 =
+    =============================================*/
 
-	static public function ctrEditarFichas()
-	{
+    public static function ctrEditarFichas()
+    {
 
-		if(isset($_POST["editarFicha"]))
-		{
+        if (isset($_POST["editarFicha"])) {
 
-			if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarFicha"]) &&
-				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarJornada"])){
+            if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarFicha"]) &&
+                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarJornada"])) {
 
-				$tabla = "ficha";
+                $tabla = "ficha";
 
-				$jornada = strtoupper($_POST["editarJornada"]);
-				// $fechaInicio=($_POST["editarFechaInicio"],$formato);
+                $jornada = strtoupper($_POST["editarJornada"]);
+                // $fechaInicio=($_POST["editarFechaInicio"],$formato);
 
-				$datos = array("NumeroFicha" => $_POST["editarFicha"],
-							 "IdAmbiente" => $_POST["idAmbiente"],
-							 "IdPrograma" => $_POST["idPrograma"],
-							 "FechaInicio" => $_POST["editarFechaInicio"],
-							 "FechaFin" => $_POST["editarFechaFin"],
-							 "JornadaFicha"=>$jornada);
+                $datos = array("NumeroFicha" => $_POST["editarFicha"],
+                    "IdAmbiente"                 => $_POST["idAmbiente"],
+                    "IdPrograma"                 => $_POST["idPrograma"],
+                    "FechaInicio"                => $_POST["editarFechaInicio"],
+                    "FechaFin"                   => $_POST["editarFechaFin"],
+                    "JornadaFicha"               => $jornada);
 
-				$respuesta = ModeloFichas::mdlEditarFichas($tabla, $datos);
-				
-				if($respuesta == "ok"){
-					echo '<script>
+                $respuesta = ModeloFichas::mdlEditarFichas($tabla, $datos);
 
-					swal({
-						  type: "success",
-						  title: "La ficha ha sido editada correctamente",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar",
-						  closeOnConfirm: false
-						  }).then((result) => {
-									if (result.value) {
+                if ($respuesta == "ok") {
+                    echo '<script>
 
-									window.location = "fichas";
+                    swal({
+                          type: "success",
+                          title: "La ficha ha sido editada correctamente",
+                          showConfirmButton: true,
+                          confirmButtonText: "Cerrar",
+                          closeOnConfirm: false
+                          }).then((result) => {
+                                    if (result.value) {
 
-									}
-								})
+                                    window.location = "fichas";
 
-					</script>';
-    				}
+                                    }
+                                })
 
-    		}else{
+                    </script>';
+                }
 
-    			echo '<script>
+            } else {
 
-					swal({
-						  type: "error",
-						  title: "La ficha no puede ir vacía o llevar caracteres especiales!",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar",
-						  closeOnConfirm: false
-						  }).then((result) => {
-							if (result.value) {
+                echo '<script>
 
-							window.location = "fichas";
-							}
-						})
+                    swal({
+                          type: "error",
+                          title: "La ficha no puede ir vacía o llevar caracteres especiales!",
+                          showConfirmButton: true,
+                          confirmButtonText: "Cerrar",
+                          closeOnConfirm: false
+                          }).then((result) => {
+                            if (result.value) {
 
-			  	</script>';
-			}
-		}
-	}
+                            window.location = "fichas";
+                            }
+                        })
 
-	// ELIMINAR FICHA
-	static public function ctrEliminarFicha()
+                </script>';
+            }
+        }
+    }
+
+    // ELIMINAR FICHA
+    public static function ctrEliminarFicha()
     {
         if (isset($_GET["idFicha"])) {
             $tabla     = "ficha";
@@ -183,7 +184,3 @@ class ControladorFichas
         }
     }
 }
-
-
-
-

@@ -122,7 +122,7 @@ var table = $('.tablaArticulos').DataTable({
     "columnDefs": [{
         "targets": -1,
         "data": null,
-        "defaultContent": '<div class="btn-group"><button class="btn btn-primary btnAgregarArticulo recuperarBoton" idArticulo>Agregar</button></div>'
+        "defaultContent": '<div class="btn-group"><button class="btn btn-primary btnAgregarArticulo recuperarBoton"  data-toggle="modal" data-target="#modalAgregar" idArticulo>Agregar</button></div>'
     }],
     "language": {
         "sProcessing": "Procesando...",
@@ -160,6 +160,7 @@ $('.tablaArticulos tbody').on('click', 'button.btnAgregarArticulo', function() {
 /*=============================================
 AGREGAR NOVEVDAD
 =============================================*/
+var lista = [];
 $('.tablaArticulos tbody').on('click', 'button.btnAgregarArticulo', function() {
     var idArticulo = $(this).attr("idArticulo");
     // console.log("idArticulo", idArticulo);
@@ -176,59 +177,96 @@ $('.tablaArticulos tbody').on('click', 'button.btnAgregarArticulo', function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-
-            console.log("respuesta", respuesta);
-
             var nombreArticulo = respuesta["TipoArticulo"];
             var articulo = respuesta["IdArticulo"];
+            $("#modalAgregar").show(
+  
+              '<div class="modal-dialog" >'+
 
-            $(".nuevoArticulo").append(
+                '<div class="modal-content">'+
+                  '<form role="form" method="post">'+
 
-                '<div class="row" style="padding: 5px 15px">'+
-                    '<div class="col-xs-4" style="padding-right:0px">'+
-                      
-                        '<div class="input-group">'+
-                          
-                          '<span class="input-group-addon"><button type="button" class="btn btn-danger quitarNovedad btn-xs" idArticulo="'+idArticulo+'"><i class="fa fa-times"></i></button></span>'+
+                   '<!-- CABEZA DEL MODAL -->'+
+                    '<div class="modal-header" style="background:#3c8dbc; color:white">'+
 
-                          '<input type="text" class="form-control " id="agregarArticulo" name="agregarArticulo" value="'+nombreArticulo+'" required readonly>'+
+                      '<button type="button" class="close" data-dismiss="modal">&times;</button>'+
+
+                      '<h4 class="modal-title">Agregar Articulo</h4>'+
+
+                    '</div>'+
+
+                   '<!-- CUERPO DEL MODAL -->'+
+                    '<div class="modal-body">'+
+
+                      '<div class="box-body">'+
+
+                      '<div class="row" style="padding: 5px 15px">'+
+
+                             '<div class="col-xs-4" style="padding-right:0px">'+
+
+                                 '<div class="input-group">'+
+
+                                    '<input type="text" class="form-control " id="agregarArticulo" name="agregarArticulo" value="'+nombreArticulo+'" required readonly>'+
+
+                                '</div>'+
+
+                            '</div>'+
+
+                            '<div class="form-group col-xs-4"  style="padding-left:5px; padding-right: 0px">'+
+
+                                '<div class="input-group">'+
+
+                                    '<span class="input-group-addon"><i class="fa fa-th"></i></span>'+
+
+                                    '<select class="form-control" name="tipoNovedadArticulo" id="tipoNovedadArticulo" required>'+
+
+                                    '<option value="">Tipo</option>'+
+
+                                    '<option value="DAÑADO">DAÑADO</option>'+
+
+                                    '<option value="PERDIDO">PERDIDO</option>'+
+
+                                    '</select>'+
+
+                                '</div>'+
+
+                            '</div>'+ 
+
+                            '<div class="col-xs-4" style="padding-left:5px">'+
+
+                                '<div class="input-group">'+
+
+                                '<input type="text" class="form-control " id="nuevaDescripcion" name="nuevaDescripcion" placeholder="Descripción" required>'+
+
+                                '<input type="hidden" id="articulo" name="articulo" value="'+articulo+'">'+
+
+                                '</div>'+
+
+                            '</div>'+
 
                         '</div>'+
+
+              
+                      '</div>'+
 
                     '</div>'+
 
-                    '<div class="form-group col-xs-4"  style="padding-left:5px; padding-right: 0px">'+
-                    
-                        '<div class="input-group">'+
-                        
-                          '<span class="input-group-addon"><i class="fa fa-th"></i></span>'+
+                    '<!-- PIE DEL MODAL -->'+
+                    '<div class="modal-footer">'+
 
-                          '<select class="form-control" name="tipoNovedadArticulo" id="tipoNovedadArticulo">'+
-                            
-                            '<option value="">Tipo</option>'+
+                      '<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>'+
 
-                            '<option value="DAÑADO">DAÑADO</option>'+
-
-                            '<option value="PERDIDO">PERDIDO</option>'+
-                              
-                          '</select>'+
-
-                        '</div>'+
-
-                    '</div> '+
-
-                    '<div class="col-xs-4" style="padding-left:5px">'+
-                      
-                        '<div class="input-group">'+
-
-                            '<input type="text" class="form-control " id="nuevaDescripcion" name="nuevaDescripcion" placeholder="Descripción" required>'+
-                            '<input type="hidden" id="articulo" name="articulo" value="'+articulo+'">'+
-
-                        '</div>'+
+                      '<button type="submit" class="btn btn-primary">Añadir</button>'+
 
                     '</div>'+
-                '</div>'
-                )
+                   
+                  '</form>'+
+
+                '</div>'+
+
+            '</div>');
+            lista.push(articulo, $("#tipoNovedadArticulo").val(), $("#tipoNovedadArticulo").val());
+            console.log(lista);
         }
     });
 });
