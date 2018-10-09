@@ -79,7 +79,7 @@ $(".btnBuscar1").click(function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            console.log(respuesta);
+            // console.log(respuesta);
             var idAmbiente1 = respuesta["IdAmbiente"];
             var datosAmbiente1 = new FormData();
             $("#idAmbiente2").val(respuesta["IdAmbiente"]);
@@ -94,7 +94,7 @@ $(".btnBuscar1").click(function() {
                 processData: false,
                 dataType: "json",
                 success: function(respuesta) {
-                    console.log(respuesta);
+                    // console.log(respuesta);
                     $(".inputAmbiente").val(respuesta["NombreAmbiente"]);
                     var e = $.Event("keyup", {
                         keyCode: 13
@@ -177,6 +177,12 @@ $('.tablaArticulos tbody').on('click', 'button.btnAgregarArticulo', function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
+<<<<<<< HEAD
+=======
+
+            // console.log("respuesta", respuesta);
+
+
             var nombreArticulo = respuesta["TipoArticulo"];
             var articulo = respuesta["IdArticulo"];
             $("#modalAgregar").show(
@@ -189,7 +195,11 @@ $('.tablaArticulos tbody').on('click', 'button.btnAgregarArticulo', function() {
                    '<!-- CABEZA DEL MODAL -->'+
                     '<div class="modal-header" style="background:#3c8dbc; color:white">'+
 
+
                       '<button type="button" class="close" data-dismiss="modal">&times;</button>'+
+
+                          '<input type="text" class="form-control agregarArticulo" idArticulo="'+idArticulo+'" name="agregarArticulo" value="'+nombreArticulo+'" required readonly>'+
+
 
                       '<h4 class="modal-title">Agregar Articulo</h4>'+
 
@@ -198,7 +208,13 @@ $('.tablaArticulos tbody').on('click', 'button.btnAgregarArticulo', function() {
                    '<!-- CUERPO DEL MODAL -->'+
                     '<div class="modal-body">'+
 
+
                       '<div class="box-body">'+
+
+                          '<select class="form-control tipoNovedadArticulo" name="tipoNovedadArticulo">'+
+                            
+                            '<option value="">Tipo</option>'+
+
 
                       '<div class="row" style="padding: 5px 15px">'+
 
@@ -244,6 +260,10 @@ $('.tablaArticulos tbody').on('click', 'button.btnAgregarArticulo', function() {
 
                             '</div>'+
 
+                            '<input type="text" class="form-control nuevaDescripcion" name="nuevaDescripcion" placeholder="Descripción" required>'+
+                            '<input type="hidden" id="articulo" name="articulo" value="'+articulo+'">'+
+
+
                         '</div>'+
 
               
@@ -269,12 +289,36 @@ $('.tablaArticulos tbody').on('click', 'button.btnAgregarArticulo', function() {
             console.log(lista);
         }
     });
+
+    listaArticulos();
 });
 // QUITAR NOVEVDAD
 $('.formularioNovedad').on('click', 'button.quitarNovedad', function() {
-    console.log("boton");
+    // console.log("boton");
     $(this).parent().parent().parent().parent().remove();
     var idArticulo = $(this).attr("idArticulo");
     $("button.recuperarBoton[idArticulo='" + idArticulo + "']").removeClass('btn-default');
     $("button.recuperarBoton[idArticulo='" + idArticulo + "']").addClass('btn-primary btnAgregarArticulo');
 });
+
+// LISTA DE ARTICULOS
+function listaArticulos(){
+
+    var listaArticulos = [];
+    // var id =  $(".")
+    var descripcion = $(".nuevaDescripcion");
+    var tipo = $(".tipoNovedadArticulo");
+    var nombre = $(".agregarArticulo");
+
+    for (var i = 0; i < descripcion.length; i++) {
+        
+        listaArticulos.push({"id":$(nombre[i]).attr("idArticulo"),
+        
+                            "nombre":$(nombre[i]).val(),
+                            "tipo":$(tipo[i]).val(),
+                            "descripcion":$(descripcion[i]).val()});
+
+    }
+    // console.log("listaArticulos", listaArticulos);
+    $("#listaArticulos").val(JSON.stringify(listaArticulos));
+} 

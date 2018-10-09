@@ -1,54 +1,59 @@
-<?php 
+<?php
 
-class ControladorNovedades{
+class ControladorNovedades
+{
 
-	// CREAR NOVEDAD
-	static public function ctrCrearNovedad(){
-		
-		if (isset($_POST["usuarioNovedad"])) {
-			
-			$tabla = "novedad";
+    // CREAR NOVEDAD
+    public static function ctrCrearNovedad()
+    {
 
-			date_default_timezone_set('America/Bogota');
+        $arreglo = $_POST["listaArticulos"];
 
-			$fecha = date('Y-m-d');
-			$hora = date('H:i:s');
+        $array = json_decode($arreglo);
 
-			$fechaActual = $fecha.' '.$hora;
+        print_r($array);
 
-		  	$datos = array("NumDocumentoUsuario" => $_POST["numUsuario"],
-			                "UsuarioNovedad"     => $_POST["usuarioNovedad"],
-			                "NumeroFicha"        => $_POST["nuevaFicha1"],
-			                "articulo"         => $_POST["articulo"],
-			                "FechaNovedad"       => $fechaActual);
-		  	
-		  	$respuesta = ModeloNovedades::mdlCrearNovedad($tabla, $datos);
-		  	if ($respuesta == "ok") {
+        // if (isset($_POST["usuarioNovedad"])) {
 
-		  		$tabla = "articulonovedad";
+        //     $tabla = "novedad";
 
-		  		$observacion = $_POST["nuevaDescripcion"];
-		  		if ($observacion == "") {
-		  		 	$observacion = null;
-		  		} 
+        //     date_default_timezone_set('America/Bogota');
 
+        //     $fecha = date('Y-m-d');
+        //     $hora = date('H:i:s');
 
-		  		$item1 = "Articulo";
-		  		$valor1 = $_POST["articulo"];
-		  		$tabla1 = "novedad";
+        //     $fechaActual = $fecha.' '.$hora;
 
-				$respuesta1 = ModeloNovedades::mdlMostrarNovedades($tabla1, $item1, $valor1);
+        //       $datos = array("NumDocumentoUsuario" => $_POST["numUsuario"],
+        //                     "UsuarioNovedad"     => $_POST["usuarioNovedad"],
+        //                     "NumeroFicha"        => $_POST["nuevaFicha1"],
+        //                     "articulo"         => $_POST["articulo"],
+        //                     "FechaNovedad"       => $fechaActual);
 
-			  	$datos = array("IdArticulo"   => $_POST["articulo"],
-				                "TipoNovedad" => $_POST["tipoNovedadArticulo"],
-				                "ObservacionNovedad" => $observacion,
-				                "IdNovedad"=> $respuesta1["IdNovedad"]);
-			  	
-			  	
-			  	$respuesta = ModeloNovedades::mdlCrearNovedadArticulo($tabla, $datos);
-			  	if($respuesta=="error")
-			  	{
-			  		 echo '<script>
+        //       $respuesta = ModeloNovedades::mdlCrearNovedad($tabla, $datos);
+        //       if ($respuesta == "ok") {
+
+        //           $tabla = "articulonovedad";
+
+        //           $observacion = $_POST["nuevaDescripcion"];
+        //           if ($observacion == "") {
+        //                $observacion = null;
+        //           }
+
+        //           $item1 = "Articulo";
+        //           $valor1 = $_POST["articulo"];
+        //           $tabla1 = "novedad";
+
+        //         $respuesta1 = ModeloNovedades::mdlMostrarNovedades($tabla1, $item1, $valor1);
+
+        $datos = array("IdArticulo" => $_POST["articulo"],
+            "TipoNovedad"               => $_POST["tipoNovedadArticulo"],
+            "ObservacionNovedad"        => $observacion,
+            "IdNovedad"                 => $respuesta1["IdNovedad"]);
+
+        $respuesta = ModeloNovedades::mdlCrearNovedadArticulo($tabla, $datos);
+        if ($respuesta == "error") {
+            echo '<script>
 
                     swal({
 
@@ -69,20 +74,25 @@ class ControladorNovedades{
 
 
                 </script>';
-			  	}
+        }
 
+    } else {
+        //           $datos = array("IdArticulo"   => $_POST["articulo"],
+        //                         "TipoNovedad" => $_POST["tipoNovedadArticulo"],
+        //                         "ObservacionNovedad" => $_POST["nuevaDescripcion"],
+        //                         "IdNovedad"=> $respuesta1["IdNovedad"]);
+        //           // var_dump($datos);
 
-		  	}else{
+        //       }
+        // }
+    }
 
-		  	}
-		}
-	}
+    function ctrMostrarNovedades($item, $valor)
+    {
 
-	static public function ctrMostrarNovedades($item, $valor){
+        $tabla = "novedad";
 
-		$tabla = "novedad";
-
-		$respuesta = ModeloNovedades::mdlMostrarNovedades($tabla, $item, $valor);
+        $respuesta = ModeloNovedades::mdlMostrarNovedades($tabla, $item, $valor);
 
         return $respuesta;
 
