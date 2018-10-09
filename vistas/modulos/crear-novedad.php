@@ -88,8 +88,6 @@
                 <div class="form-group row nuevoArticulo">
 
 
-                  <div id="modalAgregar" class="modal fade" role="dialog">
-                  </div>
 
 
 
@@ -164,5 +162,86 @@ $crearNovedad->ctrCrearNovedad();
 
   </section>
 
+</div>
+
+<div id="modalAgregarArticulo1" class="modal fade" role="dialog">
+
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <form role="form" method="post">
+
+       <!-- CABEZA DEL MODAL -->
+        <div class="modal-header" style="background:#3c8dbc; color:white">
+
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        </div>
+
+       <!-- CUERPO DEL MODAL -->
+        <div class="modal-body">
+
+          <div class="box-body">
+            <div class="row" style="padding: 5px 15px">
+                     <div class="col-xs-4" style="padding-right:0px">
+
+                         <div class="input-group">
+
+                          <!--  <span class="input-group-addon"><button type="button" class="btn btn-danger quitarNovedad btn-xs" idArticulo="idArticulo"><i class="fa fa-times"></i></button></span> -->
+
+                           <input type="text" class="form-control agregarArticulo" idArticulo="idArticulo" name="agregarArticulo" id="agregarArticulo" required readonly>
+                           <input type="hidden" id="idArticulo" >
+
+                         </div>
+
+                     </div>
+
+                     <div class="form-group col-xs-4"  style="padding-left:5px; padding-right: 0px">
+
+                         <div class="input-group">
+
+                           <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                           <select class="form-control tipoNovedadArticulo" id="tipoNovedadArticulo">
+
+                             <option value="">Tipo</option>
+
+                             <option value="DAÑADO">DAÑADO</option>
+
+                             <option value="PERDIDO">PERDIDO</option>
+
+                           </select>
+
+                         </div>
+
+                     </div>
+
+                     <div class="col-xs-4" style="padding-left:5px">
+
+                         <div class="input-group">
+
+                             <input type="text" class="form-control nuevaDescripcion" name="nuevaDescripcion" placeholder="Descripción" required>
+                             <input type="hidden" id="articulo" name="articulo" value="articulo">
+
+                         </div>
+
+                     </div>
+
+                 </div>
+
+ <!-- PIE DEL MODAL -->
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+          <button type="button"  class="btn btn-primary" onclick="agregar()">Guardar Artículo</button>
+
+        </div>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 

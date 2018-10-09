@@ -46,48 +46,47 @@ class ControladorNovedades
 
         //         $respuesta1 = ModeloNovedades::mdlMostrarNovedades($tabla1, $item1, $valor1);
 
-        $datos = array("IdArticulo" => $_POST["articulo"],
-            "TipoNovedad"               => $_POST["tipoNovedadArticulo"],
-            "ObservacionNovedad"        => $observacion,
-            "IdNovedad"                 => $respuesta1["IdNovedad"]);
+        //     $datos = array("IdArticulo" => $_POST["articulo"],
+        //         "TipoNovedad"               => $_POST["tipoNovedadArticulo"],
+        //         "ObservacionNovedad"        => $observacion,
+        //         "IdNovedad"                 => $respuesta1["IdNovedad"]);
 
-        $respuesta = ModeloNovedades::mdlCrearNovedadArticulo($tabla, $datos);
-        if ($respuesta == "error") {
-            echo '<script>
+        //     $respuesta = ModeloNovedades::mdlCrearNovedadArticulo($tabla, $datos);
+        //     if ($respuesta == "error") {
+        //         echo '<script>
 
-                    swal({
+        //                 swal({
 
-                        type: "error",
-                        title: "¡El artículo ya se encuentra registrado en esta novedad!",
-                        showConfirmButton: true,
-                        confirmButtonText: "Cerrar"
+        //                     type: "error",
+        //                     title: "¡El artículo ya se encuentra registrado en esta novedad!",
+        //                     showConfirmButton: true,
+        //                     confirmButtonText: "Cerrar"
 
-                    }).then(function(result){
+        //                 }).then(function(result){
 
-                        if(result.value){
+        //                     if(result.value){
 
-                            window.location = "crear-novedad";
+        //                         window.location = "crear-novedad";
 
-                        }
+        //                     }
 
-                    });
+        //                 });
 
+        //             </script>';
+        //     }
 
-                </script>';
-        }
+        // } else {
+        //     //           $datos = array("IdArticulo"   => $_POST["articulo"],
+        //     //                         "TipoNovedad" => $_POST["tipoNovedadArticulo"],
+        //     //                         "ObservacionNovedad" => $_POST["nuevaDescripcion"],
+        //     //                         "IdNovedad"=> $respuesta1["IdNovedad"]);
+        //     //           // var_dump($datos);
 
-    } else {
-        //           $datos = array("IdArticulo"   => $_POST["articulo"],
-        //                         "TipoNovedad" => $_POST["tipoNovedadArticulo"],
-        //                         "ObservacionNovedad" => $_POST["nuevaDescripcion"],
-        //                         "IdNovedad"=> $respuesta1["IdNovedad"]);
-        //           // var_dump($datos);
-
-        //       }
-        // }
+        //     //       }
+        //     // }
     }
 
-    function ctrMostrarNovedades($item, $valor)
+    public function ctrMostrarNovedades($item, $valor)
     {
 
         $tabla = "novedad";

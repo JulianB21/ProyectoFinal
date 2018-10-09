@@ -122,7 +122,7 @@ var table = $('.tablaArticulos').DataTable({
     "columnDefs": [{
         "targets": -1,
         "data": null,
-        "defaultContent": '<div class="btn-group"><button class="btn btn-primary btnAgregarArticulo recuperarBoton"  data-toggle="modal" data-target="#modalAgregar" idArticulo>Agregar</button></div>'
+        "defaultContent": '<div class="btn-group"><button class="btn btn-primary btnAgregarArticulo recuperarBoton" idArticulo data-toggle="modal" data-target="#modalAgregarArticulo1">Agregar</button></div>'
     }],
     "language": {
         "sProcessing": "Procesando...",
@@ -160,7 +160,6 @@ $('.tablaArticulos tbody').on('click', 'button.btnAgregarArticulo', function() {
 /*=============================================
 AGREGAR NOVEVDAD
 =============================================*/
-var lista = [];
 $('.tablaArticulos tbody').on('click', 'button.btnAgregarArticulo', function() {
     var idArticulo = $(this).attr("idArticulo");
     // console.log("idArticulo", idArticulo);
@@ -177,120 +176,19 @@ $('.tablaArticulos tbody').on('click', 'button.btnAgregarArticulo', function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-<<<<<<< HEAD
-=======
 
-            // console.log("respuesta", respuesta);
-
+            // console.log("resspuesta", respuesta);
 
             var nombreArticulo = respuesta["TipoArticulo"];
             var articulo = respuesta["IdArticulo"];
-            $("#modalAgregar").show(
-  
-              '<div class="modal-dialog" >'+
+            $("#idArticulo").val(articulo);
+            $("#agregarArticulo").val(nombreArticulo);
 
-                '<div class="modal-content">'+
-                  '<form role="form" method="post">'+
-
-                   '<!-- CABEZA DEL MODAL -->'+
-                    '<div class="modal-header" style="background:#3c8dbc; color:white">'+
-
-
-                      '<button type="button" class="close" data-dismiss="modal">&times;</button>'+
-
-                          '<input type="text" class="form-control agregarArticulo" idArticulo="'+idArticulo+'" name="agregarArticulo" value="'+nombreArticulo+'" required readonly>'+
-
-
-                      '<h4 class="modal-title">Agregar Articulo</h4>'+
-
-                    '</div>'+
-
-                   '<!-- CUERPO DEL MODAL -->'+
-                    '<div class="modal-body">'+
-
-
-                      '<div class="box-body">'+
-
-                          '<select class="form-control tipoNovedadArticulo" name="tipoNovedadArticulo">'+
-                            
-                            '<option value="">Tipo</option>'+
-
-
-                      '<div class="row" style="padding: 5px 15px">'+
-
-                             '<div class="col-xs-4" style="padding-right:0px">'+
-
-                                 '<div class="input-group">'+
-
-                                    '<input type="text" class="form-control " id="agregarArticulo" name="agregarArticulo" value="'+nombreArticulo+'" required readonly>'+
-
-                                '</div>'+
-
-                            '</div>'+
-
-                            '<div class="form-group col-xs-4"  style="padding-left:5px; padding-right: 0px">'+
-
-                                '<div class="input-group">'+
-
-                                    '<span class="input-group-addon"><i class="fa fa-th"></i></span>'+
-
-                                    '<select class="form-control" name="tipoNovedadArticulo" id="tipoNovedadArticulo" required>'+
-
-                                    '<option value="">Tipo</option>'+
-
-                                    '<option value="DAÑADO">DAÑADO</option>'+
-
-                                    '<option value="PERDIDO">PERDIDO</option>'+
-
-                                    '</select>'+
-
-                                '</div>'+
-
-                            '</div>'+ 
-
-                            '<div class="col-xs-4" style="padding-left:5px">'+
-
-                                '<div class="input-group">'+
-
-                                '<input type="text" class="form-control " id="nuevaDescripcion" name="nuevaDescripcion" placeholder="Descripción" required>'+
-
-                                '<input type="hidden" id="articulo" name="articulo" value="'+articulo+'">'+
-
-                                '</div>'+
-
-                            '</div>'+
-
-                            '<input type="text" class="form-control nuevaDescripcion" name="nuevaDescripcion" placeholder="Descripción" required>'+
-                            '<input type="hidden" id="articulo" name="articulo" value="'+articulo+'">'+
-
-
-                        '</div>'+
-
-              
-                      '</div>'+
-
-                    '</div>'+
-
-                    '<!-- PIE DEL MODAL -->'+
-                    '<div class="modal-footer">'+
-
-                      '<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>'+
-
-                      '<button type="submit" class="btn btn-primary">Añadir</button>'+
-
-                    '</div>'+
-                   
-                  '</form>'+
-
-                '</div>'+
-
-            '</div>');
-            lista.push(articulo, $("#tipoNovedadArticulo").val(), $("#tipoNovedadArticulo").val());
-            console.log(lista);
+   
         }
     });
 
-    listaArticulos();
+
 });
 // QUITAR NOVEVDAD
 $('.formularioNovedad').on('click', 'button.quitarNovedad', function() {
@@ -301,7 +199,76 @@ $('.formularioNovedad').on('click', 'button.quitarNovedad', function() {
     $("button.recuperarBoton[idArticulo='" + idArticulo + "']").addClass('btn-primary btnAgregarArticulo');
 });
 
+
+
+function agregar()
+{
+    
+    if($(".tipoNovedadArticulo").val()=="")
+    {
+         $(".tipoNovedadArticulo").parent().after('<div class="alert alert-warning">Ingrese tipo</div>');
+               
+
+    }
+    else
+    {
+        
+        $("#modalAgregarArticulo1").modal('hide') 
+        // $(".skin-blue sidebar-collapse sidebar-mini login-page").focus();
+        $(".nuevoArticulo").append(
+
+                '<div class="row" style="padding: 5px 15px">'+
+                    '<div class="col-xs-4" style="padding-right:0px">'+
+                      
+                        '<div class="input-group">'+
+                          
+                          '<span class="input-group-addon"><button type="button" class="btn btn-danger quitarNovedad btn-xs" idArticulo="'+$("#idArticulo").val()+'"><i class="fa fa-times"></i></button></span>'+
+
+                          '<input type="text" class="form-control agregarArticulo" idArticulo="'+$("#idArticulo").val()+'" name="agregarArticulo" value="'+$("#agregarArticulo").val()+'" required readonly>'+
+
+                        '</div>'+
+
+                    '</div>'+
+
+                    '<div class="form-group col-xs-4"  style="padding-left:5px; padding-right: 0px">'+
+                    
+                        '<div class="input-group">'+
+                        
+                          '<span class="input-group-addon"><i class="fa fa-th"></i></span>'+
+
+                          '<select class="form-control tipoNovedadArticulo" readonly name="tipoNovedadArticulo">'+
+                            
+                            '<option value="'+$("#tipoNovedadArticulo").val()+'">Tipo</option>'+
+
+                            '<option value="DAÑADO">DAÑADO</option>'+
+
+                            '<option value="PERDIDO">PERDIDO</option>'+
+                              
+                          '</select>'+
+
+                        '</div>'+
+
+                    '</div> '+
+
+                    '<div class="col-xs-4" style="padding-left:5px">'+
+                      
+                        '<div class="input-group">'+
+
+                            '<input type="text" class="form-control nuevaDescripcion" name="nuevaDescripcion" placeholder="Descripción" readonly value="'+$(".nuevaDescripcion").val()+'"required>'+
+                            '<input type="hidden" id="articulo" name="articulo" value="'+$("#idArticulo").val()+'">'+
+
+                        '</div>'+
+
+                    '</div>'+
+                '</div>'
+                )
+    }
+    listaArticulos();
+             
+}
+
 // LISTA DE ARTICULOS
+lista=0;
 function listaArticulos(){
 
     var listaArticulos = [];
@@ -309,8 +276,11 @@ function listaArticulos(){
     var descripcion = $(".nuevaDescripcion");
     var tipo = $(".tipoNovedadArticulo");
     var nombre = $(".agregarArticulo");
+    
+   
 
-    for (var i = 0; i < descripcion.length; i++) {
+    for (var i = 0; i <= lista; i++) {
+
         
         listaArticulos.push({"id":$(nombre[i]).attr("idArticulo"),
         
@@ -319,6 +289,7 @@ function listaArticulos(){
                             "descripcion":$(descripcion[i]).val()});
 
     }
-    // console.log("listaArticulos", listaArticulos);
+    lista++;
+    console.log("listaArticulos", listaArticulos);
     $("#listaArticulos").val(JSON.stringify(listaArticulos));
 } 
