@@ -84,13 +84,13 @@
 
                 </div>
 
-
                 <!-- AGREGAR ARTICULO A LA NOVEDADA -->
                 <div class="form-group row nuevoArticulo">
 
-                  
-                  
                 </div>
+
+                <!-- LISTA ARTICULOS -->
+                <input type="hidden" name="listaArticulos" id="listaArticulos">
 
               </div>
 

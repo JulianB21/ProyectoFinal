@@ -79,7 +79,7 @@ $(".btnBuscar1").click(function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            console.log(respuesta);
+            // console.log(respuesta);
             var idAmbiente1 = respuesta["IdAmbiente"];
             var datosAmbiente1 = new FormData();
             $("#idAmbiente2").val(respuesta["IdAmbiente"]);
@@ -94,7 +94,7 @@ $(".btnBuscar1").click(function() {
                 processData: false,
                 dataType: "json",
                 success: function(respuesta) {
-                    console.log(respuesta);
+                    // console.log(respuesta);
                     $(".inputAmbiente").val(respuesta["NombreAmbiente"]);
                     var e = $.Event("keyup", {
                         keyCode: 13
@@ -177,7 +177,7 @@ $('.tablaArticulos tbody').on('click', 'button.btnAgregarArticulo', function() {
         dataType: "json",
         success: function(respuesta) {
 
-            console.log("respuesta", respuesta);
+            // console.log("respuesta", respuesta);
 
             var nombreArticulo = respuesta["TipoArticulo"];
             var articulo = respuesta["IdArticulo"];
@@ -191,7 +191,7 @@ $('.tablaArticulos tbody').on('click', 'button.btnAgregarArticulo', function() {
                           
                           '<span class="input-group-addon"><button type="button" class="btn btn-danger quitarNovedad btn-xs" idArticulo="'+idArticulo+'"><i class="fa fa-times"></i></button></span>'+
 
-                          '<input type="text" class="form-control " id="agregarArticulo" name="agregarArticulo" value="'+nombreArticulo+'" required readonly>'+
+                          '<input type="text" class="form-control agregarArticulo" idArticulo="'+idArticulo+'" name="agregarArticulo" value="'+nombreArticulo+'" required readonly>'+
 
                         '</div>'+
 
@@ -203,7 +203,7 @@ $('.tablaArticulos tbody').on('click', 'button.btnAgregarArticulo', function() {
                         
                           '<span class="input-group-addon"><i class="fa fa-th"></i></span>'+
 
-                          '<select class="form-control" name="tipoNovedadArticulo" id="tipoNovedadArticulo">'+
+                          '<select class="form-control tipoNovedadArticulo" name="tipoNovedadArticulo">'+
                             
                             '<option value="">Tipo</option>'+
 
@@ -221,7 +221,7 @@ $('.tablaArticulos tbody').on('click', 'button.btnAgregarArticulo', function() {
                       
                         '<div class="input-group">'+
 
-                            '<input type="text" class="form-control " id="nuevaDescripcion" name="nuevaDescripcion" placeholder="Descripción" required>'+
+                            '<input type="text" class="form-control nuevaDescripcion" name="nuevaDescripcion" placeholder="Descripción" required>'+
                             '<input type="hidden" id="articulo" name="articulo" value="'+articulo+'">'+
 
                         '</div>'+
@@ -231,12 +231,36 @@ $('.tablaArticulos tbody').on('click', 'button.btnAgregarArticulo', function() {
                 )
         }
     });
+
+    listaArticulos();
 });
 // QUITAR NOVEVDAD
 $('.formularioNovedad').on('click', 'button.quitarNovedad', function() {
-    console.log("boton");
+    // console.log("boton");
     $(this).parent().parent().parent().parent().remove();
     var idArticulo = $(this).attr("idArticulo");
     $("button.recuperarBoton[idArticulo='" + idArticulo + "']").removeClass('btn-default');
     $("button.recuperarBoton[idArticulo='" + idArticulo + "']").addClass('btn-primary btnAgregarArticulo');
 });
+
+// LISTA DE ARTICULOS
+function listaArticulos(){
+
+    var listaArticulos = [];
+    // var id =  $(".")
+    var descripcion = $(".nuevaDescripcion");
+    var tipo = $(".tipoNovedadArticulo");
+    var nombre = $(".agregarArticulo");
+
+    for (var i = 0; i < descripcion.length; i++) {
+        
+        listaArticulos.push({"id":$(nombre[i]).attr("idArticulo"),
+        
+                            "nombre":$(nombre[i]).val(),
+                            "tipo":$(tipo[i]).val(),
+                            "descripcion":$(descripcion[i]).val()});
+
+    }
+    // console.log("listaArticulos", listaArticulos);
+    $("#listaArticulos").val(JSON.stringify(listaArticulos));
+} 
