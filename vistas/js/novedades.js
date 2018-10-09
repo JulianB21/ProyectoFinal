@@ -292,4 +292,6 @@ function listaArticulos(){
     lista++;
     console.log("listaArticulos", listaArticulos);
     $("#listaArticulos").val(JSON.stringify(listaArticulos));
+    $("#tipoNovedadArticulo").val("");
+    $(".nuevaDescripcion").val("");
 } 
