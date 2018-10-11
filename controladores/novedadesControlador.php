@@ -9,9 +9,13 @@ class ControladorNovedades
 
         $arreglo = $_POST["listaArticulos"];
 
-        $array = json_decode($arreglo);
-
-        print_r($array);
+        $array = json_encode($arreglo);
+        // foreach ($array as $obj) {
+        //     $id = $obj->id;
+        //     print_r($id);
+        // }
+        $final = explode(",", $arreglo);
+        print_r($final);
 
         // if (isset($_POST["usuarioNovedad"])) {
 
@@ -96,5 +100,16 @@ class ControladorNovedades
         return $respuesta;
 
     }
+
+}
+
+foreach ($array as $key => $value) {
+    # code...
+}
+{
+    # code...
+    $datos = array("nombre" => $array["nombre"],
+        "id"                    => $array["id"]);
+    "idNovedad" => $respuesta["id"];
 
 }

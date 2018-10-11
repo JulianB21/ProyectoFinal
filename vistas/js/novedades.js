@@ -176,19 +176,13 @@ $('.tablaArticulos tbody').on('click', 'button.btnAgregarArticulo', function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-
             // console.log("resspuesta", respuesta);
-
             var nombreArticulo = respuesta["TipoArticulo"];
             var articulo = respuesta["IdArticulo"];
             $("#idArticulo").val(articulo);
             $("#agregarArticulo").val(nombreArticulo);
-
-   
         }
     });
-
-
 });
 // QUITAR NOVEVDAD
 $('.formularioNovedad').on('click', 'button.quitarNovedad', function() {
@@ -198,125 +192,77 @@ $('.formularioNovedad').on('click', 'button.quitarNovedad', function() {
     $("button.recuperarBoton[idArticulo='" + idArticulo + "']").removeClass('btn-default');
     $("button.recuperarBoton[idArticulo='" + idArticulo + "']").addClass('btn-primary btnAgregarArticulo');
     listaArticulos("eliminar");
-    
 });
 
-
-
-function agregar()
-{
-$(".alert").remove();
-    if($(".tipoNovedadArticulo").val()=="")
-    {
-         $(".tipoNovedadArticulo").parent().after('<div class="alert alert-warning">Ingrese tipo</div>');
-               
-
-    }
-    else
-    {
-        
-        $("#modalAgregarArticulo1").modal('hide') 
+function agregar() {
+    $(".alert").remove();
+    if ($(".tipoNovedadArticulo").val() == "") {
+        $(".tipoNovedadArticulo").parent().after('<div class="alert alert-warning">Ingrese tipo</div>');
+    } else {
+        $("#modalAgregarArticulo1").modal('hide')
         // $(".skin-blue sidebar-collapse sidebar-mini login-page").focus();
-        $(".nuevoArticulo").append(
-
-                '<div class="row" style="padding: 5px 15px">'+
-                    '<div class="col-xs-4" style="padding-right:0px">'+
-                      
-                        '<div class="input-group">'+
-                          
-                          '<span class="input-group-addon"><button type="button" class="btn btn-danger quitarNovedad btn-xs" idArticulo="'+$("#idArticulo").val()+'"><i class="fa fa-times"></i></button></span>'+
-
-                          '<input type="text" class="form-control agregarArticulo1" idArticulo="'+$("#idArticulo").val()+'" name="agregarArticulo" value="'+$("#agregarArticulo").val()+'" required readonly>'+
-
-                        '</div>'+
-
-                    '</div>'+
-
-                    '<div class="form-group col-xs-4"  style="padding-left:5px; padding-right: 0px">'+
-                    
-                        '<div class="input-group">'+
-                        
-                          '<span class="input-group-addon"><i class="fa fa-th"></i></span>'+
-
-                          '<input type="text" class="form-control tipoNovedadArticulo1" name="tipoNovedadArticulo1" placeholder="Descripción" readonly value="'+$(".tipoNovedadArticulo").val()+'"required>'+
-
-                        '</div>'+
-
-                    '</div> '+
-
-                    '<div class="col-xs-4" style="padding-left:5px">'+
-                      
-                        '<div class="input-group">'+
-
-                            '<input type="text" class="form-control nuevaDescripcion1" name="nuevaDescripcion" placeholder="Descripción" readonly value="'+$(".nuevaDescripcion").val()+'"required>'+
-                            '<input type="hidden" id="articulo" name="articulo" value="'+$("#idArticulo").val()+'">'+
-
-                        '</div>'+
-
-                    '</div>'+
-                '</div>'
-                );
+        $(".nuevoArticulo").append('<div class="row" style="padding: 5px 15px">' + '<div class="col-xs-4" style="padding-right:0px">' + '<div class="input-group">' + '<span class="input-group-addon"><button type="button" class="btn btn-danger quitarNovedad btn-xs" idArticulo="' + $("#idArticulo").val() + '"><i class="fa fa-times"></i></button></span>' + '<input type="text" class="form-control agregarArticulo1" idArticulo="' + $("#idArticulo").val() + '" name="agregarArticulo" value="' + $("#agregarArticulo").val() + '" required readonly>' + '</div>' + '</div>' + '<div class="form-group col-xs-4"  style="padding-left:5px; padding-right: 0px">' + '<div class="input-group">' + '<span class="input-group-addon"><i class="fa fa-th"></i></span>' + '<input type="text" class="form-control tipoNovedadArticulo1" name="tipoNovedadArticulo1" placeholder="Descripción" readonly value="' + $(".tipoNovedadArticulo").val() + '"required>' + '</div>' + '</div> ' + '<div class="col-xs-4" style="padding-left:5px">' + '<div class="input-group">' + '<input type="text" class="form-control nuevaDescripcion1" name="nuevaDescripcion" placeholder="Descripción" readonly value="' + $(".nuevaDescripcion").val() + '"required>' + '<input type="hidden" id="articulo" name="articulo" value="' + $("#idArticulo").val() + '">' + '</div>' + '</div>' + '</div>');
+        $("button.recuperarBoton[idArticulo='" + idArticulo + "']").removeClass('btn-primary btnAgregarArticulo');
+        $("button.recuperarBoton[idArticulo='" + idArticulo + "']").addClass('btn-default');
+        $("button.recuperarBoton[idArticulo='" + idArticulo + "']").addClass('disabled');
         listaArticulos("agregar");
     }
-         
 }
-
 // LISTA DE ARTICULOS
-lista=0;
-function listaArticulos(valor){
-    console.log(valor);
+lista = 0;
+var listaArticulosEliminar = [];
 
+function listaArticulos(valor) {
     var listaArticulos1 = [];
+    var keys = Object.keys(listaArticulos1);
     // var id =  $(".")
-    if(valor=="agregar")
-    {
-         var descripcion = $(".nuevaDescripcion1");
-    var tipo = $(".tipoNovedadArticulo1");
-    var nombre = $(".agregarArticulo1");  
-
-    for (var i = 0; i <= lista; i++) {
-
-        
-        listaArticulos1.push({"id":$(nombre[i]).attr("idArticulo"),
-                            "nombre":$(nombre[i]).val(),
-                            "tipo":$(tipo[i]).val(),
-                            "descripcion":$(descripcion[i]).val()});
-        $("#listaArticulos").val(JSON.stringify(listaArticulos1));
-
-    }
-
-}
-    
-    else
-    {
-        debugger;
-        var idArticulo = $("#idArticulo").val();
+    if (valor == "agregar") {
+        var descripcion = $(".nuevaDescripcion1");
+        var tipo = $(".tipoNovedadArticulo1");
+        var nombre = $(".agregarArticulo1");
         for (var i = 0; i <= lista; i++) {
-
-        
-        if(listaArticulos1[i]==idArticulo)
-        {
-            alert("ELIMINAR");
+            listaArticulos1.push({
+                "id": $(nombre[i]).attr("idArticulo"),
+                "nombre": $(nombre[i]).val(),
+                "tipo": $(tipo[i]).val(),
+                "descripcion": $(descripcion[i]).val()
+            });
+        }
+        var hash = {};
+        array = listaArticulos1.filter(function(current) {
+            var exist = !hash[current.id] || false;
+            hash[current.id] = true;
+            return exist;
+        });
+        $("#listaArticulos").val(JSON.stringify(array));
+    } else {
+        var idArticulo = $("#idArticulo").val();
+        $("button.recuperarBoton[idArticulo='" + idArticulo + "']").removeClass('disabled');
+        $("button.recuperarBoton[idArticulo='" + idArticulo + "']").removeClass('btn-default');
+        $("button.recuperarBoton[idArticulo='" + idArticulo + "']").addClass('btn-primary btnAgregarArticulo');
+        // var len = keys.length
+        // alert(array.length);
+        debugger;
+        for (var i = 0; i < array.length; i++) {
+            if ((array[i].id) == idArticulo) {
+                array.splice(i, 1);
+            }
         }
     }
-}
     lista++;
-    console.log("listaArticulos", listaArticulos1);
-    
+    console.log("listaArticulos", array);
+    // console.log("listaArticulosUnique", listaArticulos1.unique());
     $("#tipoNovedadArticulo").val("");
     $(".nuevaDescripcion").val("");
+    // $("button.recuperarBoton[idArticulo='" + idArticulo + "']").removeClass('btn-primary btnAgregarArticulo');
+    // $("button.recuperarBoton[idArticulo='" + idArticulo + "']").addClass('btn-default');
+    // $("button.recuperarBoton[idArticulo='" + idArticulo + "']").addClass('disabled');
+}
 
-    $("button.recuperarBoton[idArticulo='" + idArticulo + "']").addClass('disabled');
-    
-    
-   
-} 
-
-function quitarNovedad()
-{
+function quitarNovedad() {
+    debugger;
     var idArticulo = $("#idArticulo").val();
-    $("button.recuperarBoton[idArticulo=" + idArticulo + "']").removeClass('btn-default');
+    $("button.recuperarBoton[idArticulo='" + idArticulo + "']").removeClass('disabled');
+    $("button.recuperarBoton[idArticulo='" + idArticulo + "']").removeClass('btn-default');
     $("button.recuperarBoton[idArticulo='" + idArticulo + "']").addClass('btn-primary btnAgregarArticulo');
-    
-
 }
