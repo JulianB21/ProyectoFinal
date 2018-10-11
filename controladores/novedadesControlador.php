@@ -6,88 +6,112 @@ class ControladorNovedades
     // CREAR NOVEDAD
     public static function ctrCrearNovedad()
     {
+        if (isset($_POST["usuarioNovedad"])) {
 
-        $arreglo = $_POST["listaArticulos"];
+            $tabla = "novedad";
 
-        $array = json_encode($arreglo);
-        // foreach ($array as $obj) {
-        //     $id = $obj->id;
-        //     print_r($id);
-        // }
-        $final = explode(",", $arreglo);
-        print_r($final);
+            date_default_timezone_set('America/Bogota');
 
-        // if (isset($_POST["usuarioNovedad"])) {
+            $fecha = date('Y-m-d');
+            $hora  = date('H:i:s');
 
-        //     $tabla = "novedad";
+            $fechaActual = $fecha . ' ' . $hora;
 
-        //     date_default_timezone_set('America/Bogota');
+            $datos = array("NumDocumentoUsuario" => $_POST["numUsuario"],
+                "UsuarioNovedad"                     => $_POST["usuarioNovedad"],
+                "NumeroFicha"                        => $_POST["nuevaFicha1"],
+                "articulo"                           => $_POST["articulo"],
+                "FechaNovedad"                       => $fechaActual);
 
-        //     $fecha = date('Y-m-d');
-        //     $hora = date('H:i:s');
+            $respuesta = ModeloNovedades::mdlCrearNovedad($tabla, $datos);
+            if ($respuesta == "ok") {
 
-        //     $fechaActual = $fecha.' '.$hora;
+                $tabla = "articulonovedad";
 
-        //       $datos = array("NumDocumentoUsuario" => $_POST["numUsuario"],
-        //                     "UsuarioNovedad"     => $_POST["usuarioNovedad"],
-        //                     "NumeroFicha"        => $_POST["nuevaFicha1"],
-        //                     "articulo"         => $_POST["articulo"],
-        //                     "FechaNovedad"       => $fechaActual);
+                $observacion = $_POST["nuevaDescripcion"];
+                if ($observacion == "") {
+                    $observacion = null;
+                }
 
-        //       $respuesta = ModeloNovedades::mdlCrearNovedad($tabla, $datos);
-        //       if ($respuesta == "ok") {
+                $item1  = "Articulo";
+                $valor1 = $_POST["articulo"];
+                $tabla1 = "novedad";
 
-        //           $tabla = "articulonovedad";
+                $respuesta1 = ModeloNovedades::mdlMostrarNovedades($tabla1, $item1, $valor1);
 
-        //           $observacion = $_POST["nuevaDescripcion"];
-        //           if ($observacion == "") {
-        //                $observacion = null;
-        //           }
+                $arreglo = $_POST["listaArticulos"];
 
-        //           $item1 = "Articulo";
-        //           $valor1 = $_POST["articulo"];
-        //           $tabla1 = "novedad";
+                $array = json_decode($arreglo);
 
-        //         $respuesta1 = ModeloNovedades::mdlMostrarNovedades($tabla1, $item1, $valor1);
+                $final = explode(" ", $arreglo);
+                // print_r($array);
+                foreach ($array as $key) {
+                    $id          = $key->id;
+                    $tipo        = $key->tipo;
+                    $descripcion = $key->descripcion;
+                    $tabla       = "articulonovedad";
+                    $datos       = array('IdArticulo' => $id,
+                        'TipoNovedad'                     => $tipo,
+                        'ObservacionNovedad'              => $descripcion,
+                        'IdNovedad'                       => $respuesta1["IdNovedad"],
+                    );
 
-        //     $datos = array("IdArticulo" => $_POST["articulo"],
-        //         "TipoNovedad"               => $_POST["tipoNovedadArticulo"],
-        //         "ObservacionNovedad"        => $observacion,
-        //         "IdNovedad"                 => $respuesta1["IdNovedad"]);
+                    $respuesta = ModeloNovedades::mdlCrearNovedadArticulo($tabla, $datos);
 
-        //     $respuesta = ModeloNovedades::mdlCrearNovedadArticulo($tabla, $datos);
-        //     if ($respuesta == "error") {
-        //         echo '<script>
+                }
+                var_dump($respuesta);
 
-        //                 swal({
+                if ($respuesta == "error") {
+                    echo '<script>
 
-        //                     type: "error",
-        //                     title: "¡El artículo ya se encuentra registrado en esta novedad!",
-        //                     showConfirmButton: true,
-        //                     confirmButtonText: "Cerrar"
+                        swal({
 
-        //                 }).then(function(result){
+                            type: "error",
+                            title: "¡El artículo ya se encuentra registrado en esta novedad!",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar"
 
-        //                     if(result.value){
+                        }).then(function(result){
 
-        //                         window.location = "crear-novedad";
+                            if(result.value){
 
-        //                     }
+                                window.location = "crear-novedad";
 
-        //                 });
+                            }
 
-        //             </script>';
-        //     }
+                        });
 
-        // } else {
-        //     //           $datos = array("IdArticulo"   => $_POST["articulo"],
-        //     //                         "TipoNovedad" => $_POST["tipoNovedadArticulo"],
-        //     //                         "ObservacionNovedad" => $_POST["nuevaDescripcion"],
-        //     //                         "IdNovedad"=> $respuesta1["IdNovedad"]);
-        //     //           // var_dump($datos);
+                    </script>';
+                } else {
+                    echo '<script>
 
-        //     //       }
-        //     // }
+                        swal({
+
+                            type: "success",
+                            title: "¡Novedad registrada correctamente!",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar"
+
+                        }).then(function(result){
+
+                            if(result.value){
+
+                                window.location = "crear-novedad";
+
+                            }
+
+                        });
+
+                    </script>';
+
+                }
+
+            }
+            /*=============================================
+        =ARRIBA DE ESTO AGREGA NOVEDAD (RESPUESTA OK)=
+        =============================================*/
+
+        }
     }
 
     public function ctrMostrarNovedades($item, $valor)
@@ -100,16 +124,5 @@ class ControladorNovedades
         return $respuesta;
 
     }
-
-}
-
-foreach ($array as $key => $value) {
-    # code...
-}
-{
-    # code...
-    $datos = array("nombre" => $array["nombre"],
-        "id"                    => $array["id"]);
-    "idNovedad" => $respuesta["id"];
 
 }
