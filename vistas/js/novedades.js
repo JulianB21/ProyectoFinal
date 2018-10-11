@@ -122,7 +122,7 @@ var table = $('.tablaArticulos').DataTable({
     "columnDefs": [{
         "targets": -1,
         "data": null,
-        "defaultContent": '<div class="btn-group"><button class="btn btn-primary btnAgregarArticulo recuperarBoton" idArticulo data-toggle="modal" data-target="#modalAgregarArticulo1">Agregar</button></div>'
+        "defaultContent": '<div class="btn-group"><button class="btn btn-primary btnAgregarArticulo recuperarBoton" idArticulo data-toggle="modal" id="btnAgregarArticulo"data-target="#modalAgregarArticulo1">Agregar</button></div>'
     }],
     "language": {
         "sProcessing": "Procesando...",
@@ -197,13 +197,15 @@ $('.formularioNovedad').on('click', 'button.quitarNovedad', function() {
     var idArticulo = $(this).attr("idArticulo");
     $("button.recuperarBoton[idArticulo='" + idArticulo + "']").removeClass('btn-default');
     $("button.recuperarBoton[idArticulo='" + idArticulo + "']").addClass('btn-primary btnAgregarArticulo');
+    listaArticulos("eliminar");
+    
 });
 
 
 
 function agregar()
 {
-    
+$(".alert").remove();
     if($(".tipoNovedadArticulo").val()=="")
     {
          $(".tipoNovedadArticulo").parent().after('<div class="alert alert-warning">Ingrese tipo</div>');
@@ -224,7 +226,7 @@ function agregar()
                           
                           '<span class="input-group-addon"><button type="button" class="btn btn-danger quitarNovedad btn-xs" idArticulo="'+$("#idArticulo").val()+'"><i class="fa fa-times"></i></button></span>'+
 
-                          '<input type="text" class="form-control agregarArticulo" idArticulo="'+$("#idArticulo").val()+'" name="agregarArticulo" value="'+$("#agregarArticulo").val()+'" required readonly>'+
+                          '<input type="text" class="form-control agregarArticulo1" idArticulo="'+$("#idArticulo").val()+'" name="agregarArticulo" value="'+$("#agregarArticulo").val()+'" required readonly>'+
 
                         '</div>'+
 
@@ -236,15 +238,7 @@ function agregar()
                         
                           '<span class="input-group-addon"><i class="fa fa-th"></i></span>'+
 
-                          '<select class="form-control tipoNovedadArticulo" readonly name="tipoNovedadArticulo">'+
-                            
-                            '<option value="'+$("#tipoNovedadArticulo").val()+'">Tipo</option>'+
-
-                            '<option value="DAÑADO">DAÑADO</option>'+
-
-                            '<option value="PERDIDO">PERDIDO</option>'+
-                              
-                          '</select>'+
+                          '<input type="text" class="form-control tipoNovedadArticulo1" name="tipoNovedadArticulo1" placeholder="Descripción" readonly value="'+$(".tipoNovedadArticulo").val()+'"required>'+
 
                         '</div>'+
 
@@ -254,44 +248,75 @@ function agregar()
                       
                         '<div class="input-group">'+
 
-                            '<input type="text" class="form-control nuevaDescripcion" name="nuevaDescripcion" placeholder="Descripción" readonly value="'+$(".nuevaDescripcion").val()+'"required>'+
+                            '<input type="text" class="form-control nuevaDescripcion1" name="nuevaDescripcion" placeholder="Descripción" readonly value="'+$(".nuevaDescripcion").val()+'"required>'+
                             '<input type="hidden" id="articulo" name="articulo" value="'+$("#idArticulo").val()+'">'+
 
                         '</div>'+
 
                     '</div>'+
                 '</div>'
-                )
+                );
+        listaArticulos("agregar");
     }
-    listaArticulos();
-             
+         
 }
 
 // LISTA DE ARTICULOS
 lista=0;
-function listaArticulos(){
+function listaArticulos(valor){
+    console.log(valor);
 
-    var listaArticulos = [];
+    var listaArticulos1 = [];
     // var id =  $(".")
-    var descripcion = $(".nuevaDescripcion");
-    var tipo = $(".tipoNovedadArticulo");
-    var nombre = $(".agregarArticulo");
-    
-   
+    if(valor=="agregar")
+    {
+         var descripcion = $(".nuevaDescripcion1");
+    var tipo = $(".tipoNovedadArticulo1");
+    var nombre = $(".agregarArticulo1");  
 
     for (var i = 0; i <= lista; i++) {
 
         
-        listaArticulos.push({"id":$(nombre[i]).attr("idArticulo"),
-        
+        listaArticulos1.push({"id":$(nombre[i]).attr("idArticulo"),
                             "nombre":$(nombre[i]).val(),
                             "tipo":$(tipo[i]).val(),
                             "descripcion":$(descripcion[i]).val()});
+        $("#listaArticulos").val(JSON.stringify(listaArticulos1));
 
     }
+
+}
+    
+    else
+    {
+        debugger;
+        var idArticulo = $("#idArticulo").val();
+        for (var i = 0; i <= lista; i++) {
+
+        
+        if(listaArticulos1[i]==idArticulo)
+        {
+            alert("ELIMINAR");
+        }
+    }
+}
     lista++;
-    console.log("listaArticulos", listaArticulos);
-    $("#listaArticulos").val(JSON.stringify(listaArticulos));
+    console.log("listaArticulos", listaArticulos1);
+    
     $("#tipoNovedadArticulo").val("");
     $(".nuevaDescripcion").val("");
+
+    $("button.recuperarBoton[idArticulo='" + idArticulo + "']").addClass('disabled');
+    
+    
+   
 } 
+
+function quitarNovedad()
+{
+    var idArticulo = $("#idArticulo").val();
+    $("button.recuperarBoton[idArticulo=" + idArticulo + "']").removeClass('btn-default');
+    $("button.recuperarBoton[idArticulo='" + idArticulo + "']").addClass('btn-primary btnAgregarArticulo');
+    
+
+}

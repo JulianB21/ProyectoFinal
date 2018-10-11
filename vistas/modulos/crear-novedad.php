@@ -204,7 +204,7 @@ $crearNovedad->ctrCrearNovedad();
 
                            <select class="form-control tipoNovedadArticulo" id="tipoNovedadArticulo">
 
-                             <option value="">Tipo</option>
+                             <option id="tipoNovedadArticuloValue" value="">Tipo</option>
 
                              <option value="DAÑADO">DAÑADO</option>
 
@@ -221,7 +221,7 @@ $crearNovedad->ctrCrearNovedad();
                          <div class="input-group">
 
                              <input type="text" class="form-control nuevaDescripcion" name="nuevaDescripcion" placeholder="Descripción" required>
-                             <input type="hidden" id="articulo" name="articulo" value="articulo">
+                             <input type="hidden" id="articulo" name="articulo" value="">
 
                          </div>
 
@@ -232,7 +232,7 @@ $crearNovedad->ctrCrearNovedad();
  <!-- PIE DEL MODAL -->
         <div class="modal-footer">
 
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+          <button type="button" class="btn btn-default pull-left" onclick="quitarNovedad()" data-dismiss="modal">Salir</button>
 
           <button type="button"  class="btn btn-primary" onclick="agregar()">Guardar Artículo</button>
 
