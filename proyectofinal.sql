@@ -1,9 +1,9 @@
-﻿-- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dump
 -- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-10-2018 a las 06:24:46
+-- Tiempo de generación: 12-10-2018 a las 07:30:19
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.7
 
@@ -125,8 +125,8 @@ CREATE TABLE `articulonovedad` (
 --
 
 INSERT INTO `articulonovedad` (`IdArticulo`, `IdNovedad`, `TipoNovedad`, `ObservacionNovedad`) VALUES
-(9, 22, 'DAÑADO', 'Mega Martillo'),
-(20, 23, 'PERDIDO', 'Super martillo[]][$$');
+(9, 1, 'DAÑADO', ''),
+(17, 1, 'PERDIDO', 'qweeqe');
 
 -- --------------------------------------------------------
 
@@ -192,6 +192,7 @@ CREATE TABLE `ficha` (
 --
 
 INSERT INTO `ficha` (`NumeroFicha`, `IdPrograma`, `IdAmbiente`, `FechaInicio`, `FechaFin`, `JornadaFicha`) VALUES
+(1493990, 43, 3, '11/11/2011', '22/02/2022', 'TARDE'),
 (123123123, NULL, 3, '11/11/2011', '22/02/2022', 'MAñANA');
 
 -- --------------------------------------------------------
@@ -214,8 +215,7 @@ CREATE TABLE `novedad` (
 --
 
 INSERT INTO `novedad` (`IdNovedad`, `NumDocumentoUsuario`, `UsuarioNovedad`, `NumeroFicha`, `FechaNovedad`, `Articulo`) VALUES
-(22, 123, 'ADMINISTRADOR', 123123123, '2018-10-04 22:13:04', '9'),
-(23, 123, 'ADMINISTRADOR', 123123123, '2018-10-04 22:15:07', '20');
+(1, 123, 'ADMINISTRADOR', 1493990, '2018-10-12 00:21:09', '17');
 
 -- --------------------------------------------------------
 
@@ -384,7 +384,7 @@ ALTER TABLE `equipo`
 -- AUTO_INCREMENT de la tabla `novedad`
 --
 ALTER TABLE `novedad`
-  MODIFY `IdNovedad` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `IdNovedad` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `programa`

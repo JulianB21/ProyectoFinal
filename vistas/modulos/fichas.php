@@ -258,8 +258,20 @@ foreach ($ambiente as $key => $value) {
             </div>
 
             <!-- ENTRADA PARA LA FECHA DE FIN -->
+            
+            <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
 
-        <div>
+                <input type="text" class="form-control input-lg" name="nuevaFechaFin" placeholder="Ingresar fecha fin" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required>
+
+              </div>
+
+            </div>
+
+       <!--  <div>
 
         <div class="form-group">
 
@@ -268,7 +280,7 @@ foreach ($ambiente as $key => $value) {
               <input type="file" class="nuevoExcel" name="nuevoExcel">
             </div>
 
-          </div>
+          </div> -->
         </div>
       </div>
 

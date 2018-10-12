@@ -6,14 +6,14 @@
 		<!-- LOGO MINI -->
 		<span class="logo-mini">
 
-			<img src="vistas/img/plantilla/icono-blanco.png" class="img-responsive" style="padding:10px">
+			<img src="vistas/img/plantilla/logo1.png" class="img-responsive" style="padding:10px 0px 10px 0px">
 
 		</span>
 
 		<!-- LOGO NORMAL -->
 		<span class="logo-lg">
 
-			<img src="vistas/img/plantilla/logo-blanco-lineal.png" class="img-responsive" style="padding:10px 0px">
+			<img src="vistas/img/plantilla/logo.png" class="img-responsive" style="padding:0px 10px 10px 10px">
 
 		</span>
 
