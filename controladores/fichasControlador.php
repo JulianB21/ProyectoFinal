@@ -25,38 +25,42 @@ class ControladorFichas
                 include_once 'extensiones\PHPExcel-1.8\Classes\PHPExcel\IOFactory.php';
 
                 $inputFileName = $excel;
+                $datos         = array("NumeroFicha" => $_POST["nuevaFicha"],
+                    "IdAmbiente"                         => $_POST["nuevoAmbiente"],
+                    "IdPrograma"                         => $_POST["nuevoPrograma"],
+                    "FechaInicio"                        => $_POST["nuevaFechaInicio"],
+                    "FechaFin"                           => $_POST["nuevaFechaFin"],
+                    "JornadaFicha"                       => $jornada);
+
+                $respuesta = ModeloFichas::mdlAgregarFichA($tabla, $datos);
+                if ($respuesta == "ok") {
+
+                    $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+                    $objReader     = PHPExcel_IOFactory::createReader($inputFileType);
+                    $objPHPExcel   = $objReader->load($inputFileName);
+
+                    $data = array($objPHPExcel->getActiveSheet()->toArray(null, true, true, true));
+
+                    $letras = array('A' => "A",
+                        'B'                 => "B",
+                        'C'                 => "C",
+                        'D'                 => "D",
+                        'E'                 => "E");
+
+                    for ($i = 2; $i <= count($data[0]); $i++) {
+                        foreach ($letras as $key) {
+                            print_r($data[0][$i][$letras[$key]]);
+
+                        }
+
+                        echo "<br>";
+
+                    }
+                }
 
 /*check point*/
 
-                $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
-                $objReader     = PHPExcel_IOFactory::createReader($inputFileType);
-                $objPHPExcel   = $objReader->load($inputFileName);
-
-                $data = array(1, $objPHPExcel->getActiveSheet()->toArray(null, true, true, true));
-
-//print the result
-                echo '<pre>';
-                print_r($data);
-                echo '</pre>';
-
 //another option to display the data
-                //go over the result and parse the records, then make it more readable
-                if ($data[0] == 1) {
-                    foreach ($data[1] as $row) {
-                        foreach ($row as $column) {
-                            echo $column . ', ';
-                        }
-                        echo '<br />';
-                    }
-                }
-                $datos = array("NumeroFicha" => $_POST["nuevaFicha"],
-                    "IdAmbiente"                 => $_POST["nuevoAmbiente"],
-                    "IdPrograma"                 => $_POST["nuevoPrograma"],
-                    "FechaInicio"                => $_POST["nuevaFechaInicio"],
-                    "FechaFin"                   => $_POST["nuevaFechaFin"],
-                    "JornadaFicha"               => $jornada);
-
-                $respuesta = ModeloFichas::mdlAgregarFich($tabla, $datos);
 
                 if ($respuesta == "ok") {
                     echo '<script>
