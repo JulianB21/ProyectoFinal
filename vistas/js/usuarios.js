@@ -117,7 +117,7 @@ $(".tablas").on("click", ".btnEliminarUsuario", function() {
         confirmButtonText: 'Si, borrar usuario!'
     }).then(function(result) {
         if (result.value) {
-            window.location = "index.php?ruta=usuarios&NumDocumentoUsuario="+NumDocumentoUsuario+"&nombreUsuario="+NombreUsuario+"&FotoUsuario=" +FotoUsuario;
+            window.location = "index.php?ruta=usuarios&NumDocumentoUsuario=" + NumDocumentoUsuario + "&nombreUsuario=" + NombreUsuario + "&FotoUsuario=" + FotoUsuario;
         }
     })
 })

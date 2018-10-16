@@ -20,11 +20,35 @@ class ControladorFichas
                 $jornada = strtoupper($_POST["nuevaJornada"]);
                 // $fechaInicio=($_POST["nuevaFechaInicio"],$formato);
 
-                // $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReaderForFile($_POST("nuevoExcel"));
-                // $reader->setReadDataOnly(true);
-                // $reader->load($_POST("nuevoExcel"));
-                // echo $reader;
+                $excel = $_FILES["nuevoExcel"]["tmp_name"];
 
+                include_once 'extensiones\PHPExcel-1.8\Classes\PHPExcel\IOFactory.php';
+
+                $inputFileName = $excel;
+
+/*check point*/
+
+                $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+                $objReader     = PHPExcel_IOFactory::createReader($inputFileType);
+                $objPHPExcel   = $objReader->load($inputFileName);
+
+                $data = array(1, $objPHPExcel->getActiveSheet()->toArray(null, true, true, true));
+
+//print the result
+                echo '<pre>';
+                print_r($data);
+                echo '</pre>';
+
+//another option to display the data
+                //go over the result and parse the records, then make it more readable
+                if ($data[0] == 1) {
+                    foreach ($data[1] as $row) {
+                        foreach ($row as $column) {
+                            echo $column . ', ';
+                        }
+                        echo '<br />';
+                    }
+                }
                 $datos = array("NumeroFicha" => $_POST["nuevaFicha"],
                     "IdAmbiente"                 => $_POST["nuevoAmbiente"],
                     "IdPrograma"                 => $_POST["nuevoPrograma"],
@@ -76,7 +100,7 @@ class ControladorFichas
         }
     }
 
-    // MOSTRAR fICHAS
+// MOSTRAR fICHAS
     public static function ctrMostrarFichas($item, $valor)
     {
 
@@ -87,9 +111,9 @@ class ControladorFichas
         return $respuesta;
     }
 
-    /*=============================================
-    =                    CREAR FICHA                 =
-    =============================================*/
+/*=============================================
+=                    CREAR FICHA                 =
+=============================================*/
 
     public static function ctrEditarFichas()
     {
@@ -155,7 +179,7 @@ class ControladorFichas
         }
     }
 
-    // ELIMINAR FICHA
+// ELIMINAR FICHA
     public static function ctrEliminarFicha()
     {
         if (isset($_GET["idFicha"])) {

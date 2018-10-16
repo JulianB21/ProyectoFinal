@@ -124,7 +124,7 @@ MODAL AGREGAR FICHA
 
     <div class="modal-content">
 
-      <form role="form" method="post">
+      <form role="form" method="post" enctype="multipart/form-data">
 
         <!--=====================================
         CABEZA DEL MODAL
@@ -258,12 +258,12 @@ foreach ($ambiente as $key => $value) {
             </div>
 
             <!-- ENTRADA PARA LA FECHA DE FIN -->
-            
+
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 
                 <input type="text" class="form-control input-lg" name="nuevaFechaFin" placeholder="Ingresar fecha fin" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required>
 
@@ -271,18 +271,14 @@ foreach ($ambiente as $key => $value) {
 
             </div>
 
-       <!--  <div>
-
-        <div class="form-group">
+            <div class="form-group">
 
               <div class="panel">SUBIR ARCHIVO DE APRENDICES</div>
 
-              <input type="file" class="nuevoExcel" name="nuevoExcel">
+              <input type="file" class="nuevoExcel" name="nuevoExcel" id="nuevoExcel">
             </div>
-
-          </div> -->
-        </div>
-      </div>
+</div>
+</div>
 
 
 

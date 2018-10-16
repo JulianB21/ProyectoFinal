@@ -98,3 +98,13 @@ $("#nuevaFicha").change(function() {
         }
     })
 })
+$("#nuevoExcel").change(function() {
+    var documento = this.files[0];
+    var datosExcel = new FileReader;
+    console.log(datosExcel);
+    datosExcel.readAsDataURL(documento);
+    $(datosExcel).on("load", function(event) {
+        var rutaExcel = event.target.result;
+    })
+    // var url = event.target.result;
+})

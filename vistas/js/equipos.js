@@ -1,7 +1,7 @@
 /*=============================================
 ELIMINAR EQUIPO
 =============================================*/
-var nombre="";
+var nombre = "";
 $(".btnEliminarEquipo").click(function() {
     var idEquipo = $(this).attr("idEquipo");
     swal({
@@ -32,7 +32,7 @@ $(".btnEditarEquipo").click(function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            nombre=respuesta["NombreEquipo"];
+            nombre = respuesta["NombreEquipo"];
             $("#editarEquipo").val(respuesta["NombreEquipo"]);
             $("#idEquipo").val(respuesta["IdEquipo"]);
             $("#editarEstado").val(respuesta["EstadoEquipo"]);
@@ -107,27 +107,3 @@ function equipoFuncion1(sel) {
         }
     })
 }
-
-$(".nuevoExcel").change(function() {
-    var excel = this.files[0];
-    /*=============================================
-    VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
-    =============================================*/
-    if (excel["type"] != "image/xlsx" && excel["type"] != "image/csv") {
-        $(".nuevoExcel").val("");
-        swal({
-            title: "Error al subir archivo",
-            text: "¡El archivo debe estar en formato XLSX o CSV!",
-            type: "error",
-            confirmButtonText: "Cerrar"
-        });
-    
-    } else {
-        var datosExcel = new FileReader;
-        datosExcel.readAsDataURL(excel);
-        $(datosExcel).on("load", function(event) {
-            var rutaExcel = event.target.result;
-            $(".previsualizar").attr("src", rutaExcel);
-        })
-    }
-})
