@@ -93,6 +93,11 @@ foreach ($mostrarFichas as $key => $value) {
                           <button class="btn btn-warning btnEditarFicha" idFicha="' . $value["NumeroFicha"] . '" data-toggle="modal" data-target="#modalEditarFicha"><i class="fa fa-pencil"></i></button>
 
                           <button class="btn btn-danger btnEliminarFicha" idFicha="' . $value["NumeroFicha"] . '"><i class="fa fa-times"></i></button>
+                          
+                          <button class="btn btn-success idFicha="' . $value["NumeroFicha"] . '"
+
+                           onclick="l()"
+                           ><i class="fa fa-times"></i></button>
 
                         </div>
 
