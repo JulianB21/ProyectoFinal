@@ -23,47 +23,64 @@ class ControladorFichas
                 $excel = $_FILES["nuevoExcel"]["tmp_name"];
 
                 include_once 'extensiones\PHPExcel-1.8\Classes\PHPExcel\IOFactory.php';
-
                 $inputFileName = $excel;
-                $datos         = array("NumeroFicha" => $_POST["nuevaFicha"],
-                    "IdAmbiente"                         => $_POST["nuevoAmbiente"],
-                    "IdPrograma"                         => $_POST["nuevoPrograma"],
-                    "FechaInicio"                        => $_POST["nuevaFechaInicio"],
-                    "FechaFin"                           => $_POST["nuevaFechaFin"],
-                    "JornadaFicha"                       => $jornada);
+                $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+                $objReader     = PHPExcel_IOFactory::createReader($inputFileType);
+                $objPHPExcel   = $objReader->load($inputFileName);
 
-                $respuesta = ModeloFichas::mdlAgregarFichA($tabla, $datos);
-                if ($respuesta == "ok") {
+                $data = array($objPHPExcel->getActiveSheet()->toArray(null, true, true, true));
 
-                    $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
-                    $objReader     = PHPExcel_IOFactory::createReader($inputFileType);
-                    $objPHPExcel   = $objReader->load($inputFileName);
+                if (count($data[0]) < 5) {
 
-                    $data = array($objPHPExcel->getActiveSheet()->toArray(null, true, true, true));
+                    echo '<script>
 
-                    $letras = array('A' => "A",
-                        'B'                 => "B",
-                        'C'                 => "C",
-                        'D'                 => "D",
-                        'E'                 => "E");
+                    swal({
+                          type: "error",
+                          title: "Número mínimo de aprendices: 30",
+                          text: "El número de aprendices que se quiere ingresar es: ' . count($data[0]) . '",
+                          showConfirmButton: true,
+                          confirmButtonText: "Cerrar",
+                          closeOnConfirm: false
+                          }).then((result) => {
+                            if (result.value) {
 
-                    for ($i = 2; $i <= count($data[0]); $i++) {
-                        foreach ($letras as $key) {
-                            print_r($data[0][$i][$letras[$key]]);
+                            window.location = "fichas";
+                            }
+                        })
+
+                </script>';
+                    # code...
+                } else {
+                    $datos = array("NumeroFicha" => $_POST["nuevaFicha"],
+                        "IdAmbiente"                 => $_POST["nuevoAmbiente"],
+                        "IdPrograma"                 => $_POST["nuevoPrograma"],
+                        "FechaInicio"                => $_POST["nuevaFechaInicio"],
+                        "FechaFin"                   => $_POST["nuevaFechaFin"],
+                        "JornadaFicha"               => $jornada);
+
+                    $respuesta = ModeloFichas::mdlAgregarFichas($tabla, $datos);
+                    if ($respuesta == "ok") {
+
+                        $letras = array('A' => "A",
+                            'B'                 => "B",
+                            'C'                 => "C",
+                            'D'                 => "D",
+                            'E'                 => "E");
+
+                        $tabla = "aprendiz";
+
+                        for ($i = 2; $i <= count($data[0]); $i++) {
+                            $datos1 = array("NumeroFicha" => $_POST["nuevaFicha"],
+                                "NumDocumentoAprendiz"        => $data[0][$i][$letras['A']],
+                                "NombreAprendiz"              => $data[0][$i][$letras['C']],
+                                "TelefonoAprendiz"            => $data[0][$i][$letras['D']],
+                                "EmailAprendiz"               => $data[0][$i][$letras['E']]);
+
+                            $respuesta2 = ModeloAprendiz::MdlIngresarAprendiz($tabla, $datos1);
 
                         }
-
-                        echo "<br>";
-
-                    }
-                }
-
-/*check point*/
-
-//another option to display the data
-
-                if ($respuesta == "ok") {
-                    echo '<script>
+                        if ($respuesta2 == "ok") {
+                            echo '<script>
 
                     swal({
                           type: "success",
@@ -80,11 +97,10 @@ class ControladorFichas
                                 })
 
                     </script>';
-                }
+                        }
+                    } else {
 
-            } else {
-
-                echo '<script>
+                        echo '<script>
 
                     swal({
                           type: "error",
@@ -100,6 +116,8 @@ class ControladorFichas
                         })
 
                 </script>';
+                    }
+                }
             }
         }
     }

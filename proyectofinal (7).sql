@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-10-2018 a las 07:30:19
+-- Tiempo de generación: 16-10-2018 a las 22:36:56
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.7
 
@@ -74,6 +74,21 @@ CREATE TABLE `aprendiz` (
   `EmailAprendiz` varchar(50) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `aprendiz`
+--
+
+INSERT INTO `aprendiz` (`NumDocumentoAprendiz`, `NumeroFicha`, `NombreAprendiz`, `TelefonoAprendiz`, `EmailAprendiz`) VALUES
+(1232132, 11111, 'Melany Alejandra Rojas Troyano ', 2147483647, 'sakdjhaskdjs@gmail.com'),
+(11234352, 11111, 'Daniel Yordanier Valencia Troyano ', 2147483647, 'sakdjhaskdjs@gmail.com'),
+(54665757, 11111, ' Danny Peña ', 2147483647, 'sakdjhaskdjs@gmail.com'),
+(145645642, 11111, ' Alejandra Rojas Troyano Lopez', 2147483647, 'sakdjhaskdjs@gmail.com'),
+(345345243, 11111, 'Mariana Bolaños', 2147483647, 'sakdjhaskdjs@gmail.com'),
+(354646242, 11111, 'Nare Alejandro Manquillo Cobo', 2147483647, 'sakdjhaskdjs@gmail.com'),
+(789789792, 11111, 'Karen Molina Cobo ', 2147483647, 'sakdjhaskdjs@gmail.com'),
+(1279878762, 11111, 'Tatiana Riascos', 2147483647, 'sakdjhaskdjs@gmail.com'),
+(2147483647, 11111, 'Melany Alejandra Rojas Troyano ', 2147483647, 'sakdjhaskdjs@gmail.com');
+
 -- --------------------------------------------------------
 
 --
@@ -125,8 +140,8 @@ CREATE TABLE `articulonovedad` (
 --
 
 INSERT INTO `articulonovedad` (`IdArticulo`, `IdNovedad`, `TipoNovedad`, `ObservacionNovedad`) VALUES
-(9, 1, 'DAÑADO', ''),
-(17, 1, 'PERDIDO', 'qweeqe');
+(9, 52, 'DAÑADO', ''),
+(17, 53, 'DAÑADO', 'asdasda');
 
 -- --------------------------------------------------------
 
@@ -192,7 +207,7 @@ CREATE TABLE `ficha` (
 --
 
 INSERT INTO `ficha` (`NumeroFicha`, `IdPrograma`, `IdAmbiente`, `FechaInicio`, `FechaFin`, `JornadaFicha`) VALUES
-(1493990, 43, 3, '11/11/2011', '22/02/2022', 'TARDE'),
+(11111, 39, 4, '11/11/2011', '11/11/2011', 'TARDE'),
 (123123123, NULL, 3, '11/11/2011', '22/02/2022', 'MAñANA');
 
 -- --------------------------------------------------------
@@ -215,7 +230,8 @@ CREATE TABLE `novedad` (
 --
 
 INSERT INTO `novedad` (`IdNovedad`, `NumDocumentoUsuario`, `UsuarioNovedad`, `NumeroFicha`, `FechaNovedad`, `Articulo`) VALUES
-(1, 123, 'ADMINISTRADOR', 1493990, '2018-10-12 00:21:09', '17');
+(52, 123, 'ADMINISTRADOR', 123123123, '2018-10-11 18:17:47', '9'),
+(53, 123, 'ADMINISTRADOR', 123123123, '2018-10-11 18:18:12', '17');
 
 -- --------------------------------------------------------
 
@@ -384,7 +400,7 @@ ALTER TABLE `equipo`
 -- AUTO_INCREMENT de la tabla `novedad`
 --
 ALTER TABLE `novedad`
-  MODIFY `IdNovedad` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IdNovedad` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT de la tabla `programa`
