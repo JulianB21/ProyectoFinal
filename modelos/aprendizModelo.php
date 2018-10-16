@@ -8,7 +8,7 @@ class ModeloAprendiz
     /*=============================================
     MOSTRAR APRENDIZ
     =============================================*/
-    static public function mdlIngresarAprendiz($tabla, $datos)
+    public static function mdlIngresarAprendiz($tabla, $datos)
     {
 
         $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(NumDocumentoAprendiz, NumeroFicha, NombreAprendiz, TelefonoAprendiz, EmailAprendiz) VALUES (:NumDocumentoAprendiz, :NumeroFicha, :NombreAprendiz, :TelefonoAprendiz, :EmailAprendiz)");
@@ -33,5 +33,19 @@ class ModeloAprendiz
 
         $stmt = null;
 
+    }
+
+    public static function mdlConsultarAprendizFicha($tabla, $item, $valor)
+    {
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+
+        $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+
+        $stmt->close();
+        $stmt = null;
     }
 }

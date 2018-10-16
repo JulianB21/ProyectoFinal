@@ -30,7 +30,7 @@ class ControladorFichas
 
                 $data = array($objPHPExcel->getActiveSheet()->toArray(null, true, true, true));
 
-                if (count($data[0]) < 5) {
+                if (count($data[0]) < 10) {
 
                     echo '<script>
 
