@@ -93,11 +93,10 @@ foreach ($mostrarFichas as $key => $value) {
                           <button class="btn btn-warning btnEditarFicha" idFicha="' . $value["NumeroFicha"] . '" data-toggle="modal" data-target="#modalEditarFicha"><i class="fa fa-pencil"></i></button>
 
                           <button class="btn btn-danger btnEliminarFicha" idFicha="' . $value["NumeroFicha"] . '"><i class="fa fa-times"></i></button>
-                          
-                          <button class="btn btn-success idFicha="' . $value["NumeroFicha"] . '"
 
+                          <button class="btn btn-success idFicha="' . $value["NumeroFicha"] . '"
                            onclick="l()"
-                           ><i class="fa fa-times"></i></button>
+                           ><i class="fa fa-eye"></i></button>
 
                         </div>
 
@@ -280,7 +279,7 @@ foreach ($ambiente as $key => $value) {
 
               <div class="panel">SUBIR ARCHIVO DE APRENDICES</div>
 
-              <input type="file" class="nuevoExcel" name="nuevoExcel" id="nuevoExcel">
+              <input type="file" class="nuevoExcel" name="nuevoExcel" id="nuevoExcel" required>
             </div>
 </div>
 </div>

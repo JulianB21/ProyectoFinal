@@ -66,64 +66,99 @@ class ControladorFichas
                             'C'                 => "C",
                             'D'                 => "D",
                             'E'                 => "E");
-
-                        $tabla = "aprendiz";
-
+                        $errores = 0;
                         for ($i = 2; $i <= count($data[0]); $i++) {
-                            $datos1 = array("NumeroFicha" => $_POST["nuevaFicha"],
-                                "NumDocumentoAprendiz"        => $data[0][$i][$letras['A']],
-                                "NombreAprendiz"              => $data[0][$i][$letras['C']],
-                                "TelefonoAprendiz"            => $data[0][$i][$letras['D']],
-                                "EmailAprendiz"               => $data[0][$i][$letras['E']]);
+                            $tablaConsulta     = "aprendiz";
+                            $itemConsulta      = "NumDocumentoAprendiz";
+                            $valorConsulta     = $data[0][$i][$letras['A']];
+                            $respuestaConsulta = ModeloAprendiz::mdlConsultarAprendizFicha($tablaConsulta, $itemConsulta, $valorConsulta);
 
-                            $respuesta2 = ModeloAprendiz::MdlIngresarAprendiz($tabla, $datos1);
+                            if ($respuestaConsulta == null) {
 
-                        }
-                        if ($respuesta2 == "ok") {
-                            echo '<script>
+                                $tabla = "aprendiz";
 
-                    swal({
-                          type: "success",
-                          title: "La ficha ha sido guardada correctamente",
-                          showConfirmButton: true,
-                          confirmButtonText: "Cerrar",
-                          closeOnConfirm: false
-                          }).then((result) => {
-                                    if (result.value) {
+                                for ($i = 2; $i <= count($data[0]); $i++) {
+                                    $datos1 = array("NumeroFicha" => $_POST["nuevaFicha"],
+                                        "NumDocumentoAprendiz"        => $data[0][$i][$letras['A']],
+                                        "NombreAprendiz"              => $data[0][$i][$letras['C']],
+                                        "TelefonoAprendiz"            => $data[0][$i][$letras['D']],
+                                        "EmailAprendiz"               => $data[0][$i][$letras['E']]);
 
-                                    window.location = "fichas";
+                                    $respuesta2 = ModeloAprendiz::MdlIngresarAprendiz($tabla, $datos1);
 
-                                    }
-                                })
+                                }
+                                if ($respuesta2 == "ok") {
+                                    echo '<script>
 
-                    </script>';
-                        }
-                    } else {
+                        swal({
+                              type: "success",
+                              title: "La ficha ha sido guardada correctamente",
+                              showConfirmButton: true,
+                              confirmButtonText: "Cerrar",
+                              closeOnConfirm: false
+                              }).then((result) => {
+                                        if (result.value) {
 
-                        echo '<script>
+                                        window.location = "fichas";
 
-                    swal({
-                          type: "error",
-                          title: "La ficha no puede ir vacía o llevar caracteres especiales!",
-                          showConfirmButton: true,
-                          confirmButtonText: "Cerrar",
-                          closeOnConfirm: false
-                          }).then((result) => {
-                            if (result.value) {
+                                        }
+                                    })
 
-                            window.location = "fichas";
+                        </script>';
+                                } else {
+
+                                    echo '<script>
+
+                        swal({
+                              type: "error",
+                              title: "La ficha no puede ir vacía o llevar caracteres especiales!",
+                              showConfirmButton: true,
+                              confirmButtonText: "Cerrar",
+                              closeOnConfirm: false
+                              }).then((result) => {
+                                if (result.value) {
+
+                                window.location = "fichas";
+                                }
+                            })
+
+                    			</script>';
+                                }
+                            } else {
+                                $i                 = 5000;
+                                $tablaEliminar     = "ficha";
+                                $datosEliminar     = $_POST["nuevaFicha"];
+                                $respuestaEliminar = ModeloFichas::mdlEliminarFicha($tablaEliminar, $datosEliminar);
+                                if ($respuestaEliminar == "ok") {
+                                    echo '<script>
+                                    swal({
+                                          type: "error",
+                                          title: "Usuario ya registrado",
+                                          text: "Hay usuarios que ya se encuentran registrados en otra ficha revise el archivo!",
+                                          showConfirmButton: true,
+                                          confirmButtonText: "Cerrar",
+                                          closeOnConfirm: false
+                                          }).then((result) => {
+                                            if (result.value) {
+
+                                            window.location = "fichas";
+                                            }
+                                        })
+
+                                </script>';
+                                }
                             }
-                        })
 
-                </script>';
+                        }
                     }
+
                 }
             }
         }
     }
 
 // MOSTRAR fICHAS
-    public static function ctrMostrarFichas($item, $valor)
+    public function ctrMostrarFichas($item, $valor)
     {
 
         $tabla = "ficha";
@@ -137,7 +172,7 @@ class ControladorFichas
 =                    CREAR FICHA                 =
 =============================================*/
 
-    public static function ctrEditarFichas()
+    public function ctrEditarFichas()
     {
 
         if (isset($_POST["editarFicha"])) {
@@ -202,7 +237,7 @@ class ControladorFichas
     }
 
 // ELIMINAR FICHA
-    public static function ctrEliminarFicha()
+    public function ctrEliminarFicha()
     {
         if (isset($_GET["idFicha"])) {
             $tabla     = "ficha";
