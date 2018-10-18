@@ -1,4 +1,4 @@
-$(".btnEliminarArticulo").click(function() {
+$(".tablas").on("click", ".btnEliminarArticulo", function(){
     debugger;
     var idArticulo = $(this).attr("idArticulo");
     swal({
@@ -19,7 +19,7 @@ $(".btnEliminarArticulo").click(function() {
 /*=============================================
 =            EDITAR ARTICULOS                  =
 =============================================*/
-$(".btnEditarArticulo").click(function() {
+$(".tablas").on("click", ".btnEditarArticulo", function(){
     var idArticulo = $(this).attr("idArticulo");
     var datos = new FormData();
     datos.append("idArticulo", idArticulo);

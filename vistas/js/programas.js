@@ -1,4 +1,5 @@
-$(".btnEditarPrograma").click(function() {
+$(".tablas").on("click", ".btnEditarPrograma", function(){
+// $(".btnEditarPrograma").click(function() {
     var idPrograma = $(this).attr("idPrograma");
     var datos = new FormData();
     datos.append("idPrograma", idPrograma);
@@ -18,7 +19,9 @@ $(".btnEditarPrograma").click(function() {
         }
     })
 })
-$(".btnEliminarPrograma").click(function() {
+
+$(".tablas").on("click", ".btnEliminarPrograma", function(){
+// $(".btnEliminarPrograma").click(function() {
     var idPrograma = $(this).attr("idPrograma");
     swal({
         title: '¿Desea eliminar el programa?',

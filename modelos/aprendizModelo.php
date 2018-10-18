@@ -6,9 +6,9 @@ class ModeloAprendiz
 {
 
     /*=============================================
-    MOSTRAR APRENDIZ
+    CREAR APRENDIZ
     =============================================*/
-    static public function mdlIngresarAprendiz($tabla, $datos)
+    static public function mdlCrearAprendiz($tabla, $datos)
     {
 
         $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(NumDocumentoAprendiz, NumeroFicha, NombreAprendiz, TelefonoAprendiz, EmailAprendiz) VALUES (:NumDocumentoAprendiz, :NumeroFicha, :NombreAprendiz, :TelefonoAprendiz, :EmailAprendiz)");
@@ -33,5 +33,48 @@ class ModeloAprendiz
 
         $stmt = null;
 
+    }
+
+    // MOSTRAR APRENDIZ
+    public static function mdlMostrarAprendiz($tabla, $item, $valor)
+    {
+
+        if ($item != null) {
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item=:$item");
+
+            $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
+
+            $stmt->execute();
+
+            return $stmt->fetch();
+
+        } else {
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+
+            $stmt->execute();
+
+            return $stmt->fetchAll();
+        }
+
+        $stmt->close();
+        $stmt->null();
+    }
+
+    //ELIMINAR USUARIO
+    static public function mdlBorrarAprendiz($tabla,$datos){
+
+        $stmt = Conexion :: conectar()->prepare("DELETE FROM $tabla WHERE NumDocumentoAprendiz= :NumDocumentoAprendiz");
+        $stmt -> bindParam(":NumDocumentoAprendiz",$datos,PDO::PARAM_INT);
+
+        if($stmt -> execute()){
+
+            return "ok";
+
+        }else{
+            return "error";
+        }
+
+        $stmt -> close();
+        $stmt = null;
     }
 }

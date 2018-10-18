@@ -102,21 +102,20 @@ class ModeloUsuarios
 
     static public function mdlBorrarUsuario($tabla,$datos){
 
-    $stmt = Conexion :: conectar()->prepare("DELETE FROM $tabla WHERE NumDocumentoUsuario= :NumDocumentoUsuario");
-    $stmt -> bindParam(":NumDocumentoUsuario",$datos,PDO::PARAM_INT);
+        $stmt = Conexion :: conectar()->prepare("DELETE FROM $tabla WHERE NumDocumentoUsuario= :NumDocumentoUsuario");
+        $stmt -> bindParam(":NumDocumentoUsuario",$datos,PDO::PARAM_INT);
 
-    if($stmt -> execute()){
+        if($stmt -> execute()){
 
-        return "ok";
+            return "ok";
 
-    }else{
-        return "error";
+        }else{
+            return "error";
+        }
+
+        $stmt -> close();
+        $stmt = null;
     }
-
-
-    $stmt -> close();
-    $stmt = null;
-  }
 
       public function mdlBuscarUsuarioPrograma($tabla,$datos)
     {

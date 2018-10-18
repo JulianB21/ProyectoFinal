@@ -41,12 +41,11 @@
          <tr>
            
            <th style="width:10px">#</th>
+           <th>Documento</th>
+           <th>Ficha</th>
            <th>Nombre</th>
-           <th>Usuario</th>
-           <th>Foto</th>
-           <th>Perfil</th>
-           <th>Estado</th>
-           <th>Último login</th>
+           <th>Telefono</th>
+           <th>Email</th>
            <th>Acciones</th>
 
          </tr> 
@@ -54,72 +53,40 @@
         </thead>
 
         <tbody>
-          
-          <tr>
-            <td>1</td>
-            <td>Usuario Administrador</td>
-            <td>admin</td>
-            <td><img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-            <td>Administrador</td>
-            <td><button class="btn btn-success btn-xs">Activado</button></td>
-            <td>2017-12-11 12:05:32</td>
-            <td>
+            
+           <?php
 
-              <div class="btn-group">
-                  
-                <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
+            $item  = null;
+            $valor = null;
 
-                <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+            $mostrarAprendiz = ControladorAprendiz::ctrMostrarAprendiz($item, $valor);
 
-              </div>  
+            foreach ($mostrarAprendiz as $key => $value) {
 
-            </td>
+                echo '<tr>
 
-          </tr>
+                       <td>' . ($key + 1) . '</td>
+                       <td>' . $value["NumDocumentoAprendiz"] . '</td>
+                       <td>' . $value["NumeroFicha"] . '</td>
+                       <td>' . $value["NombreAprendiz"] . '</td>
+                       <td>' . $value["TelefonoAprendiz"] . '</td>
+                       <td>' . $value["EmailAprendiz"] . '</td>
 
-           <tr>
-            <td>1</td>
-            <td>Usuario Administrador</td>
-            <td>admin</td>
-            <td><img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-            <td>Administrador</td>
-            <td><button class="btn btn-success btn-xs">Activado</button></td>
-            <td>2017-12-11 12:05:32</td>
-            <td>
+                        <td>
 
-              <div class="btn-group">
-                  
-                <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
+                          <div class="btn-group">
 
-                <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                            <button class="btn btn-warning" data-toggle="modal" data-target="#modalEditarAprendiz"><i class="fa fa-pencil"></i></button>
 
-              </div>  
+                            <button class="btn btn-danger btnEliminarAprendiz" Documento="'.$value["NumDocumentoAprendiz"].'" ><i class="fa fa-times"></i></button>
 
-            </td>
+                          </div>
 
-          </tr>
+                        </td>
 
-           <tr>
-            <td>1</td>
-            <td>Usuario Administrador</td>
-            <td>admin</td>
-            <td><img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-            <td>Administrador</td>
-            <td><button class="btn btn-danger btn-xs">Desactivado</button></td>
-            <td>2017-12-11 12:05:32</td>
-            <td>
-
-              <div class="btn-group">
-                  
-                <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
-
-                <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-
-              </div>  
-
-            </td>
-
-          </tr>
+                      </tr>';
+                }
+            ?>
 
         </tbody>
 
@@ -133,8 +100,8 @@
 
 </div>
 
-<!-- MODAL AGREGAR USUARIO -->
-<div id="modalAgregarUsuario" class="modal fade" role="dialog">
+<!-- MODAL AGREGAR APRENDIZ -->
+<div id="modalAgregarAprediz" class="modal fade" role="dialog">
   
   <div class="modal-dialog">
 
@@ -147,7 +114,7 @@
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar usuario</h4>
+          <h4 class="modal-title">Agregar aprendiz</h4>
 
         </div>
 
@@ -157,14 +124,14 @@
           <!-- CUERPO DEL MODAL -->
           <div class="box-body">
 
-            <!-- ENTRADA PARA EL USUARIO -->
+            <!-- ENTRADA PARA EL NOMBRE -->
             <div class="form-group">
               
               <div class="input-group">
               
                 <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="nuevoUsuario" placeholder="Ingresar nombre" required>
+                <input type="text" class="form-control input-lg" name="nuevoAprendiz" placeholder="Ingresar nombre" required>
 
               </div>
 
@@ -177,56 +144,53 @@
               
                 <span class="input-group-addon"><i class="fa fa-key"></i></span> 
 
-                <input type="numer" class="form-control input-lg" name="nuevoDocumento" min="0" placeholder="Numero de documento" required>
+                <input type="number" class="form-control input-lg" name="nuevoDocumentoAprendiz" min="0" placeholder="Numero de documento" required>
 
               </div>
 
             </div>
 
-            <!-- ENTRADA PARA LA CONTRASEÑA -->
+            <!-- ENTRADA PARA LA FICHA -->
              <div class="form-group">
               
               <div class="input-group">
               
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span> 
 
-                <input type="password" class="form-control input-lg" name="nuevaContrasenia" placeholder="Ingresar contraseña" required>
+                <?php 
+                  $ficha = ControladorAprendiz::Aprendiz();
+                  
+                  echo '<input type="number" class="form-control input-lg" name="nuevaFichaAprendiz" id="nuevaFichaAprendiz" value="'.$ficha.'" required readonly>';
+                 ?>
 
               </div>
 
             </div>
 
-            <!-- ENTRADA PARA SELECCIONAR SU PERFIL -->
+            <!-- ENTRADA PARA EL TELEFONO -->
+             <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-key"></i></span> 
+
+                <input type="number" class="form-control input-lg" name="nuevoTelefonoAprendiz" min="0" placeholder="Numero de telefono" required>
+
+              </div>
+
+            </div>
+
+            <!-- ENTRADA PARA EL EMAIL -->
+            
             <div class="form-group">
               
               <div class="input-group">
               
-                <span class="input-group-addon"><i class="fa fa-users"></i></span> 
+                <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
 
-                <select class="form-control input-lg" name="nuevoPerfil">
-                  
-                  <option value="">Selecionar perfil</option>
-                  <option value="Administrador">Administrador</option>
-                  <option value="Instructor">Instructor</option>
-                  <option value="Especial">Especial</option>
-
-                </select>
+                <input type="email" class="form-control input-lg" name="nuevoEmailAprendiz" placeholder="Ingresar email" required>
 
               </div>
-
-            </div>
-
-            <!-- ENTRADA PARA SUBIR FOTO -->
-
-             <div class="form-group">
-              
-              <div class="panel">SUBIR FOTO</div>
-
-              <input type="file" id="nuevaFoto" name="nuevaFoto">
-
-              <p class="help-block">Peso máximo de la foto 200 MB</p>
-
-              <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail" width="100px">
 
             </div>
 
@@ -239,11 +203,19 @@
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar usuario</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
         </div>
+        <?php 
+          $crearAprendiz = new ControladorAprendiz();
+          $crearAprendiz -> ctrCrearAprendiz();
+         ?>
+
       </form>
     </div>
   </div>
 </div>
 
-
+<?php
+  $eliminarAprendiz = new ControladorAprendiz();
+  $eliminarAprendiz -> ctrBorrarAprendiz();
+?>

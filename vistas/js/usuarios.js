@@ -34,7 +34,8 @@ $(".nuevaFoto").change(function() {
 /*=============================================
 EDITAR USUARIO
 =============================================*/
-$(".btnEditarUsuario").click(function() {
+$(".tablas").on("click", ".btnEditarUsuario", function(){
+// $(".btnEditarUsuario").click(function() {
     var idUsuario = $(this).attr("NumDocumentoUsuario");
     var datos = new FormData();
     datos.append("idUsuario", idUsuario);

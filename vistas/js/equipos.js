@@ -2,7 +2,7 @@
 ELIMINAR EQUIPO
 =============================================*/
 var nombre = "";
-$(".btnEliminarEquipo").click(function() {
+$(".tablas").on("click", ".btnEliminarEquipo", function(){
     var idEquipo = $(this).attr("idEquipo");
     swal({
         title: '¿Está seguro de borrar el equipo?',
@@ -19,7 +19,8 @@ $(".btnEliminarEquipo").click(function() {
         }
     })
 })
-$(".btnEditarEquipo").click(function() {
+
+$(".tablas").on("click", ".btnEditarEquipo", function(){
     var idEquipo = $(this).attr("idEquipo");
     var datos = new FormData();
     datos.append("idEquipo", idEquipo);

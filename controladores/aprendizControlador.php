@@ -1,0 +1,121 @@
+<?php 
+
+class ControladorAprendiz{
+	/*=============================================
+	MOSTRAR USUARIO
+	=============================================*/
+	public static function ctrMostrarAprendiz($item, $valor)
+	{
+	    $tabla     = "aprendiz";
+	    $respuesta = ModeloAprendiz::mdlMostrarAprendiz($tabla, $item, $valor);
+
+	    return $respuesta;
+	}
+
+	/*=============================================
+	OBTENER NUMERO FICHA
+	=============================================*/
+	public static function Aprendiz(){
+		$ficha = $_GET["ficha"];
+    	return $ficha;
+    }
+
+	/*=============================================
+	CREAR APRENDIZ
+	=============================================*/
+	public static function ctrCrearAprendiz(){
+    	// $ficha = $_GET["ficha"];
+    	// var_dump($ficha);
+        if (isset($_POST["nuevoAprendiz"])) {
+
+            if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoAprendiz"]) &&
+                preg_match('/^[0-9]+$/', $_POST["nuevoDocumentoAprendiz"]) &&
+                preg_match('/^[0-9]+$/', $_POST["nuevoTelefonoAprendiz"])){
+
+                $tabla = "aprendiz";
+                $nombreAprendiz = strtoupper($_POST["nuevoAprendiz"]);
+     
+                $datos = array("NumDocumentoAprendiz" => $_POST["nuevoDocumentoAprendiz"],
+		                    "NumeroFicha"           => $_GET["ficha"],
+		                    "NombreAprendiz"      => $nombreAprendiz,
+		                    "TelefonoAprendiz"    => $_POST["nuevoTelefonoAprendiz"],
+		                    "EmailAprendiz" => $_POST["nuevoEmailAprendiz"]);
+
+                var_dump($datos);
+
+                $respuesta = ModeloAprendiz::mdlCrearAprendiz($tabla, $datos);
+
+                if ($respuesta == "ok") {
+
+                    echo '<script>
+
+                          swal({
+                                type: "success",
+                                title: "El Aprendiz ha sido agregado correctamente",
+                                showConfirmButton: true,
+                                confirmButtonText: "Cerrar",
+                                closeOnConfirm: false
+                                }).then((result) => {
+                                          if (result.value) {
+
+                                          window.location = "aprendiz";
+
+                                          }
+                                      })
+
+                          </script>';
+
+                }
+		    } else {
+		            echo '<script>
+
+                          swal({
+                                type: "error",
+                                title: "El aprendiz no puede ir vacío o llevar caracteres especiales!",
+                                showConfirmButton: true,
+                                confirmButtonText: "Cerrar",
+                                closeOnConfirm: false
+                                }).then((result) => {
+                                  if (result.value) {
+
+                                  window.location = "aprendiz";
+
+                                  }
+                              })
+
+                      </script>';
+		     }
+        }
+    }
+
+  /*=============================================
+  ELIMINAR APRENDIZ
+  =============================================*/
+  static public function ctrBorrarAprendiz(){
+
+      if (isset($_GET["NumDocumentoAprendiz"])) {
+
+          $tabla = "aprendiz";
+          $datos = $_GET["NumDocumentoAprendiz"];
+
+          $respuesta = ModeloAprendiz::mdlBorrarAprendiz($tabla, $datos);
+
+          if ($respuesta == "ok") {
+
+              echo '<script>
+                          swal({
+                                  type:"success",
+                                  title:"El aprendiz ha sido borrado correctamente",
+                                  showConfirmButton: true,
+                                  confirmButtonText: "Cerrar",
+                                  closeOnConfirm:false
+                              }).then((result)=>{
+                                  if(result.value){
+                                      window.location ="aprendiz";
+                                  }
+                          })
+                  </script>';
+          }
+      }
+  }
+}

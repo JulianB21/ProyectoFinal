@@ -57,55 +57,52 @@
 
           <?php
 
-$item  = null;
-$valor = null;
+            $item  = null;
+            $valor = null;
 
-$mostrarFichas = ControladorFichas::ctrMostrarFichas($item, $valor);
+            $mostrarFichas = ControladorFichas::ctrMostrarFichas($item, $valor);
 
-foreach ($mostrarFichas as $key => $value) {
+            foreach ($mostrarFichas as $key => $value) {
 
-    echo '<tr>
+                echo '<tr>
+                        <td>' . ($key + 1) . '</td>
+                        <td>' . $value["NumeroFicha"] . '</td>';
 
-                     <td>' . ($key + 1) . '</td>
-                     <td>' . $value["NumeroFicha"] . '</td>';
+                        $item  = "IdPrograma";
+                        $valor = $value["IdPrograma"];
 
-    $item  = "IdPrograma";
-    $valor = $value["IdPrograma"];
+                        $mostrarProgramas = ControladorProgramas::ctrMostrarProgramas($item, $valor);
 
-    $mostrarProgramas = ControladorProgramas::ctrMostrarProgramas($item, $valor);
+                        echo ' <td>' . $mostrarProgramas["NombrePrograma"] . '</td>';
 
-    echo ' <td>' . $mostrarProgramas["NombrePrograma"] . '</td>';
+                        $item  = "IdAmbiente";
+                        $valor = $value["IdAmbiente"];
 
-    $item  = "IdAmbiente";
-    $valor = $value["IdAmbiente"];
+                        $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
 
-    $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
+                        echo '<td>' . $ambiente["NombreAmbiente"] . '</td>
+                        <td>' . $value["FechaInicio"] . '</td>
+                        <td>' . $value["FechaFin"] . '</td>
+                        <td>' . $value["JornadaFicha"] . '</td>
 
-    echo '<td>' . $ambiente["NombreAmbiente"] . '</td>
-                     <td>' . $value["FechaInicio"] . '</td>
-                     <td>' . $value["FechaFin"] . '</td>
-                     <td>' . $value["JornadaFicha"] . '</td>
+                        <td>
 
-                      <td>
+                          <div class="btn-group">
 
-                        <div class="btn-group">
+                            <button class="btn btn-warning" idFicha="' . $value["NumeroFicha"] . '" data-toggle="modal" data-target=""><i class="fa fa-pencil"></i></button>
 
-                          <button class="btn btn-warning btnEditarFicha" idFicha="' . $value["NumeroFicha"] . '" data-toggle="modal" data-target="#modalEditarFicha"><i class="fa fa-pencil"></i></button>
+                            <button class="btn btn-danger btnEliminarFicha" idFicha="' . $value["NumeroFicha"] . '"><i class="fa fa-times"></i></button>
+                            
+                            <button class="btn btn-success btnVerAprendiz" id="' . $value["NumeroFicha"] . '" 
+                             ><i class="fa fa-eye"></i></button>
 
-                          <button class="btn btn-danger btnEliminarFicha" idFicha="' . $value["NumeroFicha"] . '"><i class="fa fa-times"></i></button>
-                          
-                          <button class="btn btn-success idFicha="' . $value["NumeroFicha"] . '"
+                          </div>
 
-                           onclick="l()"
-                           ><i class="fa fa-times"></i></button>
+                        </td>
 
-                        </div>
-
-                      </td>
-
-                    </tr>';
-}
-?>
+                      </tr>';
+              }
+            ?>
 
         </tbody>
 

@@ -1,7 +1,7 @@
 /*=============================================
 EDITAR CATEGORIA
 =============================================*/
-$(".btnEditarCategoria").click(function() {
+$(".tablas").on("click", ".btnEditarCategoria", function(){
     var idCategoria = $(this).attr("idCategoria");
     var datos = new FormData();
     datos.append("idCategoria", idCategoria);
@@ -22,7 +22,7 @@ $(".btnEditarCategoria").click(function() {
 /*=============================================
 ELIMINAR CATEGORIA
 =============================================*/
-$(".btnEliminarCategoria").click(function() {
+$(".tablas").on("click", ".btnEliminarCategoria", function(){
     var idCategoria = $(this).attr("idCategoria");
     swal({
         title: '¿Está seguro de borrar la categoría?',

@@ -1,7 +1,7 @@
 /*=============================================
 =            EDITAR FICHAS                  =
 =============================================*/
-$(".btnEditarFicha").click(function() {
+$(".tablas").on("click", ".btnEditarFicha", function(){
     var idFicha = $(this).attr("idFicha");
     var datos = new FormData();
     datos.append("idFicha", idFicha);
@@ -57,7 +57,7 @@ $(".btnEditarFicha").click(function() {
 /*=============================================
 =            ELIMINAR FICHA                  =
 =============================================*/
-$(".btnEliminarFicha").click(function() {
+$(".tablas").on("click", ".btnEliminarFicha", function(){
     var idFicha = $(this).attr("idFicha");
     swal({
         title: '¿Desea eliminar la ficha?',

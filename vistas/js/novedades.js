@@ -30,7 +30,8 @@ function ficha(sel) {
         }
     });
 }
-$(".btnBuscar").click(function() {
+$(".tablas").on("click", ".btnBuscar", function(){
+// $(".btnBuscar").click(function() {
     $(".alert").remove();
     var idFicha = $("#nuevaFicha1").val();
     var datosFichas = new FormData();
@@ -66,7 +67,8 @@ $(".btnBuscar").click(function() {
         }
     });
 })
-$(".btnBuscar1").click(function() {
+$(".tablas").on("click", ".btnBuscar1", function(){
+// $(".btnBuscar1").click(function() {
     var idFicha = $("#nuevaFicha1").val();
     var datosFichas = new FormData();
     datosFichas.append("idFicha", idFicha);

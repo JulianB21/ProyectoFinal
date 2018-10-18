@@ -1,7 +1,8 @@
 /*=============================================
 =            EDITAR AMBIENTE                  =
 =============================================*/
-$(".btnEditarAmbiente").click(function() {
+
+$(".tablas").on("click", ".btnEditarAmbiente", function(){
     var idAmbiente = $(this).attr("idAmbiente");
     var datos = new FormData();
     datos.append("idAmbiente", idAmbiente);
@@ -40,7 +41,7 @@ $(".btnEditarAmbiente").click(function() {
 /*=============================================
 =            ELIMINAR AMBIENTE                  =
 =============================================*/
-$(".btnEliminarAmbiente").click(function() {
+$(".tablas").on("click", ".btnEliminarAmbiente", function(){
     var idAmbiente = $(this).attr("idAmbiente");
     swal({
         title: '¿Desea eliminar el ambiente?',
