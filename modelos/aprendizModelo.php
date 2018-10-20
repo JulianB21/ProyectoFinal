@@ -48,4 +48,26 @@ class ModeloAprendiz
         $stmt->close();
         $stmt = null;
     }
+
+    static public function mdlBorrarAprendiz($tabla, $datos){
+
+        $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE NumeroFicha = :NumeroFicha");
+
+        $stmt -> bindParam(":NumeroFicha", $datos, PDO::PARAM_INT);
+
+        if($stmt -> execute()){
+
+            return "ok";
+        
+        }else{
+
+            return "error"; 
+
+        }
+
+        $stmt -> close();
+
+        $stmt = null;
+
+    }
 }

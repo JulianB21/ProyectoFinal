@@ -67,62 +67,62 @@ $respuesta = ControladorArticulos::ctrMostrarArticulos($item, $valor);
 foreach ($respuesta as $key => $value) {
 
     $item    = "IdEquipo";
-    $valor   = $value["IdEquipo"];
+    $valor   = $value["idequipo"];
     $equipos = ControladorEquipos::ctrMostrarEquipos($item, $valor);
     echo '<tr>
                             <td>
-                                ' . $value["IdArticulo"] . '
+                                ' . $value["idarticulo"] . '
                             </td>
-                            <td>' . $value["TipoArticulo"] . '.
-                            </td>
-                            <td>
-                                ' . $value["ModeloArticulo"] . '
+                            <td>' . $value["tipoarticulo"] . '.
                             </td>
                             <td>
-                                ' . $value["MarcaArticulo"] . '
+                                ' . $value["modeloarticulo"] . '
+                            </td>
+                            <td>
+                                ' . $value["marcaarticulo"] . '
                             </td>';
 
-    if ($value["EstadoArticulo"] == "ACTIVO") {
+    if ($value["estadoarticulo"] == "ACTIVO") {
         echo '<td><button class="btn btn-success btn-sm">ACTIVO</button></td>';
-    } else if ($value["EstadoArticulo"] == "DAÑADO") {
+    } else if ($value["estadoarticulo"] == "DAÑADO") {
         echo '<td><button class="btn btn-warning btn-sm">DAÑADO</button></td>';
     } else {
         echo '<td><button class="btn btn-danger btn-sm">PERDIDO</button></td>';
     }
 
     $item  = "IdAmbiente";
-    $valor = $value["IdAmbiente"];
+    $valor = $value["idambiente"];
 
     $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
-    echo '<td>' . $ambiente["NombreAmbiente"] . '</td>';
+    echo '<td>' . $ambiente["nombreambiente"] . '</td>';
 
     $item  = "IdCategoria";
-    $valor = $value["IdCategoria"];
+    $valor = $value["idcategoria"];
 
     $categoria = ControladorCategorias::ctrMostrarCategorias($item, $valor);
-    echo '<td>' . $categoria["NombreCategoria"] . '</td>
+    echo '<td>' . $categoria["nombrecategoria"] . '</td>
 
                             <td>
-                                ' . $equipos["NombreEquipo"] . " " . $equipos["IdEquipo"] . '
+                                ' . $equipos["nombreequipo"] . " " . $equipos["idequipo"] . '
                             </td>
 
                             <td>
-                                ' . $value["NumInventarioSena"] . '
+                                ' . $value["numinventariosena"] . '
                             </td>
 
                              <td>
-                                ' . $value["SerialArticulo"] . '
+                                ' . $value["serialarticulo"] . '
                             </td>
 
-                            <td>' . $value["CaracteristicaArticulo"] . '</td>
+                            <td>' . $value["caracteristicaarticulo"] . '</td>
 
                             <td>
                                 <div class="btn-group">
-                                    <button class="btn btn-warning btnEditarArticulo" idArticulo="' . $value["IdArticulo"] . '"  data-toggle="modal" data-target="#modalEditarArticulo">
+                                    <button class="btn btn-warning btnEditarArticulo" idArticulo="' . $value["idarticulo"] . '"  data-toggle="modal" data-target="#modalEditarArticulo">
                                         <i class="fa fa-pencil">
                                         </i>
                                     </button>
-                                    <button class="btn btn-danger btnEliminarArticulo" idArticulo="' . $value["IdArticulo"] . '"><i class="fa fa-times"></i></button>
+                                    <button class="btn btn-danger btnEliminarArticulo" idArticulo="' . $value["idarticulo"] . '"><i class="fa fa-times"></i></button>
                                 </div>
                             </td>
                         </tr>';
@@ -224,7 +224,7 @@ $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
 
 foreach ($ambiente as $key => $value) {
 
-    echo '<option value="' . $value["IdAmbiente"] . '">' . $value["NombreAmbiente"] . '</option>';
+    echo '<option value="' . $value["idambiente"] . '">' . $value["nombreambiente"] . '</option>';
 }
 
 ?>
@@ -256,7 +256,7 @@ $equipos = ControladorEquipos::ctrMostrarEquipos($item, $valor);
 
 foreach ($equipos as $key => $value) {
 
-    echo '<option value="' . $value["IdEquipo"] . '">' . $value["NombreEquipo"] . '</option>';
+    echo '<option value="' . $value["idequipo"] . '">' . $value["nombreequipo"] . '</option>';
 }
 
 ?>
@@ -286,7 +286,7 @@ $ambiente = ControladorCategorias::ctrMostrarCategorias($item, $valor);
 
 foreach ($ambiente as $key => $value) {
 
-    echo '<option value="' . $value["IdCategoria"] . '">' . $value["NombreCategoria"] . '</option>';
+    echo '<option value="' . $value["idcategoria"] . '">' . $value["nombrecategoria"] . '</option>';
 }
 
 ?>

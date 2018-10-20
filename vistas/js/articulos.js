@@ -33,13 +33,13 @@ $(".btnEditarArticulo").click(function() {
         dataType: "json",
         success: function(respuesta) {
             // console.log(respuesta);
-            $("#idArticulo").val(respuesta["IdArticulo"]);
-            $("#editarTipo").val(respuesta["TipoArticulo"]);
-            $("#editarModelo").val(respuesta["ModeloArticulo"]);
-            $("#editarMarca").val(respuesta["MarcaArticulo"]);
+            $("#idArticulo").val(respuesta["idarticulo"]);
+            $("#editarTipo").val(respuesta["tipoarticulo"]);
+            $("#editarModelo").val(respuesta["modeloarticulo"]);
+            $("#editarMarca").val(respuesta["marcaarticulo"]);
             var idAmbiente = $(this).attr("idAmbiente");
             var datosAmbiente = new FormData();
-            datosAmbiente.append("idAmbiente", respuesta["IdAmbiente"]);
+            datosAmbiente.append("idAmbiente", respuesta["idambiente"]);
             $.ajax({
                 url: "ajax/ambientesAjax.php",
                 method: "POST",
@@ -49,13 +49,13 @@ $(".btnEditarArticulo").click(function() {
                 processData: false,
                 dataType: "json",
                 success: function(respuesta) {
-                    $("#editarAmbiente").val(respuesta["IdAmbiente"]);
-                    $("#editarAmbiente").html(respuesta["NombreAmbiente"]);
+                    $("#editarAmbiente").val(respuesta["idambiente"]);
+                    $("#editarAmbiente").html(respuesta["nombreambiente"]);
                 }
             })
             var idEquipo = $(this).attr("idEquipo");
             var datosEquipo = new FormData();
-            datosEquipo.append("idEquipo", respuesta["IdEquipo"]);
+            datosEquipo.append("idEquipo", respuesta["idequipo"]);
             $.ajax({
                 url: "ajax/equipoAjax.php",
                 method: "POST",
@@ -66,14 +66,13 @@ $(".btnEditarArticulo").click(function() {
                 dataType: "json",
                 success: function(respuesta) {
                     // console.log("respuesta", respuesta);
-                    $("#editarEquipo").val(respuesta["IdEquipo"]);
-                    $("#editarEquipo").html(respuesta["NombreEquipo"]);
+                    $("#editarEquipo").val(respuesta["idequipo"]);
+                    $("#editarEquipo").html(respuesta["nombreequipo"]);
                 }
             })
-
             var idCategorias = $(this).attr("idCategoria");
             var datosCategoria = new FormData();
-            datosCategoria.append("idCategoria", respuesta["IdCategoria"]);
+            datosCategoria.append("idCategoria", respuesta["idcategoria"]);
             $.ajax({
                 url: "ajax/categoriasAjax.php",
                 method: "POST",
@@ -83,16 +82,15 @@ $(".btnEditarArticulo").click(function() {
                 processData: false,
                 dataType: "json",
                 success: function(respuesta) {
-                    $("#editarCategoria").val(respuesta["IdCategoria"]);
-                    $("#editarCategoria").html(respuesta["NombreCategoria"]);
+                    $("#editarCategoria").val(respuesta["idcategoria"]);
+                    $("#editarCategoria").html(respuesta["nombrecategoria"]);
                 }
             })
-            $("#editarInventario").val(respuesta["NumInventarioSena"]);
-            $("#editarSerial").val(respuesta["SerialArticulo"]);
-            $("#editarEstado").val(respuesta["EstadoArticulo"]);
-            $("#editarEstado").html(respuesta["EstadoArticulo"]);
-            $("#editarCaracteristica").val(respuesta["CaracteristicaArticulo"]);
+            $("#editarInventario").val(respuesta["numinventariosena"]);
+            $("#editarSerial").val(respuesta["serialarticulo"]);
+            $("#editarEstado").val(respuesta["estadoarticulo"]);
+            $("#editarEstado").html(respuesta["estadoarticulo"]);
+            $("#editarCaracteristica").val(respuesta["caracteristicaarticulo"]);
         }
     })
 })
-

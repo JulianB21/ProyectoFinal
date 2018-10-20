@@ -63,29 +63,30 @@
 
                       echo '<tr>
                       <td>'.($key+1).'</td>
-                    <td>'.$value["IdAmbiente"].'</td>
-                    <td>'.$value["NombreAmbiente"].'</td>
-                    <td>'.$value["UbicacionAmbiente"].'</td>';
+                    <td>'.$value["idambiente"].'</td>
+                    <td>'.$value["nombreambiente"].'</td>
+                    <td>'.$value["ubicacionambiente"].'</td>';
+                    
 
 
           $item="IdPrograma";
-          $valor= $value["IdPrograma"];
+          $valor= $value["idprograma"];
 
           $mostrarProgramas= ControladorProgramas::ctrMostrarProgramas($item, $valor);
 
 
 
 
-                   echo '<td>'.$mostrarProgramas["NombrePrograma"].'</td>
+                   echo '<td>'.$mostrarProgramas["nombreprograma"].'</td>
 
 
                    <td>
 
                       <div class="btn-group">
 
-                        <button class="btn btn-warning btnEditarAmbiente" data-toggle="modal" data-target="#modalEditarAmbiente" idAmbiente="'.$value["IdAmbiente"].'"><i class="fa fa-pencil"></i></button>
+                        <button class="btn btn-warning btnEditarAmbiente" data-toggle="modal" data-target="#modalEditarAmbiente" idAmbiente="'.$value["idambiente"].'"><i class="fa fa-pencil"></i></button>
 
-                        <button class="btn btn-danger btnEliminarAmbiente" idAmbiente="'.$value["IdAmbiente"].'"><i class="fa fa-times"></i></button>
+                        <button class="btn btn-danger btnEliminarAmbiente" idAmbiente="'.$value["idambiente"].'"><i class="fa fa-times"></i></button>
 
                       </div>
 
@@ -174,7 +175,7 @@
                     $programas = ControladorProgramas::ctrMostrarProgramas($item, $valor);
 
                     foreach ($programas as $key => $value) {
-                        echo '<option value="' . $value["IdPrograma"] . '">' . $value["NombrePrograma"] . '</option>';
+                        echo '<option value="' . $value["idprograma"] . '">' . $value["nombreprograma"] . '</option>';
                     }
 
                     ?>

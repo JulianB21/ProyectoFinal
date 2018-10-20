@@ -47,14 +47,15 @@ $(".btnEditarUsuario").click(function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            $("#editarNombre").html(respuesta["NombreUsuario"]);
-            $("#editarNombre").val(respuesta["NombreUsuario"]);
-            $("#editarDocumento").val(respuesta["NumDocumentoUsuario"]);
-            $("#editarPerfil").html(respuesta["RolUsuario"]);
-            $("#editarPerfil").val(respuesta["RolUsuario"]);
-            $("#fotoActual").val(respuesta["FotoUsuario"]);
+            console.log(respuesta);
+            $("#editarNombre").html(respuesta["nombreusuario"]);
+            $("#editarNombre").val(respuesta["nombreusuario"]);
+            $("#editarDocumento").val(respuesta["numdocumentousuario"]);
+            $("#editarPerfil").html(respuesta["rolusuario"]);
+            $("#editarPerfil").val(respuesta["rolusuario"]);
+            $("#fotoActual").val(respuesta["fotousuario"]);
             var datosPrograma = new FormData();
-            datosPrograma.append("idPrograma", respuesta["IdPrograma"]);
+            datosPrograma.append("idPrograma", respuesta["idprograma"]);
             $.ajax({
                 url: "ajax/programas.ajax.php",
                 method: "POST",
@@ -64,13 +65,17 @@ $(".btnEditarUsuario").click(function() {
                 processData: false,
                 dataType: "json",
                 success: function(respuesta) {
-                    $("#editarPrograma").val(respuesta["IdPrograma"]);
-                    $("#editarPrograma").html(respuesta["NombrePrograma"]);
+                    if (respuesta == false) {
+                        $("#editarPrograma").prop('disabled', true)
+                    } else {
+                        $("#editarPrograma").html(respuesta["nombreprograma"]);
+                        $("#editarPrograma").val(respuesta["idprograma"]);
+                    }
                 }
             })
-            $("#passwordActual").val(respuesta["ContraseniaUsuario"]);
-            if (respuesta["FotoUsuario"] != "") {
-                $(".previsualizar").attr("src", respuesta["FotoUsuario"]);
+            $("#passwordActual").val(respuesta["contraseniausuario"]);
+            if (respuesta["fotousuario"] != "") {
+                $(".previsualizar").attr("src", respuesta["fotousuario"]);
             }
         }
     });

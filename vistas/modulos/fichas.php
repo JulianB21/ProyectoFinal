@@ -67,34 +67,34 @@ foreach ($mostrarFichas as $key => $value) {
     echo '<tr>
 
                      <td>' . ($key + 1) . '</td>
-                     <td>' . $value["NumeroFicha"] . '</td>';
+                     <td>' . $value["numeroficha"] . '</td>';
 
     $item  = "IdPrograma";
-    $valor = $value["IdPrograma"];
+    $valor = $value["idprograma"];
 
     $mostrarProgramas = ControladorProgramas::ctrMostrarProgramas($item, $valor);
 
-    echo ' <td>' . $mostrarProgramas["NombrePrograma"] . '</td>';
+    echo ' <td>' . $mostrarProgramas["nombreprograma"] . '</td>';
 
     $item  = "IdAmbiente";
-    $valor = $value["IdAmbiente"];
+    $valor = $value["idambiente"];
 
     $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
 
-    echo '<td>' . $ambiente["NombreAmbiente"] . '</td>
-                     <td>' . $value["FechaInicio"] . '</td>
-                     <td>' . $value["FechaFin"] . '</td>
-                     <td>' . $value["JornadaFicha"] . '</td>
+    echo '<td>' . $ambiente["nombreambiente"] . '</td>
+                     <td>' . $value["fechainicio"] . '</td>
+                     <td>' . $value["fechafin"] . '</td>
+                     <td>' . $value["jornadaficha"] . '</td>
 
                       <td>
 
                         <div class="btn-group">
 
-                          <button class="btn btn-warning btnEditarFicha" idFicha="' . $value["NumeroFicha"] . '" data-toggle="modal" data-target="#modalEditarFicha"><i class="fa fa-pencil"></i></button>
+                          <button class="btn btn-warning btnEditarFicha" idFicha="' . $value["numeroficha"] . '" data-toggle="modal" data-target="#modalEditarFicha"><i class="fa fa-pencil"></i></button>
 
-                          <button class="btn btn-danger btnEliminarFicha" idFicha="' . $value["NumeroFicha"] . '"><i class="fa fa-times"></i></button>
+                          <button class="btn btn-danger btnEliminarFicha" idFicha="' . $value["numeroficha"] . '"><i class="fa fa-times"></i></button>
 
-                          <button class="btn btn-success idFicha="' . $value["NumeroFicha"] . '"
+                          <button class="btn btn-success idFicha="' . $value["numeroficha"] . '"
                            onclick="l()"
                            ><i class="fa fa-eye"></i></button>
 
@@ -185,7 +185,7 @@ $programa = ControladorProgramas::ctrMostrarProgramas($item, $valor);
 
 foreach ($programa as $key => $value) {
 
-    echo '<option value="' . $value["IdPrograma"] . '">' . $value["NombrePrograma"] . '</option>';
+    echo '<option value="' . $value["idprograma"] . '">' . $value["nombreprograma"] . '</option>';
 }
 
 ?>
@@ -217,7 +217,7 @@ $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
 
 foreach ($ambiente as $key => $value) {
 
-    echo '<option value="' . $value["IdAmbiente"] . '">' . $value["NombreAmbiente"] . '</option>';
+    echo '<option value="' . $value["idambiente"] . '">' . $value["nombreambiente"] . '</option>';
 }
 
 ?>

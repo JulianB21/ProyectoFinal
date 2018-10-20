@@ -59,16 +59,17 @@ $item  = null;
 $valor = null;
 
 $usuario = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
+// var_dump($usuario);
 
 foreach ($usuario as $key => $value) {
     echo ' <tr>
                   <td>' . ($key + 1) . '</td>
-                  <td>' . $value["NumDocumentoUsuario"] . '</td>
-                  <td>' . $value["NombreUsuario"] . '</td>';
+                  <td>' . $value["numdocumentousuario"] . '</td>
+                  <td>' . $value["nombreusuario"] . '</td>';
 
-    if ($value["FotoUsuario"] != "") {
+    if ($value["fotousuario"] != "") {
 
-        echo '<td><img src="' . $value["FotoUsuario"] . '" class="img-thumbnail" width="40px"></td>';
+        echo '<td><img src="' . $value["fotousuario"] . '" class="img-thumbnail" width="40px"></td>';
 
     } else {
 
@@ -76,9 +77,9 @@ foreach ($usuario as $key => $value) {
 
     }
 
-    echo '<td>' . $value["RolUsuario"] . '</td>';
+    echo '<td>' . $value["rolusuario"] . '</td>';
     $item  = "IdPrograma";
-    $valor = $value["IdPrograma"];
+    $valor = $value["idprograma"];
 
     $programa = ControladorProgramas::ctrMostrarProgramas($item, $valor);
 
@@ -89,9 +90,9 @@ foreach ($usuario as $key => $value) {
 
                     <div class="btn-group">
 
-                      <button class="btn btn-warning btnEditarUsuario" NumDocumentoUsuario="' . $value["NumDocumentoUsuario"] . '" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fa fa-pencil"></i></button>
+                      <button class="btn btn-warning btnEditarUsuario" NumDocumentoUsuario="' . $value["numdocumentousuario"] . '" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fa fa-pencil"></i></button>
 
-                      <button class="btn btn-danger btnEliminarUsuario" NumDocumentoUsuario="' . $value["NumDocumentoUsuario"] . '" FotoUsuario="' . $value["FotoUsuario"] . '" NombreUsuario="' . $value["NombreUsuario"] . '"><i class="fa fa-times"></i></button>
+                      <button class="btn btn-danger btnEliminarUsuario" NumDocumentoUsuario="' . $value["numdocumentousuario"] . '" FotoUsuario="' . $value["fotousuario"] . '" NombreUsuario="' . $value["nombreusuario"] . '"><i class="fa fa-times"></i></button>
 
                     </div>
 

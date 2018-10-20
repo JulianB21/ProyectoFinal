@@ -14,13 +14,14 @@ $(".btnEditarAmbiente").click(function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            $("#editarAmbiente").val(respuesta["NombreAmbiente"]);
-            $("#editarUbicacion").val(respuesta["UbicacionAmbiente"]);
-            $("#editarAmbiente").html(respuesta["NombreAmbiente"]);
-            $("#editarUbicacion").html(respuesta["UbicacionAmbiente"]);
-            $("#idAmbiente").val(respuesta["IdAmbiente"]);
+            console.log(respuesta);
+            $("#editarAmbiente").val(respuesta["nombreAmbiente"]);
+            $("#editarUbicacion").val(respuesta["ubicacionAmbiente"]);
+            $("#editarAmbiente").html(respuesta["nombreAmbiente"]);
+            $("#editarUbicacion").html(respuesta["ubicacionAmbiente"]);
+            $("#idAmbiente").val(respuesta["idambiente"]);
             var datosPrograma = new FormData();
-            datosPrograma.append("idPrograma", respuesta["IdPrograma"]);
+            datosPrograma.append("idPrograma", respuesta["idprograma"]);
             $.ajax({
                 url: "ajax/programas.ajax.php",
                 method: "POST",
@@ -30,8 +31,8 @@ $(".btnEditarAmbiente").click(function() {
                 processData: false,
                 dataType: "json",
                 success: function(respuesta) {
-                    $("#EditarPrograma").val(respuesta["IdPrograma"]);
-                    $("#EditarPrograma").html(respuesta["NombrePrograma"]);
+                    $("#EditarPrograma").val(respuesta["idprograma"]);
+                    $("#EditarPrograma").html(respuesta["nombreprograma"]);
                 }
             })
         }

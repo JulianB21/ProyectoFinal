@@ -14,14 +14,14 @@ $(".btnEditarFicha").click(function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            $("#editarFicha").val(respuesta["NumeroFicha"]);
-            $("#editarFechaInicio").val(respuesta["FechaInicio"]);
-            $("#editarFechaFin").val(respuesta["FechaFin"]);
-            $("#editarJornada").val(respuesta["JornadaFicha"]);
-            $("#editarJornada").html(respuesta["JornadaFicha"]);
+            $("#editarFicha").val(respuesta["numeroficha"]);
+            $("#editarFechaInicio").val(respuesta["fechainicio"]);
+            $("#editarFechaFin").val(respuesta["fechafin"]);
+            $("#editarJornada").val(respuesta["jornadaficha"]);
+            $("#editarJornada").html(respuesta["jornadaficha"]);
             var idPrograma = $(this).attr("idPrograma");
             var datosPrograma = new FormData();
-            datosPrograma.append("idPrograma", respuesta["IdPrograma"]);
+            datosPrograma.append("idPrograma", respuesta["idprograma"]);
             $.ajax({
                 url: "ajax/programas.ajax.php",
                 method: "POST",
@@ -31,13 +31,13 @@ $(".btnEditarFicha").click(function() {
                 processData: false,
                 dataType: "json",
                 success: function(respuesta) {
-                    $("#editarPrograma").val(respuesta["IdPrograma"]);
-                    $("#editarPrograma").html(respuesta["NombrePrograma"]);
+                    $("#editarPrograma").val(respuesta["idprograma"]);
+                    $("#editarPrograma").html(respuesta["nombreprograma"]);
                 }
             })
             var idAmbiente = $(this).attr("idAmbiente");
             var datosAmbiente = new FormData();
-            datosAmbiente.append("idAmbiente", respuesta["IdAmbiente"]);
+            datosAmbiente.append("idAmbiente", respuesta["idambiente"]);
             $.ajax({
                 url: "ajax/ambientesAjax.php",
                 method: "POST",
@@ -47,8 +47,8 @@ $(".btnEditarFicha").click(function() {
                 processData: false,
                 dataType: "json",
                 success: function(respuesta) {
-                    $("#editarAmbiente").val(respuesta["IdAmbiente"]);
-                    $("#editarAmbiente").html(respuesta["NombreAmbiente"]);
+                    $("#editarAmbiente").val(respuesta["idambiente"]);
+                    $("#editarAmbiente").html(respuesta["nombreprograma"]);
                 }
             })
         }
