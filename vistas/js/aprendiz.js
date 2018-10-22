@@ -4,7 +4,7 @@ $(".tablas").on("click", ".btnVerAprendiz", function(){
      // $("#nuevaFichaAprendiz").val(ficha);
      // $("#nuevaFichaAprendiz").html(ficha);
 
-     window.location = "index.php?ruta=aprendiz&ficha=" + ficha;
+    window.location = "index.php?ruta=aprendiz&ficha=" + ficha;
 
 });
 
@@ -22,6 +22,32 @@ $(".tablas").on("click", ".btnEliminarAprendiz", function(){
     }).then(function(result) {
         if (result.value) {
             window.location = "index.php?ruta=aprendiz&NumDocumentoAprendiz=" + NumDocumentoAprendiz;
+        }
+    })
+})
+
+/*=============================================
+=            EDITAR APRENDIZ                  =
+=============================================*/
+$(".tablas").on("click", ".btnEditarAprendiz", function(){
+    var idAprendiz = $(this).attr("Documento");
+    var datos = new FormData();
+    datos.append("idAprendiz", idAprendiz);
+    $.ajax({
+        url: "ajax/aprendiz.ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(respuesta) {
+            console.log("respuesta", respuesta);
+            $("#editarDocumentoAprendiz").val(respuesta["NumDocumentoAprendiz"]);
+            $("#editarAprendiz").val(respuesta["NombreAprendiz"]);
+            $("#editarFichaAprendiz").val(respuesta["NumeroFicha"]);
+            $("#editarTelefonoAprendiz").val(respuesta["TelefonoAprendiz"]);
+            $("#editarEmailAprendiz").val(respuesta["EmailAprendiz"]);
         }
     })
 })

@@ -72,12 +72,10 @@ class ControladorAmbientes
 
     }
 
-		static public function ctrEditarAmbientes()
-    {
-
-    	/*=============================================
-    	=           	editar AMBIENTES               =
-    	=============================================*/
+    /*=============================================
+    =               EDITAR AMBIENTES              =
+    =============================================*/
+	static public function ctrEditarAmbientes(){
 
     	if(isset($_POST["editarAmbiente"])){
 

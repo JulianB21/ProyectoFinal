@@ -89,7 +89,7 @@
 
                           <div class="btn-group">
 
-                            <button class="btn btn-warning" idFicha="' . $value["NumeroFicha"] . '" data-toggle="modal" data-target=""><i class="fa fa-pencil"></i></button>
+                            <button class="btn btn-warning btnEditarFicha" idFicha="' . $value["NumeroFicha"] . '" data-toggle="modal" data-target="#modalEditarFicha"><i class="fa fa-pencil"></i></button>
 
                             <button class="btn btn-danger btnEliminarFicha" idFicha="' . $value["NumeroFicha"] . '"><i class="fa fa-times"></i></button>
                             
@@ -277,7 +277,7 @@ foreach ($ambiente as $key => $value) {
 
               <div class="panel">SUBIR ARCHIVO DE APRENDICES</div>
 
-              <input type="file" class="nuevoExcel" name="nuevoExcel" id="nuevoExcel">
+              <input type="file" class="nuevoExcel" name="nuevoExcel" id="nuevoExcel" required>
             </div>
 </div>
 </div>

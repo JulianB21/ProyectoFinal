@@ -56,10 +56,13 @@
             
            <?php
 
-            $item  = null;
-            $valor = null;
+           $ficha = ControladorAprendiz::Aprendiz(); 
+
+            $item  = "NumeroFicha";
+            $valor = $ficha;
 
             $mostrarAprendiz = ControladorAprendiz::ctrMostrarAprendiz($item, $valor);
+            // var_dump($mostrarAprendiz);
 
             foreach ($mostrarAprendiz as $key => $value) {
 
@@ -76,7 +79,7 @@
 
                           <div class="btn-group">
 
-                            <button class="btn btn-warning" data-toggle="modal" data-target="#modalEditarAprendiz"><i class="fa fa-pencil"></i></button>
+                            <button class="btn btn-warning btnEditarAprendiz" data-toggle="modal" data-target="#modalEditarAprendiz" Documento="'.$value["NumDocumentoAprendiz"].'" ><i class="fa fa-pencil"></i></button>
 
                             <button class="btn btn-danger btnEliminarAprendiz" Documento="'.$value["NumDocumentoAprendiz"].'" ><i class="fa fa-times"></i></button>
 
@@ -155,14 +158,17 @@
               
               <div class="input-group">
               
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span> 
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
 
-                <?php 
-                  $ficha = ControladorAprendiz::Aprendiz();
+
+                <?php  
+
                   
+                
                   echo '<input type="number" class="form-control input-lg" name="nuevaFichaAprendiz" id="nuevaFichaAprendiz" value="'.$ficha.'" required readonly>';
-                 ?>
 
+                ?>
+          
               </div>
 
             </div>
@@ -209,6 +215,119 @@
           $crearAprendiz = new ControladorAprendiz();
           $crearAprendiz -> ctrCrearAprendiz();
          ?>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- MODAL EDITAR APRENDIZ -->
+<div id="modalEditarAprendiz" class="modal fade" role="dialog">
+  
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+
+      <form role="form" method="post" enctype="multipart/form-data">
+
+        <!-- CABEZA DEL MODAL -->
+        <div class="modal-header" style="background:#3c8dbc; color:white">
+
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+          <h4 class="modal-title">Editar aprendiz</h4>
+
+        </div>
+
+       
+        <div class="modal-body">
+          
+          <!-- CUERPO DEL MODAL -->
+          <div class="box-body">
+
+            <!-- ENTRADA PARA EL NOMBRE -->
+            <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-user"></i></span> 
+
+                <input type="text" class="form-control input-lg" name="editarAprendiz" id="editarAprendiz" required>
+
+              </div>
+
+            </div>
+
+            <!-- ENTRADA PARA EL DOCUMENTO -->
+             <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-key"></i></span> 
+
+                <input type="number" class="form-control input-lg" name="editarDocumentoAprendiz" id="editarDocumentoAprendiz" min="0" readonly>
+
+              </div>
+
+            </div>
+
+            <!-- ENTRADA PARA LA FICHA -->
+             <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span> 
+
+                <input type="number" class="form-control input-lg" name="editarFichaAprendiz" id="editarFichaAprendiz" required readonly>
+
+              </div>
+
+            </div>
+
+            <!-- ENTRADA PARA EL TELEFONO -->
+             <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-key"></i></span> 
+
+                <input type="number" class="form-control input-lg" name="editarTelefonoAprendiz" id="editarTelefonoAprendiz" min="0" required>
+
+              </div>
+
+            </div>
+
+            <!-- ENTRADA PARA EL EMAIL -->
+            
+            <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
+
+                <input type="email" class="form-control input-lg" name="editarEmailAprendiz" id="editarEmailAprendiz" required>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- PIE DEL MODAL -->
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </div>
+
+        <?php 
+          $editarAprendiz= new ControladorAprendiz();
+          $editarAprendiz->ctrEditarAprendiz();
+        ?>
 
       </form>
     </div>
