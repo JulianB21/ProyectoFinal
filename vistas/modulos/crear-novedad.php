@@ -204,7 +204,7 @@ $crearNovedad->ctrCrearNovedad();
 
                            <select class="form-control tipoNovedadArticulo" id="tipoNovedadArticulo">
 
-                             <option id="tipoNovedadArticuloValue" value="">Tipo</option>
+                             <option id="tipoNovedadArticulo" value="">Tipo</option>
 
                              <option value="DAÑADO">DAÑADO</option>
 

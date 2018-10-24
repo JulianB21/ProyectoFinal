@@ -24,7 +24,7 @@
 
       <div class="box-header with-border">
   
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarAprediz">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarAprendiz">
           
           Agregar aprendiz
 
@@ -69,19 +69,19 @@
                 echo '<tr>
 
                        <td>' . ($key + 1) . '</td>
-                       <td>' . $value["NumDocumentoAprendiz"] . '</td>
-                       <td>' . $value["NumeroFicha"] . '</td>
-                       <td>' . $value["NombreAprendiz"] . '</td>
-                       <td>' . $value["TelefonoAprendiz"] . '</td>
-                       <td>' . $value["EmailAprendiz"] . '</td>
+                       <td>' . $value["numdocumentoaprendiz"] . '</td>
+                       <td>' . $value["numeroficha"] . '</td>
+                       <td>' . strtoupper($value["nombreaprendiz"]) . '</td>
+                       <td>' . $value["telefonoaprendiz"] . '</td>
+                       <td>' . $value["emailaprendiz"] . '</td>
 
                         <td>
 
                           <div class="btn-group">
 
-                            <button class="btn btn-warning btnEditarAprendiz" data-toggle="modal" data-target="#modalEditarAprendiz" Documento="'.$value["NumDocumentoAprendiz"].'" ><i class="fa fa-pencil"></i></button>
+                            <button class="btn btn-warning btnEditarAprendiz" data-toggle="modal" data-target="#modalEditarAprendiz" Documento="'.$value["numdocumentoaprendiz"].'" ><i class="fa fa-pencil"></i></button>
 
-                            <button class="btn btn-danger btnEliminarAprendiz" Documento="'.$value["NumDocumentoAprendiz"].'" ><i class="fa fa-times"></i></button>
+                            <button class="btn btn-danger btnEliminarAprendiz" Documento="'.$value["numdocumentoaprendiz"].'" ><i class="fa fa-times"></i></button>
 
                           </div>
 
@@ -104,7 +104,7 @@
 </div>
 
 <!-- MODAL AGREGAR APRENDIZ -->
-<div id="modalAgregarAprediz" class="modal fade" role="dialog">
+<div id="modalAgregarAprendiz" class="modal fade" role="dialog">
   
   <div class="modal-dialog">
 
@@ -148,6 +148,8 @@
                 <span class="input-group-addon"><i class="fa fa-key"></i></span> 
 
                 <input type="number" class="form-control input-lg" name="nuevoDocumentoAprendiz" min="0" placeholder="Numero de documento" required>
+
+
 
               </div>
 
@@ -335,6 +337,8 @@
 </div>
 
 <?php
+// echo '<input type="text" name="documento" id="documento"> ';
+
   $eliminarAprendiz = new ControladorAprendiz();
   $eliminarAprendiz -> ctrBorrarAprendiz();
 ?>

@@ -18,18 +18,21 @@ class ControladorUsuarios
                 $encriptar = hash('sha512', ($_POST["ingPassword"]));
 
                 $tabla     = "usuario";
-                $item      = "NumDocumentoUsuario";
+                $item      = "numdocumentousuario";
                 $valor     = $_POST["ingUsuario"];
                 $respuesta = ModeloUsuarios::MdlMostrarUsuarios($tabla, $item, $valor);
-                if ($respuesta["NumDocumentoUsuario"] == $_POST["ingUsuario"] && $respuesta["ContraseniaUsuario"] == $encriptar) {
+
+                if ($respuesta["numdocumentousuario"] == $_POST["ingUsuario"] && $respuesta["contraseniausuario"] == $encriptar) {
 
                     $_SESSION["iniciarSesion"]       = "ok";
-                    $_SESSION["NumDocumentoUsuario"] = $respuesta["NumDocumentoUsuario"];
-                    $_SESSION["IdPrograma"]          = $respuesta["IdPrograma"];
-                    $_SESSION["NombreUsuario"]       = $respuesta["NombreUsuario"];
-                    $_SESSION["ContraseniaUsuario"]  = $respuesta["ContraseniaUsuario"];
-                    $_SESSION["RolUsuario"]          = $respuesta["RolUsuario"];
-                    $_SESSION["FotoUsuario"]         = $respuesta["FotoUsuario"];
+                    $_SESSION["NumDocumentoUsuario"] = $respuesta["numdocumentousuario"];
+                    $_SESSION["IdPrograma"]          = $respuesta["idprograma"];
+                    $_SESSION["NombreUsuario"]       = $respuesta["nombreusuario"];
+                    $_SESSION["ContraseniaUsuario"]  = $respuesta["contraseniausuario"];
+                    $_SESSION["RolUsuario"]          = $respuesta["rolusuario"];
+                    $_SESSION["FotoUsuario"]         = $respuesta["fotousuario"];
+
+                    // var_dump($_SESSION["NombreUsuario"] );
 
                     echo '<script>
 
@@ -287,7 +290,7 @@ class ControladorUsuarios
 
                     if (preg_match('/^[a-zA-Z0-9]+$/', $_POST["editarContrasenia"])) {
 
-                        $encriptar = crypt($_POST["editarContrasenia"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+                        $encriptar =  hash('sha512', ($_POST["editarContrasenia"]));
 
                     } else {
 

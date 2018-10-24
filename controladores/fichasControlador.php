@@ -84,7 +84,10 @@ class ControladorFichas
                                         "TelefonoAprendiz"            => $data[0][$i][$letras['D']],
                                         "EmailAprendiz"               => $data[0][$i][$letras['E']]);
 
+                                    // var_dump($datos1);
+
                                     $respuesta2 = ModeloAprendiz::MdlIngresarAprendiz($tabla, $datos1);
+                                    // var_dump($respuesta2);
 
                                 }
                                 if ($respuesta2 == "ok") {
@@ -242,26 +245,32 @@ class ControladorFichas
         if (isset($_GET["idFicha"])) {
             $tabla     = "ficha";
             $datos     = $_GET["idFicha"];
-            $respuesta = ModeloFichas::mdlEliminarFicha($tabla, $datos);
 
-            if ($respuesta == "ok") {
-                echo '<script>
+            $tabla2="aprendiz";
+            $respuestaAprendices=ModeloAprendiz::mdlBorrarAprendiz($tabla2, $_GET["idFicha"]);
+            if($respuestaAprendices=="ok")
+            {
+              $respuesta = ModeloFichas::mdlEliminarFicha($tabla, $datos);
 
-                    swal({
-                          type: "success",
-                          title: "La ficha ha sido borrada correctamente",
-                          showConfirmButton: true,
-                          confirmButtonText: "Cerrar"
-                          }).then(function(result){
-                                    if (result.value) {
+              if ($respuesta == "ok") {
+                  echo '<script>
 
-                                    window.location = "fichas";
+                      swal({
+                            type: "success",
+                            title: "La ficha ha sido borrada correctamente",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar"
+                            }).then(function(result){
+                                      if (result.value) {
 
-                                    }
-                                })
+                                      window.location = "fichas";
 
-                    </script>';
+                                      }
+                                  })
+
+                      </script>';
             }
-        }
+          }
+      }
     }
 }

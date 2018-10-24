@@ -11,7 +11,7 @@ function ficha(sel) {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            var idAmbiente = respuesta["IdAmbiente"];
+            var idAmbiente = respuesta["idambiente"];
             var datosAmbiente = new FormData();
             datosAmbiente.append("idAmbiente", idAmbiente);
             $.ajax({
@@ -24,7 +24,7 @@ function ficha(sel) {
                 dataType: "json",
                 success: function(respuesta) {
                     // console.log("respuesta", respuesta);
-                    $("#nuevoAmbiente1").val(respuesta["NombreAmbiente"]);
+                    $("#nuevoAmbiente1").val(respuesta["nombreambiente"]);
                 }
             });
         }
@@ -45,7 +45,7 @@ $(".tablas").on("click", ".btnBuscar", function(){
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            var idAmbiente = respuesta["IdAmbiente"];
+            var idAmbiente = respuesta["idambiente"];
             var datosAmbiente = new FormData();
             datosAmbiente.append("idAmbiente", idAmbiente);
             $.ajax({
@@ -82,10 +82,10 @@ $(".tablas").on("click", ".btnBuscar1", function(){
         dataType: "json",
         success: function(respuesta) {
             // console.log(respuesta);
-            var idAmbiente1 = respuesta["IdAmbiente"];
+            var idAmbiente1 = respuesta["idambiente"];
             var datosAmbiente1 = new FormData();
-            $("#idAmbiente2").val(respuesta["IdAmbiente"]);
-            var idAmbiente = respuesta["IdAmbiente"];
+            $("#idAmbiente2").val(respuesta["idambiente"]);
+            var idAmbiente = respuesta["idambiente"];
             datosAmbiente1.append("idAmbiente", idAmbiente);
             $.ajax({
                 url: "ajax/ambientesAjax.php",
@@ -97,7 +97,7 @@ $(".tablas").on("click", ".btnBuscar1", function(){
                 dataType: "json",
                 success: function(respuesta) {
                     // console.log(respuesta);
-                    $(".inputAmbiente").val(respuesta["NombreAmbiente"]);
+                    $(".inputAmbiente").val(respuesta["nombreambiente"]);
                     var e = $.Event("keyup", {
                         keyCode: 13
                     });
@@ -179,8 +179,8 @@ $('.tablaArticulos tbody').on('click', 'button.btnAgregarArticulo', function() {
         dataType: "json",
         success: function(respuesta) {
             // console.log("resspuesta", respuesta);
-            var nombreArticulo = respuesta["TipoArticulo"];
-            var articulo = respuesta["IdArticulo"];
+            var nombreArticulo = respuesta["tipoarticulo"];
+            var articulo = respuesta["idarticulo"];
             $("#idArticulo").val(articulo);
             $("#agregarArticulo").val(nombreArticulo);
         }

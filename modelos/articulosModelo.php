@@ -1,5 +1,5 @@
 <?php 
-	require_once "conexion.php";
+require_once "conexion.php";
 class ModeloArticulos
 {
 	static public function mdlCrearArticulo($tabla, $datos)
@@ -58,9 +58,9 @@ static public function mdlMostrarArticulos($tabla, $item, $valor){
 
 static public function mdlBorrarArticulos($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE IdArticulo = :IdArticulo");
+		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idarticulo = :idarticulo");
 
-		$stmt -> bindParam(":IdArticulo", $datos, PDO::PARAM_INT);
+		$stmt -> bindParam(":idarticulo", $datos, PDO::PARAM_INT);
 
 		if($stmt -> execute()){
 

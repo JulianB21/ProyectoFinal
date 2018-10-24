@@ -13,7 +13,7 @@ class AjaxFichas{
         $valor = $this->idFicha;
 
         $respuesta = ControladorFichas::ctrMostrarFichas($item, $valor);
-
+        
         echo json_encode($respuesta);
 
     }

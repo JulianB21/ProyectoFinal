@@ -10,6 +10,10 @@ $(".tablas").on("click", ".btnVerAprendiz", function(){
 
 $(".tablas").on("click", ".btnEliminarAprendiz", function(){
     var NumDocumentoAprendiz = $(this).attr("Documento");
+
+    $("#documento").val(NumDocumentoAprendiz);
+
+
     swal({
         title: '¿Está seguro de borrar aprendiz?',
         text: "¡Si no lo está puede cancelar la accíón!",
@@ -42,12 +46,12 @@ $(".tablas").on("click", ".btnEditarAprendiz", function(){
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            console.log("respuesta", respuesta);
-            $("#editarDocumentoAprendiz").val(respuesta["NumDocumentoAprendiz"]);
-            $("#editarAprendiz").val(respuesta["NombreAprendiz"]);
-            $("#editarFichaAprendiz").val(respuesta["NumeroFicha"]);
-            $("#editarTelefonoAprendiz").val(respuesta["TelefonoAprendiz"]);
-            $("#editarEmailAprendiz").val(respuesta["EmailAprendiz"]);
+            // console.log("respuesta", respuesta[0]);
+            $("#editarDocumentoAprendiz").val(respuesta[0]["numdocumentoaprendiz"]);
+            $("#editarAprendiz").val(respuesta[0]["nombreaprendiz"]);
+            $("#editarFichaAprendiz").val(respuesta[0]["numeroficha"]);
+            $("#editarTelefonoAprendiz").val(respuesta[0]["telefonoaprendiz"]);
+            $("#editarEmailAprendiz").val(respuesta[0]["emailaprendiz"]);
         }
     })
 })

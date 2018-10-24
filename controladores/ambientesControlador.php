@@ -167,7 +167,7 @@ class ControladorAmbientes
             $tabla     = "ambiente";
             $datos     = $_GET["idAmbiente"];
             $respuesta = ModeloAmbientes::mdlEliminarAmbiente($tabla, $datos);
-
+            // var_dump($respuesta);
             if ($respuesta == "ok") {
                 echo '<script>
 
@@ -185,6 +185,24 @@ class ControladorAmbientes
                                 })
 
                     </script>';
+            }else{
+                echo '<script>
+
+                    swal({
+                          type: "error",
+                          title: "No se puede eliminar el ambiente",
+                          text: "El ambiente tiene una ficha asignada",
+                          showConfirmButton: true,
+                          confirmButtonText: "Entendido"
+                          }).then(function(result){
+                                    if (result.value) {
+
+                                    window.location = "ambientes";
+
+                                    }
+                                })
+
+                </script>';
             }
         }
     }
@@ -192,11 +210,11 @@ class ControladorAmbientes
     static public function ctrMostrarArticulos1($item, $valor){
 
         // var_dump(isset($_POST["nuevoAmbiente"]));
-$tabla = "articulo";
+        $tabla = "articulo";
 
-$respuesta = ModeloAmbientes::mdlMostrarArticulos1($tabla, $item, $valor);
+        $respuesta = ModeloAmbientes::mdlMostrarArticulos1($tabla, $item, $valor);
 
-return $respuesta;
+        return $respuesta;
     
     }
 

@@ -65,34 +65,34 @@
 
               echo '<tr>
 
-                  <td>'.$value["IdEquipo"].'</td>
+                  <td>'.$value["idequipo"].'</td>
 
-                  <td>'.$value["NombreEquipo"].'</td>';
+                  <td>'.$value["nombreequipo"].'</td>';
 
-                  if($value["EstadoEquipo"]=="ACTIVADO")
+                  if($value["estadoequipo"]=="ACTIVADO")
                     {
                       echo '<td><button class="btn btn-success btn-sm">Activado</button></td>';
                     }
-                    else if($value["EstadoEquipo"]=="DESACTIVADO")
+                    else if($value["estadoequipo"]=="DESACTIVADO")
                     {
                       echo '<td><button class="btn btn-danger btn-sm">Desactivado</button></td>';
                     }
 
                   echo '
 
-                  <td>'.$value["NumArticulosEquipo"].'</td>
-                  <td>'.$value["NumArticulosAgregados"].'</td>
+                  <td>'.$value["numarticulosequipo"].'</td>
+                  <td>'.$value["numarticulosagregados"].'</td>
 
 
-                  <td>'.$value["ObservacionEquipo"].'</td>
+                  <td>'.$value["observacionequipo"].'</td>
 
                   <td>
 
                     <div class="btn-group">
 
-                      <button class="btn btn-warning btnEditarEquipo" idEquipo="'.$value["IdEquipo"].'" data-toggle="modal" data-target="#modalEditarEquipo"><i class="fa fa-pencil"></i></button>
+                      <button class="btn btn-warning btnEditarEquipo" idEquipo="'.$value["idequipo"].'" data-toggle="modal" data-target="#modalEditarEquipo"><i class="fa fa-pencil"></i></button>
 
-                      <button class="btn btn-danger btnEliminarEquipo" idEquipo="'.$value["IdEquipo"].'"><i class="fa fa-times"></i></button>
+                      <button class="btn btn-danger btnEliminarEquipo" idEquipo="'.$value["idequipo"].'"><i class="fa fa-times"></i></button>
 
                     </div>
 

@@ -35,6 +35,8 @@ class ModeloNovedades
     // CREAR NOVEDAD ARTICULO
     public static function mdlCrearNovedadArticulo($tabla, $datos)
     {
+
+        var_dump($datos);
         $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (IdArticulo, TipoNovedad, ObservacionNovedad, IdNovedad) VALUES (:IdArticulo, :TipoNovedad, :ObservacionNovedad, :IdNovedad)");
 
         $stmt->bindParam(":IdArticulo", $datos["IdArticulo"], PDO::PARAM_STR);

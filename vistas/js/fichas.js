@@ -14,14 +14,15 @@ $(".tablas").on("click", ".btnEditarFicha", function(){
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            $("#editarFicha").val(respuesta["NumeroFicha"]);
-            $("#editarFechaInicio").val(respuesta["FechaInicio"]);
-            $("#editarFechaFin").val(respuesta["FechaFin"]);
-            $("#editarJornada").val(respuesta["JornadaFicha"]);
-            $("#editarJornada").html(respuesta["JornadaFicha"]);
+            console.log("respuesta", respuesta);
+            $("#editarFicha").val(respuesta["numeroficha"]);
+            $("#editarFechaInicio").val(respuesta["fechainicio"]);
+            $("#editarFechaFin").val(respuesta["fechafin"]);
+            $("#editarJornada").val(respuesta["jornadaficha"]);
+            $("#editarJornada").html(respuesta["jornadaficha"]);
             var idPrograma = $(this).attr("idPrograma");
             var datosPrograma = new FormData();
-            datosPrograma.append("idPrograma", respuesta["IdPrograma"]);
+            datosPrograma.append("idPrograma", respuesta["idprograma"]);
             $.ajax({
                 url: "ajax/programas.ajax.php",
                 method: "POST",
@@ -31,13 +32,13 @@ $(".tablas").on("click", ".btnEditarFicha", function(){
                 processData: false,
                 dataType: "json",
                 success: function(respuesta) {
-                    $("#editarPrograma").val(respuesta["IdPrograma"]);
-                    $("#editarPrograma").html(respuesta["NombrePrograma"]);
+                    $("#editarPrograma").val(respuesta["idprograma"]);
+                    $("#editarPrograma").html(respuesta["nombreprograma"]);
                 }
             })
             var idAmbiente = $(this).attr("idAmbiente");
             var datosAmbiente = new FormData();
-            datosAmbiente.append("idAmbiente", respuesta["IdAmbiente"]);
+            datosAmbiente.append("idAmbiente", respuesta["idambiente"]);
             $.ajax({
                 url: "ajax/ambientesAjax.php",
                 method: "POST",
@@ -47,8 +48,8 @@ $(".tablas").on("click", ".btnEditarFicha", function(){
                 processData: false,
                 dataType: "json",
                 success: function(respuesta) {
-                    $("#editarAmbiente").val(respuesta["IdAmbiente"]);
-                    $("#editarAmbiente").html(respuesta["NombreAmbiente"]);
+                    $("#editarAmbiente").val(respuesta["idambiente"]);
+                    $("#editarAmbiente").html(respuesta["nombreprograma"]);
                 }
             })
         }
@@ -100,11 +101,32 @@ $("#nuevaFicha").change(function() {
 })
 $("#nuevoExcel").change(function() {
     var documento = this.files[0];
+    // console.log("documento", documento);
     var datosExcel = new FileReader;
-    console.log(datosExcel);
+    // console.log(datosExcel);
     datosExcel.readAsDataURL(documento);
     $(datosExcel).on("load", function(event) {
         var rutaExcel = event.target.result;
     })
     // var url = event.target.result;
+})
+
+$(".nuevoExcel").change(function(){
+    var excel = this.files[0];
+    // var a = excel["type"];
+    // console.log("a", a);
+    // console.log("excel", excel);
+
+    if (excel["type"] != "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
+
+        $(".nuevoExcel").val("");
+
+        swal({
+            title: 'Error al subir documento Excel',
+            text: "Formato no valido",
+            type: 'error',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: '¡Cerrar!'
+        })
+    }
 })

@@ -35,16 +35,13 @@ class ControladorArticulos
                 $itemEquipo  = "IdEquipo";
 
                 $equipo    = ModeloEquipos::mdlMostrarEquipos($tablaEquipo, $itemEquipo, $valorEquipo);
-                $agregados = $equipo["NumArticulosAgregados"] + 1;
+                $agregados = $equipo["numarticulosagregados"] + 1;
 
-                $datosEquipo = array
-
-                    (
-                    "IdEquipo"              => $equipo["IdEquipo"],
-                    "NuevoEquipo"           => $equipo["NombreEquipo"],
-                    "NuevoEstado"           => $equipo["EstadoEquipo"],
-                    "NuevaObservacion"      => $equipo["ObservacionEquipo"],
-                    "NumArticulosEquipo"    => $equipo["NumArticulosEquipo"],
+                $datosEquipo = array("IdEquipo"              => $equipo["idequipo"],
+                    "NuevoEquipo"           => $equipo["nombreequipo"],
+                    "NuevoEstado"           => $equipo["estadoequipo"],
+                    "NuevaObservacion"      => $equipo["observacionequipo"],
+                    "NumArticulosEquipo"    => $equipo["numarticulosequipo"],
                     "NumArticulosAgregados" => $agregados,
                 );
 
@@ -112,9 +109,7 @@ class ControladorArticulos
 
 }
 
-    public static function ctrBorrarArticulo()
-    {
-
+    static public function ctrBorrarArticulo(){
 
         if (isset($_GET["idArticulo"])) {
 
@@ -122,29 +117,33 @@ class ControladorArticulos
             $datos = $_GET["idArticulo"];
             $item  = "IdArticulo";
 
+            
+
             $articulo = ModeloArticulos::mdlMostrarArticulos($tabla, $item, $datos);
 
             $tablaEquipo = "equipo";
-            $valorEquipo = $articulo["IdEquipo"];
+            $valorEquipo = $articulo["idequipo"];
             $itemEquipo  = "IdEquipo";
 
             $equipo    = ModeloEquipos::mdlMostrarEquipos($tablaEquipo, $itemEquipo, $valorEquipo);
-            $agregados = $equipo["NumArticulosAgregados"] - 1;
+
+
+            $agregados = $equipo["numarticulosagregados"] - 1;
 
             $datosEquipo = array
                 (
-                "IdEquipo"              => $equipo["IdEquipo"],
-                "NuevoEquipo"           => $equipo["NombreEquipo"],
-                "NuevoEstado"           => $equipo["EstadoEquipo"],
-                "NuevaObservacion"      => $equipo["ObservacionEquipo"],
-                "NumArticulosEquipo"    => $equipo["NumArticulosEquipo"],
+                "IdEquipo"              => $equipo["idequipo"],
+                "NuevoEquipo"           => $equipo["nombreequipo"],
+                "NuevoEstado"           => $equipo["estadoequipo"],
+                "NuevaObservacion"      => $equipo["observacionequipo"],
+                "NumArticulosEquipo"    => $equipo["numarticulosequipo"],
                 "NumArticulosAgregados" => $agregados,
             );
 
             $respuestaAmbiente2 = ModeloEquipos::mdlEditarEquipo($tablaEquipo, $datosEquipo);
 
             $respuesta = ModeloArticulos::mdlBorrarArticulos($tabla, $datos);
-
+var_dump($respuesta);            
             if ($respuesta == "ok") {
 
                 echo '<script>
@@ -206,8 +205,8 @@ class ControladorArticulos
 
                 if ($registroEquipoViejo["IdEquipo"] != $idEquipo) {
 
-                    var_dump($idEquipoValidar);
-                    var_dump($idEquipo);
+                    // var_dump($idEquipoValidar);
+                    // var_dump($idEquipo);
 
                     $agregados1 = $registroEquipoViejo["NumArticulosAgregados"] - 1;
 

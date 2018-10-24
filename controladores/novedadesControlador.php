@@ -24,6 +24,7 @@ class ControladorNovedades
                 "FechaNovedad"                       => $fechaActual);
 
             $respuesta = ModeloNovedades::mdlCrearNovedad($tabla, $datos);
+            var_dump($respuesta);
             if ($respuesta == "ok") {
 
                 $tabla = "articulonovedad";
@@ -53,7 +54,7 @@ class ControladorNovedades
                     $datos       = array('IdArticulo' => $id,
                         'TipoNovedad'                     => $tipo,
                         'ObservacionNovedad'              => $descripcion,
-                        'IdNovedad'                       => $respuesta1["IdNovedad"],
+                        'IdNovedad'                       => $respuesta1["idnovedad"],
                     );
 
                     $respuesta = ModeloNovedades::mdlCrearNovedadArticulo($tabla, $datos);

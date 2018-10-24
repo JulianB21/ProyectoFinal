@@ -63,16 +63,16 @@
 
                     <td>'.($key+1).'</td>
 
-                    <td class="text-uppercase">'.$value["NombreCategoria"].'</td>
+                    <td class="text-uppercase">'.$value["nombrecategoria"].'</td>
 
                     <td>
 
                       <div class="btn-group">
                           
-                        <button class="btn btn-warning btnEditarCategoria" idCategoria="'.$value["IdCategoria"].'" data-toggle="modal" data-target="#modalEditarCategoria"><i class="fa fa-pencil"></i></button>
+                        <button class="btn btn-warning btnEditarCategoria" idCategoria="'.$value["idcategoria"].'" data-toggle="modal" data-target="#modalEditarCategoria"><i class="fa fa-pencil"></i></button>
 
 
-                        <button class="btn btn-danger btnEliminarCategoria" idCategoria="'.$value["IdCategoria"].'"><i class="fa fa-times"></i></button>
+                        <button class="btn btn-danger btnEliminarCategoria" idCategoria="'.$value["idcategoria"].'"><i class="fa fa-times"></i></button>
 
                       </div>  
 

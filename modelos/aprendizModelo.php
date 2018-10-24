@@ -44,15 +44,17 @@ class ModeloAprendiz
 
             $stmt->execute();
 
-            return $stmt->fetchAll();
+            return $stmt->fetchAll();   
 
-        } else {
-            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+        } else{
 
-            $stmt->execute();
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
 
-            return $stmt->fetchAll();
-        }
+        $stmt -> execute();
+
+        return $stmt -> fetchAll();
+
+    }
 
         $stmt->close();
         $stmt->null();
@@ -91,25 +93,5 @@ class ModeloAprendiz
         $stmt = null;
     }
 
-    // EDITAR APRENDIZ
-    public static function mdlEditarAprendiz($tabla, $datos){
-
-        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET NumeroFicha =:NumeroFicha, NombreAprendiz =:NombreAprendiz, TelefonoAprendiz = :TelefonoAprendiz, EmailAprendiz = :EmailAprendiz WHERE NumDocumentoAprendiz=:NumDocumentoAprendiz");
-
-        $stmt->bindParam(":NumeroFicha", $datos["NumeroFicha"], PDO::PARAM_STR);
-        $stmt->bindParam(":TelefonoAprendiz", $datos["TelefonoAprendiz"], PDO::PARAM_STR);
-        $stmt->bindParam(":EmailAprendiz", $datos["EmailAprendiz"], PDO::PARAM_STR);
-        $stmt->bindParam(":NombreAprendiz", $datos["NombreAprendiz"], PDO::PARAM_STR);
-        $stmt->bindParam(":NumDocumentoAprendiz", $datos["NumDocumentoAprendiz"], PDO::PARAM_STR);
-
-        if ($stmt->execute()) {
-            return "ok";
-
-        } else {
-            return "error";
-        }
-        $stmt->close();
-        $stmt = null;
-    }
 }
 

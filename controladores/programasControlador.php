@@ -97,7 +97,7 @@ class ControladorProgramas
 
                     swal({
                           type: "success",
-                          title: "El programa ha sido actualizado correctamente",
+                          title: "El programa ha sido editado correctamente",
                           showConfirmButton: true,
                           confirmButtonText: "Cerrar",
                           closeOnConfirm: false

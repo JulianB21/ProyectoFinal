@@ -71,9 +71,9 @@ class ModeloAmbientes
     // ELIMINAR AMBIENTE
     public function mdlEliminarAmbiente($tabla, $datos)
     {
-        $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE IdAmbiente=:idAmbiente");
+        $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idambiente=:idambiente");
 
-        $stmt->bindParam(":idAmbiente", $datos, PDO::PARAM_STR);
+        $stmt->bindParam(":idambiente", $datos, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
 

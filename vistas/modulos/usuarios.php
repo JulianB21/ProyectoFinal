@@ -59,16 +59,17 @@ $item  = null;
 $valor = null;
 
 $usuario = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
+// var_dump($usuario);
 
 foreach ($usuario as $key => $value) {
     echo ' <tr>
                   <td>' . ($key + 1) . '</td>
-                  <td>' . $value["NumDocumentoUsuario"] . '</td>
-                  <td>' . $value["NombreUsuario"] . '</td>';
+                  <td>' . $value["numdocumentousuario"] . '</td>
+                  <td>' . $value["nombreusuario"] . '</td>';
 
-    if ($value["FotoUsuario"] != "") {
+    if ($value["fotousuario"] != "") {
 
-        echo '<td><img src="' . $value["FotoUsuario"] . '" class="img-thumbnail" width="40px"></td>';
+        echo '<td><img src="' . $value["fotousuario"] . '" class="img-thumbnail" width="40px"></td>';
 
     } else {
 
@@ -76,22 +77,22 @@ foreach ($usuario as $key => $value) {
 
     }
 
-    echo '<td>' . $value["RolUsuario"] . '</td>';
-    $item  = "IdPrograma";
-    $valor = $value["IdPrograma"];
+    echo '<td>' . $value["rolusuario"] . '</td>';
+    $item  = "idprograma";
+    $valor = $value["idprograma"];
 
     $programa = ControladorProgramas::ctrMostrarProgramas($item, $valor);
-
-    echo '<td>' . $programa["NombrePrograma"] . '</td>
+    
+    echo '<td>' . $programa["nombreprograma"] . '</td>
 
 
                   <td>
 
                     <div class="btn-group">
 
-                      <button class="btn btn-warning btnEditarUsuario" NumDocumentoUsuario="' . $value["NumDocumentoUsuario"] . '" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fa fa-pencil"></i></button>
+                      <button class="btn btn-warning btnEditarUsuario" NumDocumentoUsuario="' . $value["numdocumentousuario"] . '" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fa fa-pencil"></i></button>
 
-                      <button class="btn btn-danger btnEliminarUsuario" NumDocumentoUsuario="' . $value["NumDocumentoUsuario"] . '" FotoUsuario="' . $value["FotoUsuario"] . '" NombreUsuario="' . $value["NombreUsuario"] . '"><i class="fa fa-times"></i></button>
+                      <button class="btn btn-danger btnEliminarUsuario" NumDocumentoUsuario="' . $value["numdocumentousuario"] . '" FotoUsuario="' . $value["fotousuario"] . '" NombreUsuario="' . $value["nombreusuario"] . '"><i class="fa fa-times"></i></button>
 
                     </div>
 
@@ -217,7 +218,7 @@ $programa = ControladorProgramas::ctrMostrarProgramas($item, $valor);
 
 foreach ($programa as $key => $value) {
 
-    echo '<option value="' . $value["IdPrograma"] . '">' . $value["NombrePrograma"] . '</option>';
+    echo '<option value="' . $value["idprograma"] . '">' . $value["nombreprograma"] . '</option>';
 }
 
 ?>
@@ -338,7 +339,7 @@ $crearUsuario->ctrCrearUsuario();
 
                 <select class="form-control input-lg" name="editarPerfil" onchange="rolUsuario2(this.value)">
 
-                  <option value="" id="editarPerfil"></option>
+                  <option id="editarPerfil"></option>
                   <option value="ADMINISTRADOR">Administrador</option>
                   <option value="INSTRUCTOR">Instructor</option>
                   <option value="ESPECIAL">Especial</option>
@@ -369,7 +370,7 @@ $crearUsuario->ctrCrearUsuario();
                     $programas = ControladorProgramas::ctrMostrarProgramas($item, $valor);
 
                     foreach ($programas as $key => $value) {
-                        echo '<option value="' . $value["IdPrograma"] . '">' . $value["NombrePrograma"] . '</option>';
+                        echo '<option value="' . $value["idprograma"] . '">' . $value["nombreprograma"] . '</option>';
                     }
 
                     ?>

@@ -13,12 +13,12 @@ class TablaArticulos{
   /*=============================================
   MOSTRAR LA TABLA DE ARTICULOS
   =============================================*/ 
-  // public $idAmbiente = $_POST["idAmbiente1"];
+  // public $idambiente = $_POST["idambiente1"];
 
   public function mostrarTabla(){
 
    
-    // $item = "IdAmbiente";
+    // $item = "idambiente";
     // $valor = "7";
 
     $item = null;
@@ -31,46 +31,46 @@ class TablaArticulos{
 
             for($i = 0; $i < count($respuesta)-1; $i++){
 
-                $item = "IdEquipo";
-                $valor = $respuesta[$i]["IdEquipo"];
+                $item = "idequipo";
+                $valor = $respuesta[$i]["idequipo"];
 
                 $equipo = ControladorEquipos::ctrMostrarEquipos($item, $valor);
 
-                $item1 = "IdAmbiente";        
-                $valor1 = $respuesta[$i]["IdAmbiente"];
+                $item1 = "idambiente";        
+                $valor1 = $respuesta[$i]["idambiente"];
 
                 $ambientes = ControladorAmbientes::ctrMostrarAmbientes($item1, $valor1);
 
                  echo '[
-                  "'.$respuesta[$i]["IdArticulo"].'",
-                  "'.$respuesta[$i]["TipoArticulo"].'",
-                  "'.$respuesta[$i]["NumInventarioSena"].'",
-                  "'.$respuesta[$i]["ModeloArticulo"].'",
-                  "'.$respuesta[$i]["SerialArticulo"].'",
-                  "'.$equipo["NombreEquipo"].' '.$equipo["IdEquipo"].'",
-                  "'.$ambientes["NombreAmbiente"].'"
+                  "'.$respuesta[$i]["idarticulo"].'",
+                  "'.$respuesta[$i]["tipoarticulo"].'",
+                  "'.$respuesta[$i]["numinventariosena"].'",
+                  "'.$respuesta[$i]["modeloarticulo"].'",
+                  "'.$respuesta[$i]["serialarticulo"].'",
+                  "'.$equipo["nombreequipo"].' '.$equipo["idequipo"].'",
+                  "'.$ambientes["nombreambiente"].'"
                 ],';
 
             }
 
-            $item = "IdEquipo";
-            $valor = $respuesta[count($respuesta)-1]["IdEquipo"];
+            $item = "idequipo";
+            $valor = $respuesta[count($respuesta)-1]["idequipo"];
 
             $equipo = ControladorEquipos::ctrMostrarEquipos($item, $valor);
 
-            $item1 = "IdAmbiente";
-            $valor1 = $respuesta[count($respuesta)-1]["IdAmbiente"];
+            $item1 = "idambiente";
+            $valor1 = $respuesta[count($respuesta)-1]["idambiente"];
 
             $ambientes = ControladorAmbientes::ctrMostrarAmbientes($item1, $valor1);
 
            echo'[
-                  "'.$respuesta[$i]["IdArticulo"].'",
-                  "'.$respuesta[count($respuesta)-1]["TipoArticulo"].'",
-                  "'.$respuesta[count($respuesta)-1]["NumInventarioSena"].'",
-                  "'.$respuesta[count($respuesta)-1]["ModeloArticulo"].'",
-                  "'.$respuesta[count($respuesta)-1]["SerialArticulo"].'",
-                  "'.$equipo["NombreEquipo"].' '.$equipo["IdEquipo"].'",
-                  "'.$ambientes["NombreAmbiente"].'"
+                  "'.$respuesta[$i]["idarticulo"].'",
+                  "'.$respuesta[count($respuesta)-1]["tipoarticulo"].'",
+                  "'.$respuesta[count($respuesta)-1]["numinventariosena"].'",
+                  "'.$respuesta[count($respuesta)-1]["modeloarticulo"].'",
+                  "'.$respuesta[count($respuesta)-1]["serialarticulo"].'",
+                  "'.$equipo["nombreequipo"].' '.$equipo["idequipo"].'",
+                  "'.$ambientes["nombreambiente"].'"
                 ]
             ]
         }';

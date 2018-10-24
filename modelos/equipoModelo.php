@@ -83,7 +83,7 @@ class ModeloEquipos
     }
 
     static public function mdlEditarEquipo($tabla, $datos){
-        var_dump($datos);
+        // var_dump($datos);
 
         $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET NombreEquipo=:NombreEquipo,EstadoEquipo=:EstadoEquipo,NumArticulosEquipo=:NumArticulosEquipo,ObservacionEquipo=:ObservacionEquipo,NumArticulosAgregados=:NumArticulosAgregados WHERE IdEquipo=:IdEquipo");
 

@@ -33,13 +33,14 @@ $(".tablas").on("click", ".btnEditarEquipo", function(){
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            nombre = respuesta["NombreEquipo"];
-            $("#editarEquipo").val(respuesta["NombreEquipo"]);
-            $("#idEquipo").val(respuesta["IdEquipo"]);
-            $("#editarEstado").val(respuesta["EstadoEquipo"]);
+            console.log("respuesta", respuesta);
+            nombre = respuesta["nombreequipo"];
+            $("#editarEquipo").val(respuesta["nombreequipo"]);
+            $("#idEquipo").val(respuesta["idequipo"]);
+            $("#editarEstado").val(respuesta["estadoequipo"]);
             // $("#editarEstado").html(respuesta["EstadoEquipo"]);
-            $("#editarCantidad").val(respuesta["NumArticulosEquipo"]);
-            $("#editarObservacion").val(respuesta["ObservacionEquipo"]);
+            $("#editarCantidad").val(respuesta["numarticulosequipo"]);
+            $("#editarObservacion").val(respuesta["observacionequipo"]);
         }
     })
 })
@@ -59,8 +60,8 @@ function equipoFuncion(sel) {
         dataType: "json",
         success: function(respuesta) {
             // debugger;
-            $("#equipo").val(respuesta["IdEquipo"]);
-            if (respuesta["NumArticulosAgregados"] == respuesta["NumArticulosEquipo"]) {
+            $("#equipo").val(respuesta["idequipo"]);
+            if (respuesta["numarticulosagregados"] == respuesta["numarticulosequipo"]) {
                 $("#nuevoEquipo").parent().after('<div class="alert alert-warning">Este equipo ya tiene el total de artículos asignados</div>');
                 $("#nuevoEquipo").val("");
             }
@@ -93,8 +94,8 @@ function equipoFuncion1(sel) {
             // debugger;
             console.log(respuesta2);
             console.log(nombre);
-            $("#equipo").val(respuesta2["IdEquipo"]);
-            if (respuesta2["NumArticulosAgregados"] == respuesta2["NumArticulosEquipo"]) {
+            $("#equipo").val(respuesta2["idequipo"]);
+            if (respuesta2["numarticulosagregados"] == respuesta2["numarticulosequipo"]) {
                 $("#editarEquipo").parent().parent().after('<div class="alert alert-warning">Este equipo ya tiene el total de artículos asignados</div>');
                 $("#actualizarArticulo").prop('disabled', true);
             }

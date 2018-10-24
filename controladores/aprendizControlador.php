@@ -92,6 +92,9 @@ class ControladorAprendiz{
   =============================================*/
   static public function ctrBorrarAprendiz(){
 
+    // $documento = $_POST["documento"];
+    // var_dump($documento);
+
       if (isset($_GET["NumDocumentoAprendiz"])) {
 
           $tabla = "aprendiz";
@@ -110,7 +113,7 @@ class ControladorAprendiz{
                                   closeOnConfirm:false
                               }).then((result)=>{
                                   if(result.value){
-                                      window.location ="aprendiz";
+                                      window.location ="fichas";
                                   }
                           })
                   </script>';

@@ -12,10 +12,13 @@ $(".tablas").on("click", ".btnEditarPrograma", function(){
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            $("#EditarPrograma").val(respuesta["NombrePrograma"]);
-            $("#EditarTipoPrograma").val(respuesta["TipoPrograma"]);
-            $("#EditarDuracion").val(respuesta["DuracionPrograma"]);
-            $("#idPrograma").val(respuesta["IdPrograma"]);
+            console.log(respuesta);
+            $("#EditarPrograma").val(respuesta["nombreprograma"]);
+            $("#EditarTipoPrograma").val(respuesta["tipoprograma"]);
+            //$("#EditarTipoPrograma2").val(respuesta["tipoprograma"]);
+            $("#EditarDuracion").val(respuesta["duracionprograma"]);
+            $("#EditarDuracion").prop('readolny', true);
+            $("#idPrograma").val(respuesta["idprograma"]);
         }
     })
 })
@@ -31,7 +34,7 @@ $(".tablas").on("click", ".btnEliminarPrograma", function(){
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Eliminar Programa'
+        confirmButtonText: 'Si, borrar programa!'
     }).then((result) => {
         if (result.value) {
             window.location = "index.php?ruta=programas&idPrograma=" + idPrograma;

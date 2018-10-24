@@ -51,26 +51,27 @@ $item      = null;
 $valor     = null;
 $respuesta = ControladorProgramas::ctrMostrarProgramas($item, $valor);
 
+
 foreach ($respuesta as $key => $value) {
     echo '<tr>
                             <td>
                                 ' . ($key + 1) . '
                             </td>
-                            <td>' . $value["NombrePrograma"] . '.
+                            <td>' . $value["nombreprograma"] . '
                             </td>
                             <td>
-                                ' . $value["TipoPrograma"] . '
+                                ' . $value["tipoprograma"] . '
                             </td>
                             <td>
-                                ' . $value["DuracionPrograma"] . '
+                                ' . $value["duracionprograma"] . '
                             </td>
                             <td>
                                 <div class="btn-group">
-                                    <button class="btn btn-warning btnEditarPrograma" idPrograma="' . $value["IdPrograma"] . '"  data-toggle="modal" data-target="#modalEditarPrograma">
+                                    <button class="btn btn-warning btnEditarPrograma" idPrograma="' . $value["idprograma"] . '"  data-toggle="modal" data-target="#modalEditarPrograma">
                                         <i class="fa fa-pencil">
                                         </i>
                                     </button>
-                                    <button class="btn btn-danger btnEliminarPrograma" idPrograma="' . $value["IdPrograma"] . '">
+                                    <button class="btn btn-danger btnEliminarPrograma" idPrograma="' . $value["idprograma"] . '">
                                         <i class="fa fa-times">
                                         </i>
                                     </button>
@@ -126,10 +127,10 @@ foreach ($respuesta as $key => $value) {
                                     <option value="">
                                         Seleccione el Programa
                                     </option>
-                                    <option value="TECNICO">
+                                    <option value="TÉCNICO">
                                         Técnico
                                     </option>
-                                    <option value="TECNOLOGO">
+                                    <option value="TECNÓLOGO">
                                         Tecnólogo
                                     </option>
                                     <option value="COMPLEMENTARIO">
@@ -205,13 +206,13 @@ $crearPrograma->ctrCrearProgramas();
                                     </i>
                                 </span>
                                 <select class="form-control input-lg" name="EditarTipoPrograma" id="EditarTipoPrograma" required onchange="duracion(this.value)" >
-                                    <option value="">
+                                    <option value="" id="EditarTipoPrograma2">
                                         Selecionar Tipo de Programa
                                     </option>
-                                    <option value="TECNICO">
+                                    <option value="TÉCNICO">
                                         Técnico
                                     </option>
-                                    <option value="TECNOLOGO">
+                                    <option value="TECNÓLOGO">
                                         Tecnólogo
                                     </option>
                                     <option value="COMPLEMENTARIO">

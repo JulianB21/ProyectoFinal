@@ -5,13 +5,13 @@ class ModelosProgramas
 {
     public function mdlCrearPrograma($tabla, $datos)
     {
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(IdPrograma,NombrePrograma, DuracionPrograma, TipoPrograma) VALUES (NULL,:NombrePrograma, :DuracionPrograma, :TipoPrograma)");
+
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(NombrePrograma, DuracionPrograma, TipoPrograma) VALUES (:NombrePrograma, :DuracionPrograma, :TipoPrograma)");
 
         $stmt->bindParam(":NombrePrograma", $datos["NuevoPrograma"], PDO::PARAM_STR);
         $stmt->bindParam(":TipoPrograma", $datos["TipoPrograma"], PDO::PARAM_STR);
         $stmt->bindParam(":DuracionPrograma", $datos["DuracionPrograma"], PDO::PARAM_STR);
         $stmt->execute();
-
         if ($stmt == true) {
             return "ok";
 

@@ -15,13 +15,14 @@ $(".tablas").on("click", ".btnEditarAmbiente", function(){
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            $("#editarAmbiente").val(respuesta["NombreAmbiente"]);
-            $("#editarUbicacion").val(respuesta["UbicacionAmbiente"]);
-            $("#editarAmbiente").html(respuesta["NombreAmbiente"]);
-            $("#editarUbicacion").html(respuesta["UbicacionAmbiente"]);
-            $("#idAmbiente").val(respuesta["IdAmbiente"]);
+            // console.log(respuesta);
+            $("#editarAmbiente").val(respuesta["nombreambiente"]);
+            $("#editarUbicacion").val(respuesta["ubicacionambiente"]);
+            $("#editarAmbiente").html(respuesta["nombreambiente"]);
+            $("#editarUbicacion").html(respuesta["ubicacionambiente"]);
+            $("#idAmbiente").val(respuesta["idambiente"]);
             var datosPrograma = new FormData();
-            datosPrograma.append("idPrograma", respuesta["IdPrograma"]);
+            datosPrograma.append("idPrograma", respuesta["idprograma"]);
             $.ajax({
                 url: "ajax/programas.ajax.php",
                 method: "POST",
@@ -31,8 +32,8 @@ $(".tablas").on("click", ".btnEditarAmbiente", function(){
                 processData: false,
                 dataType: "json",
                 success: function(respuesta) {
-                    $("#EditarPrograma").val(respuesta["IdPrograma"]);
-                    $("#EditarPrograma").html(respuesta["NombrePrograma"]);
+                    $("#EditarPrograma").val(respuesta["idprograma"]);
+                    $("#EditarPrograma").html(respuesta["nombreprograma"]);
                 }
             })
         }
@@ -51,7 +52,7 @@ $(".tablas").on("click", ".btnEliminarAmbiente", function(){
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Eliminar Ambiente'
+        confirmButtonText: 'Si, borrar ambiente!'
     }).then((result) => {
         if (result.value) {
             window.location = "index.php?ruta=ambientes&idAmbiente=" + idAmbiente;

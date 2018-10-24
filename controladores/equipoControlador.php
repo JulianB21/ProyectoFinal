@@ -96,19 +96,18 @@ class ControladorEquipos
                     if ($value[2] == $_GET["idEquipo"]) {
                         $datosArticulo = array("IdArticulo"=> $value[0],
                           "TipoArticulo" => $value[4],
-                            "MarcaArticulo"               => $value[6],
-                            "ModeloArticulo"              => $value[5],
-                            "NumInventarioSena"           => $value[9],
-                            "SerialArticulo"              =>  $value[10],
-                            "EstadoArticulo"              => $value[8],
-                            "IdAmbiente"                 => $value[1],
-                            "IdCategoria"                => $value[3],
-                            "CaracteristicaArticulo"      => $value[7],
-                            "IdEquipo"                    => null,
+                          "MarcaArticulo"           => $value[6],
+                          "ModeloArticulo"          => $value[5],
+                          "NumInventarioSena"       => $value[9],
+                          "SerialArticulo"          =>  $value[10],
+                          "EstadoArticulo"          => $value[8],
+                          "IdAmbiente"              => $value[1],
+                          "IdCategoria"             => $value[3],
+                          "CaracteristicaArticulo"  => $value[7],
+                          "IdEquipo"                => null,
                         );
                         
                         $respuestaUsuario2 = ModeloArticulos::mdlEditarArticulo($tablaArticulo, $datosArticulo);
-
 
                     }
                 }
@@ -122,7 +121,7 @@ class ControladorEquipos
 
           swal({
               type: "success",
-              title: "El quipo ha sido borrado correctamente",
+              title: "El equipo ha sido borrado correctamente",
               showConfirmButton: true,
               confirmButtonText: "Cerrar"
               }).then(function(result){
