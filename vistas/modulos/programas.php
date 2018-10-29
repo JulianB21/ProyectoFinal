@@ -22,8 +22,8 @@
     <section class="content">
         <div class="box">
             <div class="box-header with-border">
-                <button class="btn btn-primary fa fa-plus" data-target="#modalAgregarPrograma" data-toggle="modal" title="Agregar Programa">
-                   <!--  Agregar Programa -->
+                <button class="btn btn-primary" data-target="#modalAgregarPrograma" data-toggle="modal" >
+                    Agregar Programa
                 </button>
             </div>
             <div class="box-body">

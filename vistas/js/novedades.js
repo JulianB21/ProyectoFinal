@@ -125,7 +125,7 @@ var table = $('.tablaArticulos').DataTable({
     "columnDefs": [{
         "targets": -1,
         "data": null,
-        "defaultContent": '<div class="btn-group"><button class="btn btn-primary btnAgregarArticulo recuperarBoton" idArticulo data-toggle="modal" id="btnAgregarArticulo"data-target="#modalAgregarArticulo1">Agregar</button></div>'
+        "defaultContent": '<div class="btn-group"><button class="btn btn-primary btnAgregarArticulo recuperarBoton" idArticulo data-toggle="modal" id="btnAgregarArticulo" data-target="#modalAgregarArticulo1">Agregar</button></div>'
     }],
     "language": {
         "sProcessing": "Procesando...",
@@ -155,7 +155,9 @@ var table = $('.tablaArticulos').DataTable({
 /*=============================================
 ACTIVAR LOS BOTONES CON LOS ID CORRESPONDIENTES
 =============================================*/
+// $(".tablas").on("click", 'button.btnAgregarArticulo', function(){
 $('.tablaArticulos tbody').on('click', 'button.btnAgregarArticulo', function() {
+// $('.tablaArticulos ').on('click', 'button.btnAgregarArticulo', function() {    
     var data = table.row($(this).parents('tr')).data();
     // console.log("data", data);
     $(this).attr("idArticulo", data[0]);
@@ -164,8 +166,9 @@ $('.tablaArticulos tbody').on('click', 'button.btnAgregarArticulo', function() {
 AGREGAR NOVEVDAD
 =============================================*/
 $('.tablaArticulos tbody').on('click', 'button.btnAgregarArticulo', function() {
+// $('.tablaArticulos ').on('click', 'button.btnAgregarArticulo', function() {    
     var idArticulo = $(this).attr("idArticulo");
-    // console.log("idArticulo", idArticulo);
+    console.log("idArticulo", idArticulo);
     $(this).removeClass("btn-primary btnAgregarArticulo");
     $(this).addClass("btn-default");
     var datos = new FormData();
@@ -179,7 +182,7 @@ $('.tablaArticulos tbody').on('click', 'button.btnAgregarArticulo', function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            // console.log("resspuesta", respuesta);
+            console.log("resspuesta", respuesta);
             var nombreArticulo = respuesta["tipoarticulo"];
             var articulo = respuesta["idarticulo"];
             $("#idArticulo").val(articulo);

@@ -32,7 +32,7 @@
 
       </div>
 
-      <button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-ok"></i></button>
+      <!-- <button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-ok"></i></button> -->
 
       <div class="box-body">
         

@@ -22,8 +22,8 @@ class TablaArticulosNovedad{
     // $item = "idambiente";
     // $valor = "7";
 
-    $item = "idnovedad";
-    $valor = "17";
+    // $item = "idnovedad";
+    // $valor = "17";
 
     $respuesta = ControladorArticulos::ctrMostrarArticuloNovedad($item, $valor);
     // echo json_encode($respuesta);
