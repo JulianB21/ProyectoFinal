@@ -175,6 +175,7 @@ $crearNovedad->ctrCrearNovedad();
         <div class="modal-header" style="background:#3c8dbc; color:white">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Descripción articulo</h4>
 
         </div>
 
@@ -232,7 +233,7 @@ $crearNovedad->ctrCrearNovedad();
  <!-- PIE DEL MODAL -->
         <div class="modal-footer">
 
-          <button type="button" class="btn btn-default pull-left" onclick="quitarNovedad()" data-dismiss="modal">Salir</button>
+          <button type="button" class="btn btn-default " onclick="quitarNovedad()" data-dismiss="modal">Salir</button>
 
           <button type="button"  class="btn btn-primary" onclick="agregar()">Guardar Artículo</button>
 

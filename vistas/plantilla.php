@@ -53,9 +53,24 @@ session_start();
   <!-- Morris chart -->
   <link rel="stylesheet" href="vistas/bower_components/morris.js/morris.css">
 
+<!--   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+
+  <!-- MATERIALIZE -->
+  <!--Import Google Icon Font-->
+  <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+  <!--Import materialize.css-->
+  <!-- <link type="text/css" rel="stylesheet" href="vistas/materialize/css/materialize.min.css"  media="screen,projection"/> -->
+
   <!--=====================================
   PLUGINS DE JAVASCRIPT
   ======================================-->
+  
+  <!-- MATERIALIZE -->
+  <!--Import jQuery before materialize.js-->
+  <!--   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="vistas/materialize/js/materialize.min.js"></script> -->
 
   <!-- jQuery 3 -->
   <script src="vistas/bower_components/jquery/dist/jquery.min.js"></script>
@@ -108,7 +123,7 @@ session_start();
 
 <!-- CUERPO DOCUMENTO -->
 
-<body class="hold-transition skin-blue sidebar-collapse sidebar-mini login-page">
+<body class="hold-transition skin-blue  sidebar-mini login-page">
  <!-- Site wrapper -->
 
 

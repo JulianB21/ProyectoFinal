@@ -1,4 +1,4 @@
-<div class="content-wrapper">
+<div class="content-wrapper" >
 
   <section class="content-header">
     
@@ -24,13 +24,15 @@
 
       <div class="box-header with-border">
   
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarCategoria">
+        <button class="btn btn-primary " data-toggle="modal" data-target="#modalAgregarCategoria">
           
           Agregar categoría
 
         </button>
 
       </div>
+
+      <button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-ok"></i></button>
 
       <div class="box-body">
         
@@ -137,7 +139,7 @@
         <!-- PIE DEL MODAL -->
         <div class="modal-footer">
 
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+          <button type="button" class="btn btn-default " data-dismiss="modal">Salir</button>
 
           <button type="submit" class="btn btn-primary">Guardar categoría</button>
 
@@ -216,7 +218,7 @@ MODAL EDITAR CATEGORÍA
 
         <div class="modal-footer">
 
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+          <button type="button" class="btn btn-default " data-dismiss="modal">Salir</button>
 
           <button type="submit" class="btn btn-primary">Guardar cambios</button>
 

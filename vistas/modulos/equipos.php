@@ -215,7 +215,7 @@ MODAL AGREGAR EQUIPO
 
         <div class="modal-footer">
 
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
 
           <button type="submit" class="btn btn-primary">Guardar Equipo</button>
 
@@ -337,9 +337,9 @@ MODAL EDITAR EQUIPO
 
         <div class="modal-footer">
 
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+          <button type="button" class="btn btn-default " data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Actualizar Equipo</button>
+          <button type="submit" class="btn btn-primary">Guardar cambios</button>
 
         </div>
         <?php

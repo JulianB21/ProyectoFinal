@@ -14,7 +14,7 @@ $(".tablas").on("click", ".btnEditarFicha", function(){
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            console.log("respuesta", respuesta);
+            // console.log("respuesta", respuesta);
             $("#editarFicha").val(respuesta["numeroficha"]);
             $("#editarFechaInicio").val(respuesta["fechainicio"]);
             $("#editarFechaFin").val(respuesta["fechafin"]);
@@ -48,8 +48,9 @@ $(".tablas").on("click", ".btnEditarFicha", function(){
                 processData: false,
                 dataType: "json",
                 success: function(respuesta) {
+                    console.log("respuesta", respuesta);
                     $("#editarAmbiente").val(respuesta["idambiente"]);
-                    $("#editarAmbiente").html(respuesta["nombreprograma"]);
+                    $("#editarAmbiente").html(respuesta["nombreambiente"]);
                 }
             })
         }
@@ -93,7 +94,7 @@ $("#nuevaFicha").change(function() {
         dataType: "json",
         success: function(respuesta) {
             if (respuesta) {
-                $("#nuevaFicha").parent().after('<div class="alert alert-warning">Esta ficha ya existe en la base de datos</div>');
+                $("#nuevaFicha").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHA YA EXISTE EN LA BASE DE DATOS</strong></font></div>');
                 $("#nuevaFicha").val("");
             }
         }

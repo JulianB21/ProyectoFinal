@@ -29,32 +29,32 @@ class ModeloArticulos
 		$stmt=null;
 	}
 
-static public function mdlMostrarArticulos($tabla, $item, $valor){
+	static public function mdlMostrarArticulos($tabla, $item, $valor){
 
-	if($item != null){
+		if($item != null){
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
-		$stmt -> execute();
+			$stmt -> execute();
 
-		return $stmt -> fetch();
+			return $stmt -> fetch();
 
-	}else{
+		}else{
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
 
-		$stmt -> execute();
+			$stmt -> execute();
 
-		return $stmt -> fetchAll();
+			return $stmt -> fetchAll();
 
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
 	}
-
-	$stmt -> close();
-
-	$stmt = null;
-}
 
 static public function mdlBorrarArticulos($tabla, $datos){
 
@@ -124,6 +124,33 @@ static public function mdlMostrarArticulosEquipo($tabla, $item, $valor){
 
 	$stmt = null;
 }
+	
+	// MOSTRAR ARTICULOS NOVEDAD
+	static public function mdlMostrarArticuloNovedad($tabla, $item, $valor){
 
+		if($item != null){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+	}
 
 }

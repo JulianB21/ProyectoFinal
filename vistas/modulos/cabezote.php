@@ -1,19 +1,19 @@
- <header class="main-header">
+ <header class="main-header" >
 
 	<!-- LOGOTIPO -->
-	<a href="inicio" class="logo">
+	<a href="inicio" class="logo" >
 
 		<!-- LOGO MINI -->
 		<span class="logo-mini">
 
-			<img src="vistas/img/plantilla/logo1.png" class="img-responsive" style="padding:10px 0px 10px 0px">
+			<img src="vistas/img/plantilla/LOGO_PEQUENIO_INICIALES.png" class="img-responsive" style="padding:6px 0px 0px 0px;">
 
 		</span>
 
 		<!-- LOGO NORMAL -->
 		<span class="logo-lg">
 
-			<img src="vistas/img/plantilla/logo.png" class="img-responsive" style="padding:0px 10px 10px 10px">
+			<img src="vistas/img/plantilla/logo_bloque.png" class="img-responsive" style="padding:1px 0px 0px 0px">
 
 		</span>
 
@@ -23,7 +23,7 @@
 	<nav class="navbar navbar-static-top" role="navigation">
 
 		<!-- BOTON DE NAVEGACION -->
-	 	<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+	 	<a href="#" class="sidebar-toggle btn-lg" data-toggle="push-menu" role="button">
 
         	<span class="sr-only">Toggle navigation</span>
 
@@ -36,7 +36,7 @@
 
 				<li class="dropdown user user-menu">
 
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-bottom: 25px;" >
 					<?php
 
 					if($_SESSION["FotoUsuario"] != ""){
@@ -58,7 +58,7 @@
 					</a>
 
 					<!-- DROPDOWN-TOGGLE -->
-					<ul class="dropdown-menu">
+					<ul class="dropdown-menu" style="width: 100%">
 
 						<li class="user-body">
 

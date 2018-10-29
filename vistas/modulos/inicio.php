@@ -39,8 +39,12 @@
       </div>
 
       <div class="box-body">
+
+        
         Start Creating your amazing application!! 
       </div>
+
+      <!-- <a href="INFORMACION.html" class="waves-effect waves-light btn"><i class="material-icons right">arrow_forward</i>CONTINUAR</a> -->
 
       <div class="box-footer">
         Footer

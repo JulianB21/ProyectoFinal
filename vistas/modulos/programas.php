@@ -1,8 +1,10 @@
 <div class="content-wrapper">
     <section class="content-header">
+
         <h1>
             Administrar Programas
         </h1>
+
         <ol class="breadcrumb">
             <li>
                 <a href="inicio">
@@ -15,12 +17,13 @@
                 Administrar Programas
             </li>
         </ol>
+        
     </section>
     <section class="content">
         <div class="box">
             <div class="box-header with-border">
-                <button class="btn btn-primary" data-target="#modalAgregarPrograma" data-toggle="modal">
-                    Agregar Programa
+                <button class="btn btn-primary fa fa-plus" data-target="#modalAgregarPrograma" data-toggle="modal" title="Agregar Programa">
+                   <!--  Agregar Programa -->
                 </button>
             </div>
             <div class="box-body">
@@ -153,7 +156,7 @@ foreach ($respuesta as $key => $value) {
                 </div>
                 <!-- PIE DEL MODAL -->
                 <div class="modal-footer">
-                    <button class="btn btn-default pull-left" data-dismiss="modal" type="button">
+                    <button class="btn btn-default" data-dismiss="modal" type="button">
                         Salir
                     </button>
                     <button class="btn btn-primary" type="submit">
@@ -235,11 +238,11 @@ $crearPrograma->ctrCrearProgramas();
                 </div>
                 <!-- PIE DEL MODAL -->
                 <div class="modal-footer">
-                    <button class="btn btn-default pull-left" data-dismiss="modal" type="button">
+                    <button class="btn btn-default" data-dismiss="modal" type="button">
                         Salir
                     </button>
                     <button class="btn btn-primary" type="submit">
-                        Actualizar Programa
+                        Guardar cambios
                     </button>
                 </div>
 <?php

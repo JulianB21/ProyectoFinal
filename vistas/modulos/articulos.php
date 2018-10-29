@@ -63,11 +63,13 @@
             $item      = null;
             $valor     = null;
             $respuesta = ControladorArticulos::ctrMostrarArticulos($item, $valor);
+            // var_dump($respuesta);
 
             foreach ($respuesta as $key => $value) {
 
               $item    = "IdEquipo";
               $valor   = $value["idequipo"];
+              
               $equipos = ControladorEquipos::ctrMostrarEquipos($item, $valor);
               echo '<tr>
                       <td>' . $value["idarticulo"] . '</td>
@@ -348,7 +350,7 @@ foreach ($ambiente as $key => $value) {
         <!-- PIE DEL MODAL -->
         <div class="modal-footer">
 
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+          <button type="button" class="btn btn-default " data-dismiss="modal">Salir</button>
 
           <button type="submit" class="btn btn-primary">Guardar Articulo</button>
 
@@ -588,7 +590,7 @@ foreach ($ambiente as $key => $value) {
         <!-- PIE DEL MODAL -->
         <div class="modal-footer">
 
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+          <button type="button" class="btn btn-default " data-dismiss="modal">Salir</button>
 
           <button type="submit" class="btn btn-primary" id="actualizarArticulo">Guardar cambios</button>
 

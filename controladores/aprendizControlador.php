@@ -1,6 +1,7 @@
 <?php 
 
 class ControladorAprendiz{
+
 	/*=============================================
 	MOSTRAR USUARIO
 	=============================================*/
@@ -17,6 +18,7 @@ class ControladorAprendiz{
 	public static function Aprendiz(){
 		$ficha = $_GET["ficha"];
     	return $ficha;
+      // var_dump($ficha);
   }
 
 	/*=============================================
@@ -57,7 +59,7 @@ class ControladorAprendiz{
                                 }).then((result) => {
                                           if (result.value) {
 
-                                          window.location = "aprendiz";
+                                          window.location = "fichas";
 
                                           }
                                       })
@@ -77,7 +79,7 @@ class ControladorAprendiz{
                                 }).then((result) => {
                                   if (result.value) {
 
-                                  window.location = "aprendiz";
+                                  window.location = "fichas";
 
                                   }
                               })
@@ -157,7 +159,7 @@ class ControladorAprendiz{
                                 }).then((result) => {
                                           if (result.value) {
 
-                                          window.location = "aprendiz";
+                                          window.location = "fichas";
 
                                           }
                                       })
@@ -177,7 +179,7 @@ class ControladorAprendiz{
                                 }).then((result) => {
                                   if (result.value) {
 
-                                  window.location = "aprendiz";
+                                  window.location = "fichas";
 
                                   }
                               })

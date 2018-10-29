@@ -250,7 +250,7 @@ foreach ($programa as $key => $value) {
         <!-- PIE DEL MODAL -->
         <div class="modal-footer">
 
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
 
           <button type="submit" class="btn btn-primary">Guardar usuario</button>
         </div>
@@ -405,7 +405,7 @@ $crearUsuario->ctrCrearUsuario();
         <!-- PIE DEL MODAL -->
         <div class="modal-footer">
 
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
 
           <button type="submit" class="btn btn-primary">Guardar cambios</button>
         </div>

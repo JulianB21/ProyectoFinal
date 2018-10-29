@@ -1,4 +1,4 @@
-<aside class="main-sidebar">
+<aside class="main-sidebar" >
 
 	 <section class="sidebar">
 
@@ -15,6 +15,16 @@
 
 			</li>
 
+			<li>
+
+				<a href="programas">
+
+					<i class="fa fa-product-hunt"></i>
+					<span>Programas</span>
+
+				</a>
+
+			</li>
 			<li>
 
 				<a href="ambientes">
@@ -39,6 +49,17 @@
 
 			<li>
 
+				<a href="equipos">
+					
+					<i class="fa fa-desktop"></i>
+					<span>Equipos</span>
+
+				</a>
+
+			</li>
+
+			<li>
+
 				<a href="articulos">
 
 					<i class="fa fa-th"></i>
@@ -48,16 +69,6 @@
 
 			</li>
 
-			<li>
-
-				<a href="programas">
-
-					<i class="fa fa-product-hunt"></i>
-					<span>Programas</span>
-
-				</a>
-
-			</li>
 
 			<li>
 
@@ -91,7 +102,7 @@
 					
 					<span class="pull-right-container">
 					
-						<i class="fa fa-angle-left pull-right"></i>
+						<i class="fa fa-angle-down pull-right"></i>
 
 					</span>
 

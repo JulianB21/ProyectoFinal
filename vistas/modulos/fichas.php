@@ -292,7 +292,7 @@ foreach ($ambiente as $key => $value) {
 
         <div class="modal-footer">
 
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+          <button type="button" class="btn btn-default " data-dismiss="modal">Salir</button>
 
           <button type="submit" class="btn btn-primary">Guardar Ficha</button>
 
@@ -378,7 +378,7 @@ $valor = null;
 $programas = ControladorProgramas::ctrMostrarProgramas($item, $valor);
 
 foreach ($programas as $key => $value) {
-    echo '<option value="' . $value["IdPrograma"] . '">' . $value["NombrePrograma"] . '</option>';
+    echo '<option value="' . $value["idprograma"] . '">' . $value["nombreprograma"] . '</option>';
 }
 
 ?>
@@ -409,7 +409,7 @@ $valor = null;
 $mostrarAmbientes = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
 
 foreach ($mostrarAmbientes as $key => $value) {
-    echo '<option value="' . $value["IdAmbiente"] . '">' . $value["NombreAmbiente"] . '</option>';
+    echo '<option value="' . $value["idambiente"] . '">' . $value["nombreambiente"] . '</option>';
 }
 
 ?>
@@ -478,7 +478,7 @@ foreach ($mostrarAmbientes as $key => $value) {
 
         <div class="modal-footer">
 
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
 
           <button type="submit" class="btn btn-primary">Guardar Cambios</button>
 

@@ -21,10 +21,11 @@ class ControladorNovedades
                 "UsuarioNovedad"                     => $_POST["usuarioNovedad"],
                 "NumeroFicha"                        => $_POST["nuevaFicha1"],
                 "articulo"                           => $_POST["articulo"],
-                "FechaNovedad"                       => $fechaActual);
+                "FechaNovedad"                       => $fechaActual,
+                "Estado"                       => "1");
 
             $respuesta = ModeloNovedades::mdlCrearNovedad($tabla, $datos);
-            var_dump($respuesta);
+            // var_dump($respuesta);
             if ($respuesta == "ok") {
 
                 $tabla = "articulonovedad";
@@ -60,7 +61,7 @@ class ControladorNovedades
                     $respuesta = ModeloNovedades::mdlCrearNovedadArticulo($tabla, $datos);
 
                 }
-                var_dump($respuesta);
+                // var_dump($respuesta);
 
                 if ($respuesta == "error") {
                     echo '<script>
@@ -89,7 +90,7 @@ class ControladorNovedades
                         swal({
 
                             type: "success",
-                            title: "¡Novedad registrada correctamente!",
+                            title: "¡La novedad ha sido registrada correctamente!",
                             showConfirmButton: true,
                             confirmButtonText: "Cerrar"
 

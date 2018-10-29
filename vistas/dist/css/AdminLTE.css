@@ -293,7 +293,7 @@ a:focus {
   transition: width 0.3s ease-in-out;
   display: block;
   float: left;
-  height: 50px;
+  height: 60px;
   font-size: 20px;
   line-height: 50px;
   text-align: center;
@@ -314,7 +314,7 @@ a:focus {
 }
 .content-header {
   position: relative;
-  padding: 15px 15px 0 15px;
+  padding: 15px 15px 20px 15px;
 }
 .content-header > h1 {
   margin: 0;
@@ -327,13 +327,13 @@ a:focus {
   font-weight: 300;
 }
 .content-header > .breadcrumb {
-  float: right;
+  float: left;
   background: transparent;
   margin-top: 0;
   margin-bottom: 0;
   font-size: 12px;
   padding: 7px 5px;
-  position: absolute;
+  position: initial;
   top: 15px;
   right: 10px;
   border-radius: 2px;
@@ -558,12 +558,12 @@ a:focus {
   right: 10px;
   margin-top: -8px;
 }
-.sidebar-menu .menu-open > a > .fa-angle-left,
-.sidebar-menu .menu-open > a > .pull-right-container > .fa-angle-left {
-  -webkit-transform: rotate(-90deg);
-  -ms-transform: rotate(-90deg);
-  -o-transform: rotate(-90deg);
-  transform: rotate(-90deg);
+.sidebar-menu .menu-open > a > .fa-angle-down,
+.sidebar-menu .menu-open > a > .pull-right-container > .fa-angle-down {
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 .sidebar-menu .active > .treeview-menu {
   display: block;

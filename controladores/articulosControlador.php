@@ -107,7 +107,7 @@ class ControladorArticulos
 
         return $respuesta;
 
-}
+    }
 
     static public function ctrBorrarArticulo(){
 
@@ -143,7 +143,7 @@ class ControladorArticulos
             $respuestaAmbiente2 = ModeloEquipos::mdlEditarEquipo($tablaEquipo, $datosEquipo);
 
             $respuesta = ModeloArticulos::mdlBorrarArticulos($tabla, $datos);
-var_dump($respuesta);            
+// var_dump($respuesta);            
             if ($respuesta == "ok") {
 
                 echo '<script>
@@ -287,6 +287,17 @@ var_dump($respuesta);
                 </script>';
             }
         }
+    }
+
+    static public function ctrMostrarArticuloNovedad($item, $valor)
+    {
+
+        $tabla = "articulonovedad";
+
+        $respuesta = ModeloArticulos::mdlMostrarArticuloNovedad($tabla, $item, $valor);
+
+        return $respuesta;
+
     }
 
 }

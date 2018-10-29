@@ -11,6 +11,7 @@ function ficha(sel) {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
+            // console.log("respuesta", respuesta);
             var idAmbiente = respuesta["idambiente"];
             var datosAmbiente = new FormData();
             datosAmbiente.append("idAmbiente", idAmbiente);
@@ -30,8 +31,8 @@ function ficha(sel) {
         }
     });
 }
-$(".tablas").on("click", ".btnBuscar", function(){
-// $(".btnBuscar").click(function() {
+// $(".tablas").on("click", ".btnBuscar", function(){
+$(".btnBuscar").click(function() {
     $(".alert").remove();
     var idFicha = $("#nuevaFicha1").val();
     var datosFichas = new FormData();
@@ -67,8 +68,8 @@ $(".tablas").on("click", ".btnBuscar", function(){
         }
     });
 })
-$(".tablas").on("click", ".btnBuscar1", function(){
-// $(".btnBuscar1").click(function() {
+// $(".tablas").on("click", ".btnBuscar1", function(){
+$(".btnBuscar1").click(function() {
     var idFicha = $("#nuevaFicha1").val();
     var datosFichas = new FormData();
     datosFichas.append("idFicha", idFicha);
@@ -96,7 +97,7 @@ $(".tablas").on("click", ".btnBuscar1", function(){
                 processData: false,
                 dataType: "json",
                 success: function(respuesta) {
-                    // console.log(respuesta);
+                    // console.log(respuesta["nombreambiente"]);
                     $(".inputAmbiente").val(respuesta["nombreambiente"]);
                     var e = $.Event("keyup", {
                         keyCode: 13
@@ -242,8 +243,7 @@ function listaArticulos(valor) {
         $("button.recuperarBoton[idArticulo='" + idArticulo + "']").removeClass('disabled');
         $("button.recuperarBoton[idArticulo='" + idArticulo + "']").removeClass('btn-default');
         $("button.recuperarBoton[idArticulo='" + idArticulo + "']").addClass('btn-primary btnAgregarArticulo');
-        // var len = keys.length
-        // alert(array.length);
+
         debugger;
         for (var i = 0; i < array.length; i++) {
             if ((array[i].id) == idArticulo) {
@@ -252,13 +252,10 @@ function listaArticulos(valor) {
         }
     }
     lista++;
-    console.log("listaArticulos", array);
-    // console.log("listaArticulosUnique", listaArticulos1.unique());
+
     $("#tipoNovedadArticulo").val("");
     $(".nuevaDescripcion").val("");
-    // $("button.recuperarBoton[idArticulo='" + idArticulo + "']").removeClass('btn-primary btnAgregarArticulo');
-    // $("button.recuperarBoton[idArticulo='" + idArticulo + "']").addClass('btn-default');
-    // $("button.recuperarBoton[idArticulo='" + idArticulo + "']").addClass('disabled');
+
 }
 
 function quitarNovedad() {
@@ -268,3 +265,29 @@ function quitarNovedad() {
     $("button.recuperarBoton[idArticulo='" + idArticulo + "']").removeClass('btn-default');
     $("button.recuperarBoton[idArticulo='" + idArticulo + "']").addClass('btn-primary btnAgregarArticulo');
 }
+
+
+// $(".tablas").on("click", ".btnBuscar1", function(){
+$(".btnBuscar2").click(function() {
+    var id = $(this).attr("idNovedad");
+    var datos = new FormData();
+    datos.append("id", id);
+    $.ajax({
+        url: "ajax/novedadAjax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(respuesta) {
+            // console.log(respuesta);
+            $(".inputAmbiente").val(respuesta["idnovedad"]);
+            var e = $.Event("keyup", {
+                keyCode: 13
+            });
+            $('.inputAmbiente').focus();
+            $('.inputAmbiente').trigger(e);
+        }
+    });
+});
