@@ -175,6 +175,32 @@ class ControladorCategorias{
 			$tabla ="categoria";
 			$datos = $_GET["idCategoria"];
 
+			$tablaArticulo="articulo";
+			$item="idcategoria";
+			$respuestaArticulo=ModeloCategorias::mdlBuscarArticuloCategoria($tablaArticulo, $item, $datos);
+			if ($respuestaArticulo != null) {
+                foreach ($respuestaArticulo as $key => $value) {
+                    if ($value[3] == $_GET["idCategoria"]) {
+                        $datosArticulo = array("IdArticulo"=> $value[0],
+                          "TipoArticulo" => $value[4],
+                          "MarcaArticulo"           => $value[6],
+                          "ModeloArticulo"          => $value[5],
+                          "NumInventarioSena"       => $value[9],
+                          "SerialArticulo"          =>  $value[10],
+                          "EstadoArticulo"          => $value[8],
+                          "IdAmbiente"              => $value[1],
+                          "IdCategoria"             => null,
+                          "CaracteristicaArticulo"  => $value[7],
+                          "IdEquipo"                => $value[2],
+                        );
+                        
+                        $respuestaUsuario2 = ModeloArticulos::mdlEditarArticulo($tablaArticulo, $datosArticulo);
+
+                    }
+                }
+              }
+
+
 			$respuesta = ModeloCategorias::mdlBorrarCategoria($tabla, $datos);
 
 			if($respuesta == "ok"){
