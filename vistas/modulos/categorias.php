@@ -4,7 +4,7 @@
     
     <h1>
       
-      Administrar categorías
+      Administrar Categorías
 
     </h1>
 
@@ -12,7 +12,7 @@
       
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Administrar categorías</li>
+      <li class="active">Administrar Categorías</li>
     
     </ol>
 
@@ -24,9 +24,9 @@
 
       <div class="box-header with-border">
   
-        <button class="btn btn-primary " data-toggle="modal" data-target="#modalAgregarCategoria">
+        <button class="btn btn-primary btn-circle btn-xl" data-toggle="modal" data-target="#modalAgregarCategoria" title="Agregar categoría">
           
-          Agregar categoría
+          <i class="fa fa-plus"></i>
 
         </button>
 
@@ -41,10 +41,9 @@
         <thead>
          
          <tr>
-           
-           <th style="width:10px">#</th>
+           <th style="width:30px">Acciones</th>   
+           <th style="width:15px">#</th>
            <th>Categoria</th>
-           <th>Acciones</th>
 
          </tr> 
 
@@ -62,23 +61,24 @@
             foreach ($categorias as $key => $value) {
            
             echo ' <tr>
+            <td>
+
+                      <div class="btn-group">
+                          
+                        <button class="btn btn-warning btn-circle btn-lg btnEditarCategoria" idCategoria="'.$value["idcategoria"].'" data-toggle="modal" data-target="#modalEditarCategoria"><i class="fa fa-pencil"></i></button>
+
+
+                        <button class="btn btn-circle btn-lg btn-danger btnEliminarCategoria" idCategoria="'.$value["idcategoria"].'"><i class="fa fa-times"></i></button>
+
+                      </div>  
+
+                    </td>
 
                     <td>'.($key+1).'</td>
 
                     <td class="text-uppercase">'.$value["nombrecategoria"].'</td>
 
-                    <td>
-
-                      <div class="btn-group">
-                          
-                        <button class="btn btn-warning btnEditarCategoria" idCategoria="'.$value["idcategoria"].'" data-toggle="modal" data-target="#modalEditarCategoria"><i class="fa fa-pencil"></i></button>
-
-
-                        <button class="btn btn-danger btnEliminarCategoria" idCategoria="'.$value["idcategoria"].'"><i class="fa fa-times"></i></button>
-
-                      </div>  
-
-                    </td>
+                    
 
                   </tr>';
               }

@@ -143,6 +143,8 @@ class ControladorProgramas
 
             $respuestaAmbiente = ModeloAmbientes::mdlBuscarAmbientePrograma($tabla1, $dato1);
 
+
+
             if ($respuestaAmbiente != null) {
                 foreach ($respuestaAmbiente as $key => $value) {
 
@@ -218,6 +220,23 @@ class ControladorProgramas
                        swal({
                           type: "success",
                           title: "El programa ha sido borrado correctamente",
+                          showConfirmButton: true,
+                          confirmButtonText: "Cerrar"
+                          }).then(function(result){
+                                    if (result.value) {
+
+                                    window.location = "programas";
+
+                                    }
+                                })
+
+                    </script>';
+            }else{
+                 echo '<script>
+
+                       swal({
+                          type: "error",
+                          title: "El programa se encuentra registrado en un ambiente",
                           showConfirmButton: true,
                           confirmButtonText: "Cerrar"
                           }).then(function(result){

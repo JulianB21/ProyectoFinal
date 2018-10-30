@@ -24,9 +24,9 @@
 
       <div class="box-header with-border">
 
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarEquipo">
+        <button class="btn btn-primary btn-circle btn-xl" data-toggle="modal" data-target="#modalAgregarEquipo" title="Agregar Equipo">
 
-          Agregar Equipo
+          <i class="fa fa-plus"></i>
 
         </button>
 
@@ -40,13 +40,13 @@
 
          <tr>
 
-           <th style="width:10px">ID</th>
+           <th style="width:30px">Acciones</th>   
+           <th style="width:15px">#</th>
            <th>Nombre</th>
            <th>Estado</th>
            <th>Numero Articulos</th>
            <th>Numero Articulos Agregados</th>
            <th>Observaciones</th>
-           <th>Acciones</th>
 
          </tr>
 
@@ -64,6 +64,18 @@
 
 
               echo '<tr>
+
+                <td>
+
+                    <div class="btn-group">
+
+                      <button class="btn btn-circle btn-lg btn-warning btnEditarEquipo" idEquipo="'.$value["idequipo"].'" data-toggle="modal" data-target="#modalEditarEquipo"><i class="fa fa-pencil"></i></button>
+
+                      <button class="btn btn-circle btn-lg btn-danger btnEliminarEquipo" idEquipo="'.$value["idequipo"].'"><i class="fa fa-times"></i></button>
+
+                    </div>
+
+                  </td>
 
                   <td>'.$value["idequipo"].'</td>
 
@@ -86,17 +98,7 @@
 
                   <td>'.$value["observacionequipo"].'</td>
 
-                  <td>
-
-                    <div class="btn-group">
-
-                      <button class="btn btn-warning btnEditarEquipo" idEquipo="'.$value["idequipo"].'" data-toggle="modal" data-target="#modalEditarEquipo"><i class="fa fa-pencil"></i></button>
-
-                      <button class="btn btn-danger btnEliminarEquipo" idEquipo="'.$value["idequipo"].'"><i class="fa fa-times"></i></button>
-
-                    </div>
-
-                  </td>
+                  
 
                 </tr>';
             }

@@ -24,10 +24,9 @@
 
       <div class="box-header with-border">
 
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarFicha">
+        <button class="btn btn-primary btn-circle btn-xl" data-toggle="modal" data-target="#modalAgregarFicha" title="Agregar Ficha">
 
-          Agregar Ficha
-
+          <i class="fa fa-plus"></i>
         </button>
 
       </div>
@@ -40,14 +39,14 @@
 
          <tr>
 
-           <th style="width:10px">#</th>
+           <th style="width:70px">Acciones</th>   
+           <th style="width:15px">#</th>
            <th>Numero Ficha</th>
            <th>Programa</th>
            <th>Ambiente</th>
            <th>Fecha Inicio</th>
            <th>Fecha Fin</th>
            <th>Jornada</th>
-           <th>Acciones</th>
 
          </tr>
 
@@ -66,6 +65,21 @@
 
 
                 echo '<tr>
+
+                        <td>
+
+                          <div class="btn-group">
+
+                            <button class="btn btn-circle btn-lg btn-warning btnEditarFicha" idFicha="' . $value["numeroficha"] . '" data-toggle="modal" data-target="#modalEditarFicha"><i class="fa fa-pencil"></i></button>
+
+                            <button class="btn btn-circle btn-lg btn-danger btnEliminarFicha" idFicha="' . $value["numeroficha"] . '"><i class="fa fa-times"></i></button>
+                            
+                            <button class="btn btn-circle btn-lg btn-success btnVerAprendiz" id="' . $value["numeroficha"] . '" 
+                             ><i class="fa fa-eye"></i></button>
+
+                          </div>
+
+                        </td>
                         <td>' . ($key + 1) . '</td>
                         <td>' . $value["numeroficha"] . '</td>';
                      
@@ -87,20 +101,7 @@
                                  <td>' . $value["fechafin"] . '</td>
                                  <td>' . $value["jornadaficha"] . '</td>
 
-                        <td>
-
-                          <div class="btn-group">
-
-                            <button class="btn btn-warning btnEditarFicha" idFicha="' . $value["numeroficha"] . '" data-toggle="modal" data-target="#modalEditarFicha"><i class="fa fa-pencil"></i></button>
-
-                            <button class="btn btn-danger btnEliminarFicha" idFicha="' . $value["numeroficha"] . '"><i class="fa fa-times"></i></button>
-                            
-                            <button class="btn btn-success btnVerAprendiz" id="' . $value["numeroficha"] . '" 
-                             ><i class="fa fa-eye"></i></button>
-
-                          </div>
-
-                        </td>
+                        
 
                       </tr>';
               }

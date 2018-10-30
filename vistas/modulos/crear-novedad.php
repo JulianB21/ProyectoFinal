@@ -137,12 +137,12 @@ $crearNovedad->ctrCrearNovedad();
 
                  <tr>
                   <th style="width: 10px">ID</th>
-                  <th style="width: 50px">Tipo Articulo</th>
-                  <th style="width: 50px">Numero Inventario Sena</th>
+                  <th style="width: 10px">Tipo Articulo</th>
+                  <th style="width: 10px">Numero Inventario Sena</th>
                   <!-- <th style="width: 10px">Modelo</th> -->
-                  <th style="width: 10px">Serial</th>
+                  <!-- <th style="width: 10px">Serial</th> -->
                   <th style="width: 10px">Equipo</th>
-                  <th style="width: 50px">Ambiente</th>
+                  <th style="width: 10px">Ambiente</th>
                   <th style="width: 10px">acciones</th>
                 </tr>
 

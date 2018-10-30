@@ -24,10 +24,8 @@
 
       <div class="box-header with-border">
 
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarAmbiente">
-
-          Agregar Ambiente
-
+        <button class="btn btn-primary btn-circle btn-xl" data-toggle="modal" data-target="#modalAgregarAmbiente" title="Agregar ambiente">
+          <i class="fa fa-plus"></i>
         </button>
 
       </div>
@@ -39,13 +37,12 @@
         <thead>
 
          <tr>
-
-           <th style="width:10px">#</th>
+           <th style="width:30px">Acciones</th>   
+           <th style="width:15px">#</th>
            <th>ID Ambiente</th>
            <th>Nombre</th>
            <th>Ubicación</th>
            <th>Programa</th>
-           <th>Acciones</th>
 
 
          </tr>
@@ -62,6 +59,17 @@
             foreach ($mostrarAmbientes as $key => $value) {
 
                       echo '<tr>
+                      <td>
+
+                      <div class="btn-group">
+
+                        <button class="btn btn-warning btn-circle btn-lg btnEditarAmbiente" data-toggle="modal" data-target="#modalEditarAmbiente" idAmbiente="'.$value["idambiente"].'"><i class="fa fa-pencil"></i></button>
+
+                        <button class="btn btn-circle btn-lg btn-danger btnEliminarAmbiente" idAmbiente="'.$value["idambiente"].'"><i class="fa fa-times"></i></button>
+
+                      </div>
+
+                    </td>
                       <td>'.($key+1).'</td>
                     <td>'.$value["idambiente"].'</td>
                     <td>'.$value["nombreambiente"].'</td>
@@ -78,19 +86,6 @@
 
 
                    echo '<td>'.$mostrarProgramas["nombreprograma"].'</td>
-
-
-                   <td>
-
-                      <div class="btn-group">
-
-                        <button class="btn btn-warning btnEditarAmbiente" data-toggle="modal" data-target="#modalEditarAmbiente" idAmbiente="'.$value["idambiente"].'"><i class="fa fa-pencil"></i></button>
-
-                        <button class="btn btn-danger btnEliminarAmbiente" idAmbiente="'.$value["idambiente"].'"><i class="fa fa-times"></i></button>
-
-                      </div>
-
-                    </td>
 
                   </tr>';
               
@@ -268,7 +263,7 @@
 
                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
 
-                <select class="form-control input-lg" name="idPrograma" required>
+                <select class="form-control input-lg" name="idPrograma">
                   <option id="EditarPrograma"></option>
 
                     <?php

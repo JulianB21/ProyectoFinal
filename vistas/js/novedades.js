@@ -60,9 +60,10 @@ $(".btnBuscar").click(function() {
                 success: function(respuesta) {
                     // console.log("respuesta", respuesta);
                     if (respuesta == false) {
-                        $("#nuevaFicha1").parent().after('<div class="alert alert-warning">Esta ficha no esta registrada en la base de datos</div>');
+                        $("#nuevaFicha1").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHA NO ESTA REGISTRADA EN LA BASE DE DATOS</strong></font></div>');
                         $("#nuevaFicha1").val("");
                     }
+
                 }
             })
         }
@@ -134,7 +135,7 @@ var table = $('.tablaArticulos').DataTable({
         "sEmptyTable": "Ningún dato disponible en esta tabla",
         "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
         "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
-        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+        "sInfoFiltered": "",
         "sInfoPostFix": "",
         "sSearch": "Buscar:",
         "sUrl": "",
@@ -203,7 +204,7 @@ $('.formularioNovedad').on('click', 'button.quitarNovedad', function() {
 function agregar() {
     $(".alert").remove();
     if ($(".tipoNovedadArticulo").val() == "") {
-        $(".tipoNovedadArticulo").parent().after('<div class="alert alert-warning">Ingrese tipo</div>');
+        $(".tipoNovedadArticulo").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>INGRESE TIPO</strong></font></div>');
     } else {
         $("#modalAgregarArticulo1").modal('hide')
         // $(".skin-blue sidebar-collapse sidebar-mini login-page").focus();
@@ -284,8 +285,11 @@ $(".btnBuscar2").click(function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            // console.log(respuesta);
-            $(".inputAmbiente").val(respuesta["idnovedad"]);
+            // console.log(respuesta[0]["idnovedad"]);
+
+
+            // debugger;
+            $(".inputAmbiente").val(respuesta[0]["idnovedad"]);
             var e = $.Event("keyup", {
                 keyCode: 13
             });
@@ -294,3 +298,13 @@ $(".btnBuscar2").click(function() {
         }
     });
 });
+
+
+function salir(){
+     $(".inputAmbiente").val("");
+            var e = $.Event("keyup", {
+                keyCode: 13
+            });
+            $('.inputAmbiente').focus();
+            $('.inputAmbiente').trigger(e);
+}

@@ -62,8 +62,10 @@ function equipoFuncion(sel) {
             // debugger;
             $("#equipo").val(respuesta["idequipo"]);
             if (respuesta["numarticulosagregados"] == respuesta["numarticulosequipo"]) {
-                $("#nuevoEquipo").parent().after('<div class="alert alert-warning">Este equipo ya tiene el total de artículos asignados</div>');
+                $("#nuevoEquipo").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE EQUIPO YA TIENE EL TOTAL DE ARTÍCULOS ASIGNADOS</strong></font></div>');
                 $("#nuevoEquipo").val("");
+
+                
             }
             // $("#editarEquipo").val(respuesta["NombreEquipo"]);
             // $("#idEquipo").val(respuesta["IdEquipo"]);

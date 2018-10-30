@@ -4,7 +4,7 @@
 
     <h1>
 
-      Administrar articulos
+      Administrar Articulos
 
     </h1>
 
@@ -12,7 +12,7 @@
 
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
 
-      <li class="active">Administrar articulos</li>
+      <li class="active">Administrar Articulos</li>
 
     </ol>
 
@@ -24,9 +24,9 @@
 
       <div class="box-header with-border">
 
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarArticulo">
+        <button class="btn btn-primary btn-circle btn-xl" data-toggle="modal" data-target="#modalAgregarArticulo" title="Agregar Articulo">
 
-          Agregar articulo
+          <i class="fa fa-plus"></i>
 
         </button>
 
@@ -40,6 +40,7 @@
 
          <tr>
 
+           <th style="width:100px">Acciones</th> 
            <th style="width:10px">ID</th>
            <th>Tipo Articulo</th>
            <th>Modelo Articulo</th>
@@ -51,7 +52,6 @@
            <th>Numero Inventario Sena</th>
            <th>Serial Articulo</th>
            <th>Caracteristicas</th>
-           <th>Acciones</th>
 
          </tr>
 
@@ -72,6 +72,15 @@
               
               $equipos = ControladorEquipos::ctrMostrarEquipos($item, $valor);
               echo '<tr>
+              <td>
+                            <div class="btn-group">
+                                <button class="btn btn-circle btn-lg btn-warning btnEditarArticulo" idArticulo="' . $value["idarticulo"] . '"  data-toggle="modal" data-target="#modalEditarArticulo">
+                                    <i class="fa fa-pencil">
+                                    </i>
+                                </button>
+                                <button class="btn btn-circle btn-lg btn-danger btnEliminarArticulo" idArticulo="' . $value["idarticulo"] . '"><i class="fa fa-times"></i></button>
+                            </div>
+                        </td>
                       <td>' . $value["idarticulo"] . '</td>
                       <td>' . $value["tipoarticulo"] . '</td>
                       <td>' . $value["modeloarticulo"] . '</td>
@@ -105,15 +114,7 @@
 
                         <td>' . $value["caracteristicaarticulo"] . '</td>
 
-                        <td>
-                            <div class="btn-group">
-                                <button class="btn btn-warning btnEditarArticulo" idArticulo="' . $value["idarticulo"] . '"  data-toggle="modal" data-target="#modalEditarArticulo">
-                                    <i class="fa fa-pencil">
-                                    </i>
-                                </button>
-                                <button class="btn btn-danger btnEliminarArticulo" idArticulo="' . $value["idarticulo"] . '"><i class="fa fa-times"></i></button>
-                            </div>
-                        </td>
+                        
                     </tr>';
                 // var_dump($value["IdArticulo"]);
             }

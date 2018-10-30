@@ -89,8 +89,11 @@ class ControladorAmbientes
                     $editarUbicacion = null;
                 }
 
+                if ($_POST["idPrograma"] == "") {
+                    $programa = null;
+                }
 
-    			$datos=array("IdPrograma"=>$_POST["idPrograma"],
+    			$datos=array("IdPrograma"=>$programa,
     				"NombreAmbiente"=>$NombreAmbiente,
     				"UbicacionAmbiente"=>$editarUbicacion,
                     "IdAmbiente"=>$_POST["idAmbiente"]

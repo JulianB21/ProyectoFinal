@@ -71,7 +71,7 @@ class ModeloNovedades
 
             $stmt->execute();
 
-            return $stmt->fetch();
+            return $stmt->fetchAll();
 
         } else {
             $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
@@ -84,5 +84,24 @@ class ModeloNovedades
         $stmt->close();
 
         $stmt->null();
+    }
+
+
+    //ELIMINAR USUARIO
+    static public function mdlBorrarNovedad($tabla,$item,$valor){
+
+        $stmt = Conexion :: conectar()->prepare("DELETE FROM $tabla WHERE idnovedad= :idnovedad");
+        $stmt -> bindParam(":idnovedad",$item,PDO::PARAM_INT);
+
+        if($stmt -> execute()){
+
+            return "ok";
+
+        }else{
+            return "error";
+        }
+
+        $stmt -> close();
+        $stmt = null;
     }
 }

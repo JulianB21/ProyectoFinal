@@ -17,7 +17,7 @@
 
       <div class="form-group has-feedback">
 
-        <input type="text" class="form-control" placeholder="Numero de documento" name="ingUsuario" required>
+        <input type="number" class="form-control" placeholder="Numero de documento" name="ingUsuario" required>
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
 
       </div>

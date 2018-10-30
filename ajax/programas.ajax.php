@@ -47,7 +47,7 @@ if (isset($_POST["idPrograma"])) {
 
 if (isset($_POST["validarPrograma"])) {
     $valPrograma                  = new AjaxProgramas();
-    $valPrograma->validarPrograma = $_POST["validarPrograma"];
+    $valPrograma->validarPrograma = strtoupper($_POST["validarPrograma"]);
     $valPrograma->ajaxValidarPrograma();
 
 }

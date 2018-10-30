@@ -59,10 +59,11 @@ $("#NuevoPrograma").change(function() {
         dataType: "json",
         success: function(respuesta) {
             if (respuesta) {
-                $("#NuevoPrograma").parent().after('<div class="alert alert-warning">Este programa ya se encuentra registrado</div>');
+                $("#NuevoPrograma").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE PROGRAMA YA SE ENCUENTRA REGISTRADO</strong></font></div>');
                 $("#NuevoPrograma").val("");
             }
             // console.log(respuesta);
+            
         }
     })
 })

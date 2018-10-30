@@ -94,7 +94,7 @@ class ControladorCategorias{
 
 					swal({
 						  type: "success",
-						  title: "La categoría ha sido cambiada correctamente",
+						  title: "La categoría ha sido editada correctamente",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
@@ -139,6 +139,38 @@ class ControladorCategorias{
 	static public function ctrBorrarCategoria(){
 
 		if(isset($_GET["idCategoria"])){
+
+			$item = "idcategoria";
+			$valor = $_GET["idCategoria"];
+
+			$respuesta1 = ControladorArticulos::ctrMostrarArticulos($item, $valor);
+			// var_dump($respuesta1);
+
+			if ($respuesta1 != null) {
+               
+				// foreach ($respuesta1 as $key => $value) {
+                    if ($respuesta1[3] ==$_GET["idCategoria"]) {
+
+		                $datos = array("TipoArticulo" => $respuesta1[4],
+		                    "MarcaArticulo"               => $respuesta1[6],
+		                    "ModeloArticulo"              => $respuesta1[5],
+		                    "NumInventarioSena"           => $respuesta1[9],
+		                    "SerialArticulo"              => $respuesta1[10],
+		                    "EstadoArticulo"              => $respuesta1[8],
+		                    "IdAmbiente"                  => $respuesta1[1],
+		                    "IdCategoria"                 => null,
+		                    "CaracteristicaArticulo"      => $respuesta1[7],
+		                    "IdEquipo"                    => $respuesta1[2],
+		                    "IdArticulo"                  => $respuesta1[0]
+		                );
+
+                        $tabla = "articulo";
+                        // var_dump($datos);
+                        $respuestaArticulo2 = ModeloArticulos::mdlEditarArticulo($tabla, $datos);
+
+                    }
+                
+            }
 
 			$tabla ="categoria";
 			$datos = $_GET["idCategoria"];

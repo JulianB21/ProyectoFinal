@@ -24,9 +24,9 @@
 
       <div class="box-header with-border">
   
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarAprendiz">
+        <button class="btn btn-primary btn-circle btn-xl" data-toggle="modal" data-target="#modalAgregarAprendiz" title="Agregar Aprendiz">
           
-          Agregar aprendiz
+          <i class="fa fa-plus"></i>
 
         </button>
 
@@ -39,14 +39,13 @@
         <thead>
          
          <tr>
-           
-           <th style="width:10px">#</th>
+           <th style="width:30px">Acciones</th>   
+           <th style="width:15px">#</th>
            <th>Documento</th>
            <th>Ficha</th>
            <th>Nombre</th>
            <th>Telefono</th>
            <th>Email</th>
-           <th>Acciones</th>
 
          </tr> 
 
@@ -67,25 +66,23 @@
             foreach ($mostrarAprendiz as $key => $value) {
 
                 echo '<tr>
+                       <td>
 
+                          <div class="btn-group">
+
+                            <button class="btn btn-warning btn-circle btn-lg btnEditarAprendiz" data-toggle="modal" data-target="#modalEditarAprendiz" Documento="'.$value["numdocumentoaprendiz"].'" ><i class="fa fa-pencil"></i></button>
+
+                            <button class="btn btn-circle btn-lg btn-danger btnEliminarAprendiz" Documento="'.$value["numdocumentoaprendiz"].'" ><i class="fa fa-times"></i></button>
+
+                          </div>
+
+                        </td>
                        <td>' . ($key + 1) . '</td>
                        <td>' . $value["numdocumentoaprendiz"] . '</td>
                        <td>' . $value["numeroficha"] . '</td>
                        <td>' . strtoupper($value["nombreaprendiz"]) . '</td>
                        <td>' . $value["telefonoaprendiz"] . '</td>
                        <td>' . $value["emailaprendiz"] . '</td>
-
-                        <td>
-
-                          <div class="btn-group">
-
-                            <button class="btn btn-warning btnEditarAprendiz" data-toggle="modal" data-target="#modalEditarAprendiz" Documento="'.$value["numdocumentoaprendiz"].'" ><i class="fa fa-pencil"></i></button>
-
-                            <button class="btn btn-danger btnEliminarAprendiz" Documento="'.$value["numdocumentoaprendiz"].'" ><i class="fa fa-times"></i></button>
-
-                          </div>
-
-                        </td>
 
                       </tr>';
                 }

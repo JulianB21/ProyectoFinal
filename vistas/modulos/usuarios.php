@@ -4,7 +4,7 @@
 
     <h1>
 
-      Administrar usuarios
+      Administrar Usuarios
 
     </h1>
 
@@ -12,7 +12,7 @@
 
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
 
-      <li class="active">Administrar usuarios</li>
+      <li class="active">Administrar Usuarios</li>
 
     </ol>
 
@@ -24,9 +24,9 @@
 
       <div class="box-header with-border">
 
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarUsuario">
+        <button class="btn btn-primary btn-circle btn-xl" data-toggle="modal" data-target="#modalAgregarUsuario" title="Agregar Usuario">
 
-          Agregar usuario
+          <i class="fa fa-plus"></i>
 
         </button>
 
@@ -40,13 +40,13 @@
 
          <tr>
 
-           <th style="width:10px">#</th>
+           <th style="width:30px">Acciones</th>   
+           <th style="width:15px">#</th>
            <th>Numero de Documento</th>
            <th>Nombre de Usuario</th>
            <th>Foto</th>
            <th>Rol</th>
            <th>Programa</th>
-           <th>Acciones</th>
 
          </tr>
 
@@ -63,6 +63,17 @@ $usuario = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
 
 foreach ($usuario as $key => $value) {
     echo ' <tr>
+                <td>
+
+                    <div class="btn-group">
+
+                      <button class="btn btn-circle btn-lg btn-warning btnEditarUsuario" NumDocumentoUsuario="' . $value["numdocumentousuario"] . '" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fa fa-pencil"></i></button>
+
+                      <button class="btn btn-circle btn-lg btn-danger btnEliminarUsuario" NumDocumentoUsuario="' . $value["numdocumentousuario"] . '" FotoUsuario="' . $value["fotousuario"] . '" NombreUsuario="' . $value["nombreusuario"] . '"><i class="fa fa-times"></i></button>
+
+                    </div>
+
+                  </td>
                   <td>' . ($key + 1) . '</td>
                   <td>' . $value["numdocumentousuario"] . '</td>
                   <td>' . $value["nombreusuario"] . '</td>';
@@ -86,17 +97,7 @@ foreach ($usuario as $key => $value) {
     echo '<td>' . $programa["nombreprograma"] . '</td>
 
 
-                  <td>
-
-                    <div class="btn-group">
-
-                      <button class="btn btn-warning btnEditarUsuario" NumDocumentoUsuario="' . $value["numdocumentousuario"] . '" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fa fa-pencil"></i></button>
-
-                      <button class="btn btn-danger btnEliminarUsuario" NumDocumentoUsuario="' . $value["numdocumentousuario"] . '" FotoUsuario="' . $value["fotousuario"] . '" NombreUsuario="' . $value["nombreusuario"] . '"><i class="fa fa-times"></i></button>
-
-                    </div>
-
-                  </td>
+                  
 
                 </tr>';
 }

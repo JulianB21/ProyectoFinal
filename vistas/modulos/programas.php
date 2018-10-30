@@ -22,17 +22,18 @@
     <section class="content">
         <div class="box">
             <div class="box-header with-border">
-                <button class="btn btn-primary" data-target="#modalAgregarPrograma" data-toggle="modal" >
-                    Agregar Programa
+                <button class="btn btn-primary btn-circle btn-xl" data-target="#modalAgregarPrograma" data-toggle="modal" title="Agregar Programa">
+                    <i class="fa fa-plus"></i>
+                    
                 </button>
             </div>
             <div class="box-body">
                 <table class="table table-bordered table-striped dt-responsive tablas">
                     <thead>
                         <tr>
-                            <th style="width:10px">
-                                #
-                            </th>
+
+                            <th style="width:30px">Acciones</th>   
+                            <th style="width:15px">#</th>
                             <th>
                                 Nombre
                             </th>
@@ -42,47 +43,47 @@
                             <th>
                                 Duración
                             </th>
-                            <th>
-                                Acciones
-                            </th>
+                            
                         </tr>
                     </thead>
                     <tbody>
                         <?php
 
-$item      = null;
-$valor     = null;
-$respuesta = ControladorProgramas::ctrMostrarProgramas($item, $valor);
+                            $item      = null;
+                            $valor     = null;
+                            $respuesta = ControladorProgramas::ctrMostrarProgramas($item, $valor);
 
 
-foreach ($respuesta as $key => $value) {
-    echo '<tr>
-                            <td>
-                                ' . ($key + 1) . '
-                            </td>
-                            <td>' . $value["nombreprograma"] . '
-                            </td>
-                            <td>
-                                ' . $value["tipoprograma"] . '
-                            </td>
-                            <td>
-                                ' . $value["duracionprograma"] . '
-                            </td>
-                            <td>
-                                <div class="btn-group">
-                                    <button class="btn btn-warning btnEditarPrograma" idPrograma="' . $value["idprograma"] . '"  data-toggle="modal" data-target="#modalEditarPrograma">
-                                        <i class="fa fa-pencil">
-                                        </i>
-                                    </button>
-                                    <button class="btn btn-danger btnEliminarPrograma" idPrograma="' . $value["idprograma"] . '">
-                                        <i class="fa fa-times">
-                                        </i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>';
-}
-?>
+                            foreach ($respuesta as $key => $value) {
+                                echo '<tr>
+
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-warning btn-circle btn-lg btnEditarPrograma" idPrograma="' . $value["idprograma"] . '"  data-toggle="modal" data-target="#modalEditarPrograma">
+                                                    <i class="fa fa-pencil">
+                                                    </i>
+                                                </button>
+                                                <button class="btn btn-danger btn-circle btn-lg btnEliminarPrograma" idPrograma="' . $value["idprograma"] . '">
+                                                    <i class="fa fa-times">
+                                                    </i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            ' . ($key + 1) . '
+                                        </td>
+                                        <td>' . $value["nombreprograma"] . '
+                                        </td>
+                                        <td>
+                                            ' . $value["tipoprograma"] . '
+                                        </td>
+                                        <td>
+                                            ' . $value["duracionprograma"] . '
+                                        </td>
+                                        
+                                    </tr>';
+                            }
+                        ?>
 
                     </tbody>
                 </table>

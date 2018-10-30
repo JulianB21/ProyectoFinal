@@ -59,3 +59,5 @@ $(".tablas").on("click", ".btnEliminarAmbiente", function(){
         }
     })
 })
+
+

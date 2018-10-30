@@ -46,7 +46,6 @@ class TablaArticulos{
                   "'.$respuesta[$i]["tipoarticulo"].'",
                   "'.$respuesta[$i]["numinventariosena"].'",
                   
-                  "'.$respuesta[$i]["serialarticulo"].'",
                   "'.$equipo["nombreequipo"].' '.$equipo["idequipo"].'",
                   "'.$ambientes["nombreambiente"].'"
                 ],';
@@ -68,7 +67,6 @@ class TablaArticulos{
                   "'.$respuesta[count($respuesta)-1]["tipoarticulo"].'",
                   "'.$respuesta[count($respuesta)-1]["numinventariosena"].'",
                   
-                  "'.$respuesta[count($respuesta)-1]["serialarticulo"].'",
                   "'.$equipo["nombreequipo"].' '.$equipo["idequipo"].'",
                   "'.$ambientes["nombreambiente"].'"
                 ]

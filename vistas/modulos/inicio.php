@@ -4,53 +4,45 @@
     
     <h1>
       
-      Tablero
+      Inicio
 
-      <small>Panel de control</small>
-    
     </h1>
 
     <ol class="breadcrumb">
       
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Tablero</li>
+      <li class="active">Inicio</li>
     
     </ol>
 
-  </section>
+   <section class="content">
 
-  <section class="content">
+     <div class="row">
 
-    <div class="box">
+         <div class="col-lg-12">
+           
+          <?php
 
-      <div class="box-header with-border">
-  
-       <h3 class="box-title">Title</h3>
+          if($_SESSION["RolUsuario"] == "INSTRUCTOR" || $_SESSION["RolUsuario"] == "ADMINISTRADOR" || $_SESSION["RolUsuario"] == "ESPECIAL"){
 
-       <div class="box-tools pull-right">
+             echo '<div class="box box-success">
 
-        <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+             <div class="box-header">
 
-        <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="remove"><i class="fa fa-times"></i></button>
-         
-       </div>
+             <h1>Bienvenid@ ' .$_SESSION["NombreUsuario"].'</h1>
 
-      </div>
+             </div>
 
-      <div class="box-body">
+             </div>';
 
-        
-        Start Creating your amazing application!! 
-      </div>
+          }
 
-      <!-- <a href="INFORMACION.html" class="waves-effect waves-light btn"><i class="material-icons right">arrow_forward</i>CONTINUAR</a> -->
+          ?>
 
-      <div class="box-footer">
-        Footer
-      </div>
+         </div>
 
-    </div>
+     </div>
 
   </section>
 

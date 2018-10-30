@@ -26,9 +26,9 @@
 
         <a href="crear-novedad">
   
-          <button class="btn btn-primary">
+          <button class="btn btn-primary btn-circle btn-xl" title="Agregar novedad">
             
-            Agregar novedad
+            <i class="fa fa-plus"></i>
 
           </button>
 
@@ -44,13 +44,13 @@
         <thead>
          
          <tr>
-           
+           <th>Detalles</th>
            <th style="width:10px">ID</th>
            <th>Nombre Usuario</th>
            <th>Ficha</th>
            <th>Fecha</th>
            <th>Estado</th>
-           <th>Detalles</th>
+           
            <!-- <th>Ambiente</th> -->
 
          </tr> 
@@ -61,14 +61,27 @@
 
           <?php 
 
-            $item = null;
-            $valor = null;
+          $item = "numdocumentousuario";
+            $valor = $_SESSION["NumDocumentoUsuario"];
+
+            // $item = null;
+            // $valor = null;
 
             $respuesta = ControladorNovedades::ctrMostrarNovedades($item, $valor);
 
             // var_dump($respuesta);
             foreach ($respuesta as $key => $value) {
               echo '<tr>
+
+                    <td>
+
+                        <div class="btn-group">
+                            
+                          <button class="btn btn-circle btn-lg btn-success btnVerNovedades btnBuscar2" data-toggle="modal" data-target="#modalVerNovedades" idNovedad="'.$value["idnovedad"].'"><i class="fa fa-eye"></i></button>
+
+                        </div>  
+
+                      </td>
 
                       <td>'.$value["idnovedad"].'</td>
 
@@ -90,15 +103,7 @@
 
                       // <td>'.$value["estado"].'</td>
 
-                echo '<td>
-
-                        <div class="btn-group">
-                            
-                          <button class="btn btn-success btnVerNovedades btnBuscar2" data-toggle="modal" data-target="#modalVerNovedades" idNovedad="'.$value["idnovedad"].'"><i class="fa fa-eye"></i></button>
-
-                        </div>  
-
-                      </td>
+                echo '
 
                     </tr>';
             }
@@ -130,7 +135,7 @@
         <!-- CABEZA DEL MODAL -->
         <div class="modal-header" style="background:#3c8dbc; color:white">
 
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <button type="button" onclick=" location.href='novedades' " class="close" data-dismiss="modal">&times;</button>
 
           <h4 class="modal-title">Ver Novedad</h4>
 
@@ -191,7 +196,9 @@
 
         <!-- PIE DEL MODAL -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+          <a href="inicio">
+          <button type="button" onclick="salir() " class="btn btn-primary" data-dismiss="modal">Salir</button>
+        </a>
         </div>
         
       </form>
