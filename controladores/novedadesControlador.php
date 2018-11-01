@@ -40,49 +40,31 @@ class ControladorNovedades
                 $tabla1 = "novedad";
 
                 $respuesta1 = ModeloNovedades::mdlMostrarNovedades($tabla1, $item1, $valor1);
-// var_dump($respuesta1);
+
                 $arreglo = $_POST["listaArticulos"];
 
                 $array = json_decode($arreglo);
 
                 $final = explode(" ", $arreglo);
                 // print_r($array);
-               
-                // var_dump($respuesta);
-                $bandera=0;
                 foreach ($array as $key) {
                     $id          = $key->id;
                     $tipo        = $key->tipo;
                     $descripcion = $key->descripcion;
                     $tabla       = "articulonovedad";
-
                     $datos       = array('IdArticulo' => $id,
                         'TipoNovedad'                     => $tipo,
                         'ObservacionNovedad'              => $descripcion,
-                        'IdNovedad'                       => $respuesta1[1]["idnovedad"],
+                        'IdNovedad'                       => $respuesta1["idnovedad"],
                     );
-var_dump($datos);
+
                     $respuesta = ModeloNovedades::mdlCrearNovedadArticulo($tabla, $datos);
-                    var_dump($respuesta);
-                    if($respuesta=="error")
-                    {
-                        $bandera=1;
-                        exit();
-                    }
 
                 }
+                // var_dump($respuesta);
 
-                if ($bandera == 1) {
-
-                    $tabla3 = "novedad";
-                    $item3 = "idnovedad";
-                    $valor3 = $respuesta1["idnovedad"];
-
-                    $eliminar = ModeloNovedades::mdlBorrarNovedad($tabla3 ,$item3, $valor3);
-                    // var_dump($eliminar);
-
-                    if ($eliminar=="ok" ) {
-                        echo '<script>
+                if ($respuesta == "error") {
+                    echo '<script>
 
                         swal({
 
@@ -102,15 +84,7 @@ var_dump($datos);
                         });
 
                     </script>';
-                } 
-                        # code...
-                    }
-
-
-                    else {
-
-                        
-               
+                } else {
                     echo '<script>
 
                         swal({
@@ -132,28 +106,6 @@ var_dump($datos);
 
                     </script>';
 
-                 
-                    echo '<script>
-
-                        swal({
-
-                            type: "success",
-                            title: "¡La novedad ha sido registrada correctamente!",
-                            showConfirmButton: true,
-                            confirmButtonText: "Cerrar"
-
-                        }).then(function(result){
-
-                            if(result.value){
-
-                                window.location = "crear-novedad";
-
-                            }
-
-                        });
-
-                    </script>';
-   # code...
                 }
 
             }
