@@ -142,10 +142,9 @@ class ControladorProgramas
             $dato1  = $_GET["idPrograma"];
 
             $respuestaAmbiente = ModeloAmbientes::mdlBuscarAmbientePrograma($tabla1, $dato1);
-
-
-
+            // var_dump($respuestaAmbiente[0][1]);
             if ($respuestaAmbiente != null) {
+                // var_dump($_GET["idPrograma"]);
                 foreach ($respuestaAmbiente as $key => $value) {
 
                     if ($value[1] == $_GET["idPrograma"]) {
@@ -155,6 +154,7 @@ class ControladorProgramas
                             "IdAmbiente"                        => $value[0],
                         );
                         $tablaAmbiente      = "ambiente";
+                        // var_dump($datosAmbiente);
                         $respuestaAmbiente2 = ModeloAmbientes::mdlEditarAmbientes($tablaAmbiente, $datosAmbiente);
 
                     }
@@ -220,23 +220,6 @@ class ControladorProgramas
                        swal({
                           type: "success",
                           title: "El programa ha sido borrado correctamente",
-                          showConfirmButton: true,
-                          confirmButtonText: "Cerrar"
-                          }).then(function(result){
-                                    if (result.value) {
-
-                                    window.location = "programas";
-
-                                    }
-                                })
-
-                    </script>';
-            }else{
-                 echo '<script>
-
-                       swal({
-                          type: "error",
-                          title: "El programa se encuentra registrado en un ambiente",
                           showConfirmButton: true,
                           confirmButtonText: "Cerrar"
                           }).then(function(result){

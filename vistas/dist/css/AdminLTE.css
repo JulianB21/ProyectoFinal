@@ -10,6 +10,11 @@
  * -------------------------
  */
 
+.cabeza-modal {
+    background: #25476a;
+    color: white;
+}
+
 .btn-circle {
   width: 30px;
   height: 30px;

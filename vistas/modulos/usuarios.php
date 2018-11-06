@@ -127,7 +127,7 @@ foreach ($usuario as $key => $value) {
       <form role="form" method="post" enctype="multipart/form-data">
 
         <!-- CABEZA DEL MODAL -->
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header cabeza-modal">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -278,7 +278,7 @@ $crearUsuario->ctrCrearUsuario();
       <form role="form" method="post" enctype="multipart/form-data">
 
         <!-- CABEZA DEL MODAL -->
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header cabeza-modal">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 

@@ -46,10 +46,23 @@ $(".btnBuscar").click(function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            var idAmbiente = respuesta["idambiente"];
-            var datosAmbiente = new FormData();
-            datosAmbiente.append("idAmbiente", idAmbiente);
-            $.ajax({
+            // console.log("respuesta", respuesta);
+            if(respuesta==false)
+            {
+                $("#nuevaFicha1").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHA NO ESTA REGISTRADA EN LA BASE DE DATOS</strong></font></div>');
+                         $("#nuevaFicha1").val("");
+            }
+            else if(respuesta["idambiente"]==null)
+            {
+                $("#nuevaFicha1").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>LA FICHA INGRESADA NO ESTÁ ASIGNADA A NINGÚN AMBIENTE</strong></font></div>');
+                         $("#nuevaFicha1").val("");
+            }
+            else
+            {
+                var idAmbiente = respuesta["idambiente"];
+                 var datosAmbiente = new FormData();
+                datosAmbiente.append("idAmbiente", idAmbiente);
+                $.ajax({
                 url: "ajax/ambientesAjax.php",
                 method: "POST",
                 data: datosAmbiente,
@@ -58,18 +71,16 @@ $(".btnBuscar").click(function() {
                 processData: false,
                 dataType: "json",
                 success: function(respuesta) {
-                    // console.log("respuesta", respuesta);
-                    if (respuesta == false) {
-                        $("#nuevaFicha1").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHA NO ESTA REGISTRADA EN LA BASE DE DATOS</strong></font></div>');
-                        $("#nuevaFicha1").val("");
-                    }
-
+                    console.log("TIENE AMBIENTE");
                 }
             })
         }
-    });
-})
-// $(".tablas").on("click", ".btnBuscar1", function(){
+    }
+});
+});
+
+
+//$(".tablas").on("click", ".btnBuscar1", function(){
 $(".btnBuscar1").click(function() {
     var idFicha = $("#nuevaFicha1").val();
     var datosFichas = new FormData();

@@ -97,7 +97,7 @@
         <div class="modal-content">
             <form enctype="multipart/form-data" method="post" role="form">
                 <!-- CABEZA DEL MODAL -->
-                <div class="modal-header" style="background:#3c8dbc; color:white">
+                <div class="modal-header cabeza-modal">
                     <button class="close" data-dismiss="modal" type="button">
                         ×
                     </button>
@@ -178,7 +178,7 @@ $crearPrograma->ctrCrearProgramas();
         <div class="modal-content">
             <form enctype="multipart/form-data" method="post" role="form">
                 <!-- CABEZA DEL MODAL -->
-                <div class="modal-header" style="background:#3c8dbc; color:white">
+                <div class="modal-header cabeza-modal">
                     <button class="close" data-dismiss="modal" type="button">
                         ×
                     </button>

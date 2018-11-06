@@ -1,4 +1,4 @@
-<?php
+  <?php
 
 class ControladorFichas
 {
@@ -51,6 +51,28 @@ class ControladorFichas
                 </script>';
                     # code...
                 } else {
+
+                  if ($_POST["nuevaFechaInicio"] >= $_POST["nuevaFechaFin"]) {
+                    
+                    echo '<script>
+
+                    swal({
+                          type: "error",
+                          title: "Número mínimo de aprendices: 30",
+                          text: "El número de aprendices que se quiere ingresar es: ",
+                          showConfirmButton: true,
+                          confirmButtonText: "Cerrar",
+                          closeOnConfirm: false
+                          }).then((result) => {
+                            if (result.value) {
+
+                            window.location = "fichas";
+                            }
+                        })
+
+                </script>';
+
+                  }
                     $datos = array("NumeroFicha" => $_POST["nuevaFicha"],
                         "IdAmbiente"                 => $_POST["nuevoAmbiente"],
                         "IdPrograma"                 => $_POST["nuevoPrograma"],
@@ -247,7 +269,7 @@ class ControladorFichas
             $datos     = $_GET["idFicha"];
 
             $tabla2="aprendiz";
-            $respuestaAprendices=ModeloAprendiz::mdlBorrarAprendiz($tabla2, $_GET["idFicha"]);
+            $respuestaAprendices=ModeloAprendiz::mdlEliminarAprendizFicha($tabla2, $datos);
             if($respuestaAprendices=="ok")
             {
               $respuesta = ModeloFichas::mdlEliminarFicha($tabla, $datos);

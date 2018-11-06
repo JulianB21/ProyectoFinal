@@ -41,6 +41,8 @@ class ControladorNovedades
 
                 $respuesta1 = ModeloNovedades::mdlMostrarNovedades($tabla1, $item1, $valor1);
 
+                // var_dump($respuesta1[0]["idnovedad"]);
+
                 $arreglo = $_POST["listaArticulos"];
 
                 $array = json_decode($arreglo);
@@ -51,12 +53,16 @@ class ControladorNovedades
                     $id          = $key->id;
                     $tipo        = $key->tipo;
                     $descripcion = $key->descripcion;
+
                     $tabla       = "articulonovedad";
+
                     $datos       = array('IdArticulo' => $id,
                         'TipoNovedad'                     => $tipo,
                         'ObservacionNovedad'              => $descripcion,
-                        'IdNovedad'                       => $respuesta1["idnovedad"],
+                        'IdNovedad'                       => $respuesta1[0]["idnovedad"],
                     );
+
+                    // var_dump($datos);
 
                     $respuesta = ModeloNovedades::mdlCrearNovedadArticulo($tabla, $datos);
 

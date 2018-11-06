@@ -142,7 +142,7 @@
       <form role="form" method="post" enctype="multipart/form-data">
 
         <!-- CABEZA DEL MODAL -->
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header cabeza-modal" >
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -156,45 +156,66 @@
           <!-- CUERPO DEL MODAL -->
           <div class="box-body">
 
-            <!-- ENTRADA PARA EL TIPO ARTICULO -->
-            <div class="form-group">
 
-              <div class="input-group">
+            <div class="form-group row">
 
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+              <!-- ENTRADA PARA EL TIPO ARTICULO -->
+              <div class="col-xs-6 ">
 
-                <input type="text" class="form-control input-lg" name="nuevoTipo" placeholder="Tipo articulo" required>
+                <div class="input-group">
+
+                  <span class="input-group-addon"><i class="fa fa-user"></i></span>
+
+                  <input type="text" class="form-control input-lg" name="nuevoTipo" placeholder="Tipo articulo" required>
+
+                </div>
+
+              </div>
+
+              <!-- ENTRADA PARA EL MODELO ARTICULO -->
+              <div class="col-xs-6">
+
+                <div class="input-group">
+
+                  <span class="input-group-addon"><i class="fa fa-key"></i></span>
+
+                  <input type="text" class="form-control input-lg" name="nuevoModelo"placeholder="Modelo Articulo" required>
+
+                </div>
+
+              </div>
+              <br>
+              <br>
+              <br>
+
+              <!-- ENTRADA PARA LA MARCA -->
+              <div class="col-xs-6">
+
+                <div class="input-group">
+
+                  <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+
+                  <input type="text" class="form-control input-lg" name="nuevaMarca" placeholder="Ingresar marca" required>
+
+                </div>
+
+              </div>
+
+              <!-- ENTRADA PARA EL SERIAL ARTICULO -->
+              <div class="col-xs-6">
+
+                <div class="input-group">
+
+                  <span class="input-group-addon"><i class="fa fa-key"></i></span>
+
+                  <input type="text" class="form-control input-lg" name="nuevoSerial" placeholder="Serial del articulo">
+
+                </div>
 
               </div>
 
             </div>
-
-            <!-- ENTRADA PARA EL MODELO ARTICULO -->
-            <div class="form-group">
-
-              <div class="input-group">
-
-                <span class="input-group-addon"><i class="fa fa-key"></i></span>
-
-                <input type="text" class="form-control input-lg" name="nuevoModelo"placeholder="Modelo Articulo" required>
-
-              </div>
-
-            </div>
-
-            <!-- ENTRADA PARA LA MARCA -->
-            <div class="form-group">
-
-              <div class="input-group">
-
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-
-                <input type="text" class="form-control input-lg" name="nuevaMarca" placeholder="Ingresar marca" required>
-
-              </div>
-
-            </div>
-
+  
             <!-- ENTRADA PARA SELECCIONAR AMBIENTE -->
             <div class="form-group">
 
@@ -207,17 +228,17 @@
                   <option value="">Selecionar Ambiente</option>
                   <?php
 
-$item  = null;
-$valor = null;
+                    $item  = null;
+                    $valor = null;
 
-$ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
+                    $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
 
-foreach ($ambiente as $key => $value) {
+                    foreach ($ambiente as $key => $value) {
 
-    echo '<option value="' . $value["idambiente"] . '">' . $value["nombreambiente"] . '</option>';
-}
+                      echo '<option value="' . $value["idambiente"] . '">' . $value["nombreambiente"] . '</option>';
+                    }
 
-?>
+                  ?>
                 </select> 
 
               </div>
@@ -288,50 +309,43 @@ foreach ($ambiente as $key => $value) {
 
             </div>
 
-            <!-- ENTRADA PARA EL INVENTARIO SENA -->
-            <div class="form-group">
+            <div class="form-group row">
 
-              <div class="input-group">
+              <!-- ENTRADA PARA EL INVENTARIO SENA -->
+              <div class="col-xs-6">
 
-                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                <div class="input-group">
 
-                <input type="text" class="form-control input-lg" name="nuevoInventario" min="0" placeholder="Ingrese el numero del inventario sena">
+                  <span class="input-group-addon"><i class="fa fa-key"></i></span>
 
-              </div>
+                  <input type="text" class="form-control input-lg" name="nuevoInventario" min="0" placeholder="Numero inventario SENA">
 
-            </div>
-
-
-            <!-- ENTRADA PARA EL SERIAL ARTICULO -->
-            <div class="form-group">
-
-              <div class="input-group">
-
-                <span class="input-group-addon"><i class="fa fa-key"></i></span>
-
-                <input type="text" class="form-control input-lg" name="nuevoSerial" placeholder="Ingrese el serial del articulo">
+                </div>
 
               </div>
 
-            </div>
-            <div class="form-group">
+              <div class="col-xs-6">
 
-              <div class="input-group">
+                <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                  <span class="input-group-addon"><i class="fa fa-users"></i></span>
 
-                <select class="form-control input-lg" name="nuevoEstado" required>
+                  <select class="form-control input-lg" name="nuevoEstado" required>
 
-                  <option value="">Selecionar Estado</option>
-                  <option value="ACTIVO">Activo</option>
-                  <option value="DAÑADO">Dañado</option>
-                  <option value="PERDIDO">Perdido</option>
+                    <option value="">Selecionar Estado</option>
+                    <option value="ACTIVO">Activo</option>
+                    <option value="DAÑADO">Dañado</option>
+                    <option value="PERDIDO">Perdido</option>
 
-                </select>
+                  </select>
+
+                </div>
 
               </div>
-
+              
             </div>
+
+            
              <div class="form-group">
 
               <div class="input-group">
@@ -346,8 +360,6 @@ foreach ($ambiente as $key => $value) {
             </div>
           </div>
         </div>
-
-
         <!-- PIE DEL MODAL -->
         <div class="modal-footer">
 
@@ -381,7 +393,7 @@ $crearArticulo->ctrCrearArticulos();
       <form role="form" method="post" enctype="multipart/form-data">
 
         <!-- CABEZA DEL MODAL -->
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header cabeza-modal" >
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
