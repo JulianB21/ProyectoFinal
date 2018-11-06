@@ -113,56 +113,62 @@ class ControladorArticulos
 
         if (isset($_GET["idArticulo"])) {
 
-            $tabla = "articulo";
-            $datos = $_GET["idArticulo"];
-            $item  = "IdArticulo";
+            $valor = $_GET["idArticulo"];
+            $tabla = "articulonovedad";
+            $item = "idarticulo";
+
+            $respuesta = ModeloArticulos::mdlMostrarArticulos($tabla, $item, $valor);
+            var_dump($respuesta);
+//             $tabla = "articulo";
+//             $datos = $_GET["idArticulo"];
+//             $item  = "IdArticulo";
 
             
 
-            $articulo = ModeloArticulos::mdlMostrarArticulos($tabla, $item, $datos);
+//             $articulo = ModeloArticulos::mdlMostrarArticulos($tabla, $item, $datos);
 
-            $tablaEquipo = "equipo";
-            $valorEquipo = $articulo["idequipo"];
-            $itemEquipo  = "IdEquipo";
+//             $tablaEquipo = "equipo";
+//             $valorEquipo = $articulo["idequipo"];
+//             $itemEquipo  = "IdEquipo";
 
-            $equipo    = ModeloEquipos::mdlMostrarEquipos($tablaEquipo, $itemEquipo, $valorEquipo);
+//             $equipo    = ModeloEquipos::mdlMostrarEquipos($tablaEquipo, $itemEquipo, $valorEquipo);
 
 
-            $agregados = $equipo["numarticulosagregados"] - 1;
+//             $agregados = $equipo["numarticulosagregados"] - 1;
 
-            $datosEquipo = array
-                (
-                "IdEquipo"              => $equipo["idequipo"],
-                "NuevoEquipo"           => $equipo["nombreequipo"],
-                "NuevoEstado"           => $equipo["estadoequipo"],
-                "NuevaObservacion"      => $equipo["observacionequipo"],
-                "NumArticulosEquipo"    => $equipo["numarticulosequipo"],
-                "NumArticulosAgregados" => $agregados,
-            );
+//             $datosEquipo = array
+//                 (
+//                 "IdEquipo"              => $equipo["idequipo"],
+//                 "NuevoEquipo"           => $equipo["nombreequipo"],
+//                 "NuevoEstado"           => $equipo["estadoequipo"],
+//                 "NuevaObservacion"      => $equipo["observacionequipo"],
+//                 "NumArticulosEquipo"    => $equipo["numarticulosequipo"],
+//                 "NumArticulosAgregados" => $agregados,
+//             );
 
-            $respuestaAmbiente2 = ModeloEquipos::mdlEditarEquipo($tablaEquipo, $datosEquipo);
+//             $respuestaAmbiente2 = ModeloEquipos::mdlEditarEquipo($tablaEquipo, $datosEquipo);
 
-            $respuesta = ModeloArticulos::mdlBorrarArticulos($tabla, $datos);
-// var_dump($respuesta);            
-            if ($respuesta == "ok") {
+//             $respuesta = ModeloArticulos::mdlBorrarArticulos($tabla, $datos);
+// // var_dump($respuesta);            
+//             if ($respuesta == "ok") {
 
-                echo '<script>
+//                 echo '<script>
 
-					swal({
-						  type: "success",
-						  title: "El articulo ha sido borrado correctamente",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar"
-						  }).then(function(result){
-									if (result.value) {
+// 					swal({
+// 						  type: "success",
+// 						  title: "El articulo ha sido borrado correctamente",
+// 						  showConfirmButton: true,
+// 						  confirmButtonText: "Cerrar"
+// 						  }).then(function(result){
+// 									if (result.value) {
 
-									window.location = "articulos";
+// 									window.location = "articulos";
 
-									}
-								})
+// 									}
+// 								})
 
-					</script>';
-            }
+// 					</script>';
+//             }
         }
     }
 
