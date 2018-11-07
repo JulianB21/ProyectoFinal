@@ -118,57 +118,79 @@ class ControladorArticulos
             $item = "idarticulo";
 
             $respuesta = ModeloArticulos::mdlMostrarArticulos($tabla, $item, $valor);
-            var_dump($respuesta);
-//             $tabla = "articulo";
-//             $datos = $_GET["idArticulo"];
-//             $item  = "IdArticulo";
-
-            
-
-//             $articulo = ModeloArticulos::mdlMostrarArticulos($tabla, $item, $datos);
-
-//             $tablaEquipo = "equipo";
-//             $valorEquipo = $articulo["idequipo"];
-//             $itemEquipo  = "IdEquipo";
-
-//             $equipo    = ModeloEquipos::mdlMostrarEquipos($tablaEquipo, $itemEquipo, $valorEquipo);
+            // var_dump($respuesta);
 
 
-//             $agregados = $equipo["numarticulosagregados"] - 1;
+            if ($respuesta == false) {
+                $tabla = "articulo";
+                $datos = $_GET["idArticulo"];
+                $item  = "IdArticulo";
 
-//             $datosEquipo = array
-//                 (
-//                 "IdEquipo"              => $equipo["idequipo"],
-//                 "NuevoEquipo"           => $equipo["nombreequipo"],
-//                 "NuevoEstado"           => $equipo["estadoequipo"],
-//                 "NuevaObservacion"      => $equipo["observacionequipo"],
-//                 "NumArticulosEquipo"    => $equipo["numarticulosequipo"],
-//                 "NumArticulosAgregados" => $agregados,
-//             );
+                
 
-//             $respuestaAmbiente2 = ModeloEquipos::mdlEditarEquipo($tablaEquipo, $datosEquipo);
+                $articulo = ModeloArticulos::mdlMostrarArticulos($tabla, $item, $datos);
 
-//             $respuesta = ModeloArticulos::mdlBorrarArticulos($tabla, $datos);
-// // var_dump($respuesta);            
-//             if ($respuesta == "ok") {
+                $tablaEquipo = "equipo";
+                $valorEquipo = $articulo["idequipo"];
+                $itemEquipo  = "IdEquipo";
 
-//                 echo '<script>
+                $equipo    = ModeloEquipos::mdlMostrarEquipos($tablaEquipo, $itemEquipo, $valorEquipo);
 
-// 					swal({
-// 						  type: "success",
-// 						  title: "El articulo ha sido borrado correctamente",
-// 						  showConfirmButton: true,
-// 						  confirmButtonText: "Cerrar"
-// 						  }).then(function(result){
-// 									if (result.value) {
 
-// 									window.location = "articulos";
+                $agregados = $equipo["numarticulosagregados"] - 1;
 
-// 									}
-// 								})
+                $datosEquipo = array
+                    (
+                    "IdEquipo"              => $equipo["idequipo"],
+                    "NuevoEquipo"           => $equipo["nombreequipo"],
+                    "NuevoEstado"           => $equipo["estadoequipo"],
+                    "NuevaObservacion"      => $equipo["observacionequipo"],
+                    "NumArticulosEquipo"    => $equipo["numarticulosequipo"],
+                    "NumArticulosAgregados" => $agregados,
+                );
 
-// 					</script>';
-//             }
+                $respuestaAmbiente2 = ModeloEquipos::mdlEditarEquipo($tablaEquipo, $datosEquipo);
+
+                $respuesta = ModeloArticulos::mdlBorrarArticulos($tabla, $datos);
+    // var_dump($respuesta);            
+                if ($respuesta == "ok") {
+
+                    echo '<script>
+
+                     swal({
+                           type: "success",
+                           title: "El articulo ha sido borrado correctamente",
+                           showConfirmButton: true,
+                           confirmButtonText: "Cerrar"
+                           }).then(function(result){
+                                     if (result.value) {
+
+                                     window.location = "articulos";
+
+                                     }
+                                 })
+
+                     </script>';
+                }
+            }else{
+                echo '<script>
+
+                     swal({
+                           type: "error",
+                           title: "Error",
+                           text: "El articulo se encuentra registrado en una novedad",
+                           showConfirmButton: true,
+                           confirmButtonText: "Cerrar"
+                           }).then(function(result){
+                                     if (result.value) {
+
+                                     window.location = "articulos";
+
+                                     }
+                                 })
+
+                     </script>';
+            }           
         }
     }
 

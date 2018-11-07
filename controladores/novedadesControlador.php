@@ -54,9 +54,9 @@ class ControladorNovedades
                     $tipo        = $key->tipo;
                     $descripcion = $key->descripcion;
 
-                    $tabla       = "articulonovedad";
+                    $tabla5      = "articulonovedad";
 
-                    $datos       = array('IdArticulo' => $id,
+                    $datos5       = array('IdArticulo' => $id,
                         'TipoNovedad'                     => $tipo,
                         'ObservacionNovedad'              => $descripcion,
                         'IdNovedad'                       => $respuesta1[0]["idnovedad"],
@@ -64,55 +64,70 @@ class ControladorNovedades
 
                     // var_dump($datos);
 
-                    $respuesta = ModeloNovedades::mdlCrearNovedadArticulo($tabla, $datos);
+                    // $respuesta2 = ModeloNovedades::mdlCrearNovedadArticulo($tabla, $datos);
+                    $tabla3 = "articulonovedad";
+                    $item3 = "idarticulo";
+                    $valor3 = $id;
+ 
+                    $respuesta3 = ModeloArticulos::mdlMostrarArticulos($tabla3, $item3, $valor3);
+                    // var_dump($respuesta3);
+
+                    if ($respuesta3 != "") {
+                         echo '<script>
+
+                             swal({
+
+                                    type: "error",
+                                    title: "¡El artículo ya se encuentra registrado en una novedad!",
+                                    showConfirmButton: true,
+                                    confirmButtonText: "Cerrar"
+
+                                }).then(function(result){
+
+                                    if(result.value){
+
+                                        window.location = "crear-novedad";
+
+                                    }
+
+                                });
+
+                            </script>';
+                    }else{
+                        $respuesta2 = ModeloNovedades::mdlCrearNovedadArticulo($tabla5, $datos5);
+
+                        // var_dump($respuesta2);
+
+                        if ($respuesta2 == "ok") {
+                            echo '<script>
+
+                                 swal({
+
+                                         type: "success",
+                                         title: "¡La novedad ha sido registrada correctamente!",
+                                         showConfirmButton: true,
+                                         confirmButtonText: "Cerrar"
+
+                                     }).then(function(result){
+
+                                         if(result.value){
+
+                                             window.location = "crear-novedad";
+
+                                         }
+
+                                     });
+
+                                 </script>';
+
+                        }
+
+                        
+                    }
+
 
                 }
-                // var_dump($respuesta);
-
-                if ($respuesta == "error") {
-                    echo '<script>
-
-                        swal({
-
-                            type: "error",
-                            title: "¡El artículo ya se encuentra registrado en esta novedad!",
-                            showConfirmButton: true,
-                            confirmButtonText: "Cerrar"
-
-                        }).then(function(result){
-
-                            if(result.value){
-
-                                window.location = "crear-novedad";
-
-                            }
-
-                        });
-
-                    </script>';
-                } else {
-                    echo '<script>
-
-                        swal({
-
-                            type: "success",
-                            title: "¡La novedad ha sido registrada correctamente!",
-                            showConfirmButton: true,
-                            confirmButtonText: "Cerrar"
-
-                        }).then(function(result){
-
-                            if(result.value){
-
-                                window.location = "crear-novedad";
-
-                            }
-
-                        });
-
-                    </script>';
-
-                }
+                
 
             }
             /*=============================================

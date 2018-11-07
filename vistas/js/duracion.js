@@ -1,4 +1,6 @@
 function duracion(sel) {
+     
+
 
     if (sel == "TÉCNICO") {
         $("#nuevaDuracion").val("12 MESES");
@@ -21,4 +23,19 @@ function duracion(sel) {
         $("#EditarDuracion").val("");
         $("#EditarDuracion").prop('readonly', true);
     }
+}
+
+function tiempo(sel) {
+
+    diaActual = new Date(sel);
+
+    var day = diaActual.getDate();
+    var month = diaActual.getMonth()+1;
+    var year = diaActual.getFullYear()+2;
+
+    fecha  = month + '/' + day + '/' + year;
+
+    $("#fin").val(fecha);
+    $("#fin").prop('readonly', true);
+
 }

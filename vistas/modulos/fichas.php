@@ -256,7 +256,7 @@ foreach ($ambiente as $key => $value) {
 
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 
-                <input type="text" class="form-control input-lg" name="nuevaFechaInicio" placeholder="Ingresar fecha inicio" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required>
+                <input type="text" class="form-control input-lg" name="nuevaFechaInicio" placeholder="Ingresar fecha inicio" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required onchange="tiempo(this.value)">
 
               </div>
 
@@ -270,7 +270,7 @@ foreach ($ambiente as $key => $value) {
 
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 
-                <input type="text" class="form-control input-lg" name="nuevaFechaFin" placeholder="Ingresar fecha fin" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required>
+                <input type="text" class="form-control input-lg" id="fin" name="nuevaFechaFin" placeholder="Ingresar fecha fin" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required>
 
               </div>
 

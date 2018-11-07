@@ -259,7 +259,7 @@ function listaArticulos(valor) {
         $("button.recuperarBoton[idArticulo='" + idArticulo + "']").removeClass('btn-default');
         $("button.recuperarBoton[idArticulo='" + idArticulo + "']").addClass('btn-primary btnAgregarArticulo');
 
-        debugger;
+        // debugger;
         for (var i = 0; i < array.length; i++) {
             if ((array[i].id) == idArticulo) {
                 array.splice(i, 1);
@@ -274,7 +274,7 @@ function listaArticulos(valor) {
 }
 
 function quitarNovedad() {
-    debugger;
+    // debugger;
     var idArticulo = $("#idArticulo").val();
     $("button.recuperarBoton[idArticulo='" + idArticulo + "']").removeClass('disabled');
     $("button.recuperarBoton[idArticulo='" + idArticulo + "']").removeClass('btn-default');
