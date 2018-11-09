@@ -52,27 +52,6 @@ class ControladorFichas
                     # code...
                 } else {
 
-                  if ($_POST["nuevaFechaInicio"] >= $_POST["nuevaFechaFin"]) {
-                    
-                    echo '<script>
-
-                    swal({
-                          type: "error",
-                          title: "Número mínimo de aprendices: 30",
-                          text: "El número de aprendices que se quiere ingresar es: ",
-                          showConfirmButton: true,
-                          confirmButtonText: "Cerrar",
-                          closeOnConfirm: false
-                          }).then((result) => {
-                            if (result.value) {
-
-                            window.location = "fichas";
-                            }
-                        })
-
-                </script>';
-
-                  }
                     $datos = array("NumeroFicha" => $_POST["nuevaFicha"],
                         "IdAmbiente"                 => $_POST["nuevoAmbiente"],
                         "IdPrograma"                 => $_POST["nuevoPrograma"],
@@ -83,79 +62,86 @@ class ControladorFichas
                     $respuesta = ModeloFichas::mdlAgregarFichas($tabla, $datos);
                     if ($respuesta == "ok") {
 
-                        $letras = array('A' => "A",
-                            'B'                 => "B",
-                            'C'                 => "C",
-                            'D'                 => "D",
-                            'E'                 => "E");
-                        $errores = 0;
-                        for ($i = 2; $i <= count($data[0]); $i++) {
-                            $tablaConsulta     = "aprendiz";
-                            $itemConsulta      = "NumDocumentoAprendiz";
-                            $valorConsulta     = $data[0][$i][$letras['A']];
-                            $respuestaConsulta = ModeloAprendiz::mdlConsultarAprendizFicha($tablaConsulta, $itemConsulta, $valorConsulta);
+                      $letras = array('A' => "A",
+                                      'B' => "B",
+                                      'C' => "C",
+                                      'D' => "D",
+                                      'E' => "E");
 
-                            if ($respuestaConsulta == null) {
+                      $errores = 0;
 
-                                $tabla = "aprendiz";
+                      for ($i = 2; $i <= count($data[0]); $i++) {
+                        $tablaConsulta     = "aprendiz";
+                        $itemConsulta      = "NumDocumentoAprendiz";
+                        $valorConsulta     = $data[0][$i][$letras['A']];
+                        $respuestaConsulta = ModeloAprendiz::mdlConsultarAprendizFicha($tablaConsulta, $itemConsulta, $valorConsulta);
 
-                                for ($i = 2; $i <= count($data[0]); $i++) {
-                                    $datos1 = array("NumeroFicha" => $_POST["nuevaFicha"],
-                                        "NumDocumentoAprendiz"        => $data[0][$i][$letras['A']],
-                                        "NombreAprendiz"              => $data[0][$i][$letras['C']],
-                                        "TelefonoAprendiz"            => $data[0][$i][$letras['D']],
-                                        "EmailAprendiz"               => $data[0][$i][$letras['E']]);
+                        if ($respuestaConsulta == null) {
+
+                          $tabla = "aprendiz";
+
+                          for ($i = 2; $i <= count($data[0]); $i++) {
+
+                              $datos1 = array("NumeroFicha" => $_POST["nuevaFicha"],
+                                              "NumDocumentoAprendiz" => $data[0][$i][$letras['A']],
+                                              "NombreAprendiz"       => $data[0][$i][$letras['C']],
+                                              "TelefonoAprendiz"     => $data[0][$i][$letras['D']],
+                                              "EmailAprendiz"        => $data[0][$i][$letras['E']]);
 
                                     // var_dump($datos1);
 
-                                    $respuesta2 = ModeloAprendiz::MdlIngresarAprendiz($tabla, $datos1);
+                              $respuesta2 = ModeloAprendiz::MdlIngresarAprendiz($tabla, $datos1);
                                     // var_dump($respuesta2);
 
-                                }
-                                if ($respuesta2 == "ok") {
-                                    echo '<script>
+                          }
 
-                        swal({
-                              type: "success",
-                              title: "La ficha ha sido guardada correctamente",
-                              showConfirmButton: true,
-                              confirmButtonText: "Cerrar",
-                              closeOnConfirm: false
-                              }).then((result) => {
+                          if ($respuesta2 == "ok") {
+
+                            echo '<script>
+
+                                    swal({
+                                      type: "success",
+                                      title: "La ficha ha sido guardada correctamente",
+                                      showConfirmButton: true,
+                                      confirmButtonText: "Cerrar",
+                                      closeOnConfirm: false
+                                      }).then((result) => {
+                                        if (result.value) {
+
+                                          window.location = "fichas";
+
+                                          }
+                                      })
+
+                                  </script>';
+                          } else {
+
+                            echo '<script>
+
+                                  swal({
+                                      type: "error",
+                                      title: "La ficha no puede ir vacía o llevar caracteres especiales!",
+                                      showConfirmButton: true,
+                                      confirmButtonText: "Cerrar",
+                                      closeOnConfirm: false
+                                      }).then((result) => {
                                         if (result.value) {
 
                                         window.location = "fichas";
-
                                         }
                                     })
 
-                        </script>';
-                                } else {
+                            			</script>';
+                          }
 
-                                    echo '<script>
-
-                        swal({
-                              type: "error",
-                              title: "La ficha no puede ir vacía o llevar caracteres especiales!",
-                              showConfirmButton: true,
-                              confirmButtonText: "Cerrar",
-                              closeOnConfirm: false
-                              }).then((result) => {
-                                if (result.value) {
-
-                                window.location = "fichas";
-                                }
-                            })
-
-                    			</script>';
-                                }
-                            } else {
-                                $i                 = 5000;
-                                $tablaEliminar     = "ficha";
-                                $datosEliminar     = $_POST["nuevaFicha"];
-                                $respuestaEliminar = ModeloFichas::mdlEliminarFicha($tablaEliminar, $datosEliminar);
-                                if ($respuestaEliminar == "ok") {
-                                    echo '<script>
+                        } else {
+                          $i                 = 5000;
+                          $tablaEliminar     = "ficha";
+                          $datosEliminar     = $_POST["nuevaFicha"];
+                          $respuestaEliminar = ModeloFichas::mdlEliminarFicha($tablaEliminar, $datosEliminar);
+                          
+                          if ($respuestaEliminar == "ok") {
+                            echo '<script>
                                     swal({
                                           type: "error",
                                           title: "Usuario ya registrado",
@@ -171,10 +157,11 @@ class ControladorFichas
                                         })
 
                                 </script>';
-                                }
-                            }
-
+                          }
+                            
                         }
+
+                      }
                     }
 
                 }

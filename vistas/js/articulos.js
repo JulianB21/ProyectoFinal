@@ -37,6 +37,7 @@ $(".tablas").on("click", ".btnEditarArticulo", function(){
             $("#editarTipo").val(respuesta["tipoarticulo"]);
             $("#editarModelo").val(respuesta["modeloarticulo"]);
             $("#editarMarca").val(respuesta["marcaarticulo"]);
+            $("#editarInventario").val(respuesta["numinventariosena"]);
             var idAmbiente = $(this).attr("idAmbiente");
             var datosAmbiente = new FormData();
             datosAmbiente.append("idAmbiente", respuesta["idambiente"]);
@@ -50,7 +51,7 @@ $(".tablas").on("click", ".btnEditarArticulo", function(){
                 dataType: "json",
                 success: function(respuesta) {
                     $("#editarAmbiente").val(respuesta["idambiente"]);
-                    $("#editarAmbiente").html(respuesta["nombreambiente"]);
+                    // $("#editarAmbiente").html(respuesta["nombreambiente"]);
                 }
             })
             var idEquipo = $(this).attr("idEquipo");
@@ -67,7 +68,7 @@ $(".tablas").on("click", ".btnEditarArticulo", function(){
                 success: function(respuesta) {
                     // console.log("respuesta", respuesta);
                     $("#editarEquipo").val(respuesta["idequipo"]);
-                    $("#editarEquipo").html(respuesta["nombreequipo"]);
+                    // $("#editarEquipo").html(respuesta["nombreequipo"]);
                 }
             })
             var idCategorias = $(this).attr("idCategoria");
@@ -83,13 +84,13 @@ $(".tablas").on("click", ".btnEditarArticulo", function(){
                 dataType: "json",
                 success: function(respuesta) {
                     $("#editarCategoria").val(respuesta["idcategoria"]);
-                    $("#editarCategoria").html(respuesta["nombrecategoria"]);
+                    // $("#editarCategoria").html(respuesta["nombrecategoria"]);
                 }
             })
             $("#editarInventario").val(respuesta["numinventariosena"]);
             $("#editarSerial").val(respuesta["serialarticulo"]);
             $("#editarEstado").val(respuesta["estadoarticulo"]);
-            $("#editarEstado").html(respuesta["estadoarticulo"]);
+            // $("#editarEstado").html(respuesta["estadoarticulo"]);
             $("#editarCaracteristica").val(respuesta["caracteristicaarticulo"]);
         }
     })

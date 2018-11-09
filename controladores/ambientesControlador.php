@@ -85,10 +85,12 @@ class ControladorAmbientes
     			$NombreAmbiente = strtoupper($_POST["editarAmbiente"]);
     			$editarUbicacion = strtoupper($_POST["editarUbicacion"]);
 
+                $editarUbicacion = $_POST["editarUbicacion"];
                 if ($_POST["editarUbicacion"] == "") {
                     $editarUbicacion = null;
                 }
 
+                $programa = $_POST["idPrograma"];
                 if ($_POST["idPrograma"] == "") {
                     $programa = null;
                 }

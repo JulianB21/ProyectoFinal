@@ -43,7 +43,7 @@
          <tr>
            <th style="width:30px">Acciones</th>   
            <th style="width:15px">#</th>
-           <th>Categoria</th>
+           <th>Categoría</th>
 
          </tr> 
 
@@ -110,7 +110,7 @@
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar categoría</h4>
+          <h4 class="modal-title">Agregar Categoría</h4>
 
         </div>
 
@@ -126,7 +126,7 @@
               
                 <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="nuevaCategoria" placeholder="Ingresar categoría" required>
+                <input type="text" class="form-control input-lg" name="nuevaCategoria" placeholder="Ingrese Nombre de Categoría" required>
 
               </div>
 
@@ -141,7 +141,7 @@
 
           <button type="button" class="btn btn-default " data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar categoría</button>
+          <button type="submit" class="btn btn-primary">Guardar Categoría</button>
 
         </div>
 
@@ -220,7 +220,7 @@ MODAL EDITAR CATEGORÍA
 
           <button type="button" class="btn btn-default " data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
 
         </div>
 

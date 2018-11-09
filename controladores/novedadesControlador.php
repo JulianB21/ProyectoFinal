@@ -20,7 +20,7 @@ class ControladorNovedades
             $datos = array("NumDocumentoUsuario" => $_POST["numUsuario"],
                 "UsuarioNovedad"                     => $_POST["usuarioNovedad"],
                 "NumeroFicha"                        => $_POST["nuevaFicha1"],
-                "articulo"                           => $_POST["articulo"],
+                "articulo"                           => null,
                 "FechaNovedad"                       => $fechaActual,
                 "Estado"                       => "1");
 
@@ -35,8 +35,8 @@ class ControladorNovedades
                     $observacion = null;
                 }
 
-                $item1  = "Articulo";
-                $valor1 = $_POST["articulo"];
+                $item1  = "fechanovedad";
+                $valor1 = $fechaActual;
                 $tabla1 = "novedad";
 
                 $respuesta1 = ModeloNovedades::mdlMostrarNovedades($tabla1, $item1, $valor1);
@@ -73,6 +73,17 @@ class ControladorNovedades
                     // var_dump($respuesta3);
 
                     if ($respuesta3 != "") {
+
+                        // $a = ModeloNovedades::idnovedad();
+                        // var_dump($a[0]);
+
+                        $tabla8 = "novedad";
+                        $datos8 = $a[0]; 
+
+                        $respuesta7 = ModeloNovedades::mdlBorrarNovedad($tabla8, $datos8);
+
+                        // var_dump($respuesta7);
+
                          echo '<script>
 
                              swal({
@@ -119,21 +130,10 @@ class ControladorNovedades
                                      });
 
                                  </script>';
-
                         }
-
-                        
                     }
-
-
                 }
-                
-
             }
-            /*=============================================
-        =ARRIBA DE ESTO AGREGA NOVEDAD (RESPUESTA OK)=
-        =============================================*/
-
         }
     }
 

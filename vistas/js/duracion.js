@@ -25,17 +25,63 @@ function duracion(sel) {
     }
 }
 
+var tiempoPrograma = 0;
+
+function programa(sel){
+    
+    var idPrograma = sel;
+
+    var datos = new FormData();
+    datos.append("idPrograma", idPrograma);
+    $.ajax({
+        url: "ajax/programas.Ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(respuesta) {
+            // console.log("respuesta", respuesta[3]);
+            // $("#nuevoAmbiente1").val(respuesta["nombreambiente"]);
+            tiempoPrograma = respuesta[3];
+        }
+    });
+}
+
 function tiempo(sel) {
 
-    diaActual = new Date(sel);
+    tiempoPrograma
+    console.log("tiempoPrograma", tiempoPrograma);
 
-    var day = diaActual.getDate();
-    var month = diaActual.getMonth()+1;
-    var year = diaActual.getFullYear()+2;
+    if (tiempoPrograma == "TÉCNICO") {
 
-    fecha  = month + '/' + day + '/' + year;
+        diaActual = new Date(sel);
+        // console.log("diaActual", diaActual);
 
-    $("#fin").val(fecha);
-    $("#fin").prop('readonly', true);
+        var day = diaActual.getDate();
+        var month = diaActual.getMonth()+1;
+        var year = diaActual.getFullYear()+1;
+
+        fecha  = month + '/' + day + '/' + year;
+
+        $("#fin").val(fecha);
+        $("#fin").prop('readonly', true);
+
+    }else if (tiempoPrograma == "TECNÓLOGO") {
+
+        diaActual = new Date(sel);
+        console.log("diaActual", diaActual);
+
+        var day = diaActual.getDate();
+        var month = diaActual.getMonth()+1;
+        var year = diaActual.getFullYear()+2;
+
+        fecha  = month + '/' + day + '/' + year;
+
+        $("#fin").val(fecha);
+        $("#fin").prop('readonly', true);
+    }
+
 
 }

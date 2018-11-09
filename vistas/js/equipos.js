@@ -41,6 +41,7 @@ $(".tablas").on("click", ".btnEditarEquipo", function(){
             // $("#editarEstado").html(respuesta["EstadoEquipo"]);
             $("#editarCantidad").val(respuesta["numarticulosequipo"]);
             $("#editarObservacion").val(respuesta["observacionequipo"]);
+            $("#agregados").val(respuesta["numarticulosagregados"]);
         }
     })
 })
@@ -95,19 +96,25 @@ function equipoFuncion1(sel) {
         success: function(respuesta2) {
             // debugger;
             console.log(respuesta2);
-            console.log(nombre);
-            $("#equipo").val(respuesta2["idequipo"]);
+            // console.log(nombre);
+            // $("#equipo").val(respuesta2["idequipo"]);
+            // if (respuesta2["numarticulosagregados"] == respuesta2["numarticulosequipo"]) {
+            //     $("#editarEquipo").parent().parent().after('<div class="alert alert-warning">Este equipo ya tiene el total de artículos asignados</div>');
+            //     $("#actualizarArticulo").prop('disabled', true);
+            // }
+           
+
+           if (respuesta2 == false) {
+
+            $("#editarEquipo").val("");
+           
+           }else{
+             $("#equipo").val(respuesta2["idequipo"]);
             if (respuesta2["numarticulosagregados"] == respuesta2["numarticulosequipo"]) {
                 $("#editarEquipo").parent().parent().after('<div class="alert alert-warning">Este equipo ya tiene el total de artículos asignados</div>');
                 $("#actualizarArticulo").prop('disabled', true);
             }
-            // $("#editarEquipo").val(respuesta["NombreEquipo"]);
-            // $("#idEquipo").val(respuesta["IdEquipo"]);
-            // $("#editarEstado").val(respuesta["EstadoEquipo"]);
-            // // $("#editarEstado").html(respuesta["EstadoEquipo"]);
-            // $("#editarCantidad").val(respuesta["NumArticulosEquipo"]);
-            // $("#editarObservacion").val(respuesta["ObservacionEquipo"]);
-            // console.log(respuesta);
+           }
         }
     })
 }

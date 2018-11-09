@@ -23,7 +23,7 @@ class AjaxEquipo
 	public function ajaxEquipoArticulo(){
 
         $item = "IdEquipo";
-        $valor = $this->idEquipo;
+        $valor = $this->idEquipos;
 
         $respuesta = ControladorEquipos::ctrMostrarEquipos($item, $valor);
 
@@ -42,7 +42,7 @@ if(isset($_POST["idEquipo"])){
 if(isset($_POST["sel"])){
 
     $equipo = new AjaxEquipo();
-    $equipo -> idEquipo = $_POST["sel"];
+    $equipo -> idEquipos = $_POST["sel"];
     $equipo -> ajaxEquipoArticulo();
 }
 
